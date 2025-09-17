@@ -2,7 +2,8 @@
   --bg-primary: #fef7f2;
   --bg-primary-rgb: 254, 247, 242;
   --bg-footer: #faefe5;
-  --text-primary: #5c4033;
+  --text-primary: #5c3d2e; /* Deepened to a richer brown */
+  --text-primary-rgb: 92, 61, 46;
   --accent-primary: #d97706;
   --accent-hover: #b45309;
   --border-light: #f3e4d7;

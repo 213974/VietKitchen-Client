@@ -1,11 +1,12 @@
 :root {
   --bg-primary: #1a1a1a;
   --bg-primary-rgb: 26, 26, 26;
-  --bg-footer: #111111;
+  --bg-footer: #1c1c1c; /* Slightly lighter than pure black */
   --text-primary: #e5e5e5;
+  --text-primary-rgb: 229, 229, 229;
   --accent-primary: #f97316;
   --accent-hover: #ea580c;
-  --border-light: #444444;
+  --border-light: #3a3a3a; /* Softened the border color */
 
   --font-family-sans: 'Poppins', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
   --font-family-serif: 'Lora', 'Georgia', 'Times New Roman', serif;
