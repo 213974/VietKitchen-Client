@@ -3,7 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './MenuPage.css';
 import SEO from '../../components/common/SEO/SEO';
 import MenuPosterCard from './MenuPosterCard';
-// CORRECTED: Split into a value import and a type-only import
+import MenuDetailCard from './MenuDetailCard';
+import ViewImageIcon from '../../assets/icons/view-image.svg?react';
+import ViewListIcon from '../../assets/icons/view-list.svg?react';
+
 import { menuData } from '../../data/menuData';
 import type { MenuPoster } from '../../data/menuData';
 
@@ -12,22 +15,17 @@ const filterCategories: MenuFilter[] = ['All', 'Food', 'Drinks', 'Desserts'];
 
 const MenuPage = () => {
   const [activeFilter, setActiveFilter] = useState<MenuFilter>('All');
+  const [isDetailedView, setIsDetailedView] = useState(false);
 
-  // useMemo will prevent re-calculating the filtered lists on every render
   const filteredMenu = useMemo(() => {
-    if (activeFilter === 'All') {
-      return menuData;
-    }
+    if (activeFilter === 'All') return menuData;
     return menuData.filter(poster => poster.category === activeFilter);
   }, [activeFilter]);
 
-  // Create a grouped structure for rendering the "All" view with headers
   const groupedMenu = useMemo(() => {
     return menuData.reduce((acc, poster) => {
       const category = poster.category;
-      if (!acc[category]) {
-        acc[category] = [];
-      }
+      if (!acc[category]) acc[category] = [];
       acc[category].push(poster);
       return acc;
     }, {} as Record<MenuFilter, MenuPoster[]>);
@@ -56,52 +54,59 @@ const MenuPage = () => {
           </p>
         </div>
 
-        <div className="menu-filters">
-          {filterCategories.map(filter => (
-            <button
-              key={filter}
-              className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
-              onClick={() => setActiveFilter(filter)}
-            >
-              {filter}
+        <div className="menu-controls-wrapper">
+          <div className="menu-filters">
+            {filterCategories.map(filter => (
+              <button
+                key={filter}
+                className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
+                onClick={() => setActiveFilter(filter)}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          <div className="view-toggle">
+            <button onClick={() => setIsDetailedView(false)} className={!isDetailedView ? 'active' : ''} aria-label="Image View">
+              <ViewImageIcon />
             </button>
-          ))}
+            <button onClick={() => setIsDetailedView(true)} className={isDetailedView ? 'active' : ''} aria-label="List View">
+              <ViewListIcon />
+            </button>
+          </div>
         </div>
 
-        {/* --- NEW: Instructional Text --- */}
         <div className="menu-click-hint">
-          <p>Click on a menu to see more details.</p>
+          <p>{!isDetailedView ? "Click on a menu to see more details." : "All details shown below."}</p>
         </div>
 
+        {/* CORRECTED: Removed the `layout` prop to prevent sliding */}
         <motion.div 
           className="menu-posters-grid"
         >
           <AnimatePresence mode="wait">
             {activeFilter === 'All' ? (
-              // Render with category headers
               Object.entries(groupedMenu).map(([category, posters]) => (
                 <Fragment key={category}>
                   <h2 className="menu-category-header">{category}</h2>
-                  {posters.map((poster) => (
-                    <MenuPosterCard
-                      key={poster.altText}
-                      imageSrc={poster.imageSrc}
-                      altText={poster.altText}
-                      details={poster.details}
-                    />
-                  ))}
+                  {posters.map((poster) =>
+                    isDetailedView ? (
+                      <MenuDetailCard key={poster.altText} altText={poster.altText} details={poster.details} />
+                    ) : (
+                      <MenuPosterCard key={poster.altText} {...poster} />
+                    )
+                  )}
                 </Fragment>
               ))
             ) : (
-              // Render the filtered list directly
-              filteredMenu.map((poster) => (
-                <MenuPosterCard
-                  key={poster.altText}
-                  imageSrc={poster.imageSrc}
-                  altText={poster.altText}
-                  details={poster.details}
-                />
-              ))
+              filteredMenu.map((poster) =>
+                isDetailedView ? (
+                  <MenuDetailCard key={poster.altText} altText={poster.altText} details={poster.details} />
+                ) : (
+                  <MenuPosterCard key={poster.altText} {...poster} />
+                )
+              )
             )}
           </AnimatePresence>
         </motion.div>
