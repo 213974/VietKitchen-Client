@@ -63,7 +63,6 @@ const Footer = () => {
           </div>
           <div className="footer-copyright">
             <p>&copy; {currentYear} Viet Kitchen & Tea House. All Rights Reserved.</p>
-            <p>Website by vietkitchen.com</p> 
           </div>
         </div>
       </div>

@@ -22,15 +22,15 @@
 
 /* NEW: Background for the Menu Teaser section */
 .menu-bg {
-  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/gallery/noodles.webp');
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/gallery/store_front1.jpg');
 }
 
 .story-bg {
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../../assets/gallery/sitting_area1.webp');
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../../assets/gallery/store_front1.jpg');
 }
 
 .contact-bg {
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../assets/menu/pho.webp');
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../assets/menu/store_front1.jpg');
 }
 
 /* ------------------- Hero Content Styles ------------------- */

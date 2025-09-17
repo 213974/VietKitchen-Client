@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import { useResponsive } from '../../../hooks/useResponsive';
 
 // Import the specific images for the teaser.
-import image1 from '../../../assets/gallery/cafe_seat_decoration1.webp';
-import image2 from '../../../assets/gallery/store_section1.webp';
+import image1 from '../../../assets/gallery/store_front1.jpg';
+import image2 from '../../../assets/gallery/store_front1.jpg';
 import image3 from '../../../assets/gallery/store_front1.jpg';
-import image4 from '../../../assets/gallery/sitting_area1.webp';
+import image4 from '../../../assets/gallery/store_front1.jpg';
 
 // Create the array of images to be displayed in the carousel.
 const teaserImages = [image1, image2, image3, image4];

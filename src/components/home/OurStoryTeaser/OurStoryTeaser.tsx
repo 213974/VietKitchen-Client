@@ -4,9 +4,9 @@ import './OurStoryTeaser.css';
 import { useResponsive } from '../../../hooks/useResponsive';
 
 // Import the specific images used in this teaser section.
-import image1 from '../../../assets/gallery/sitting_area1.webp';
-import image2 from '../../../assets/menu/PinaColada.jpg';
-import image3 from '../../../assets/menu/PinaColada.jpg';
+import image1 from '../../../assets/gallery/store_front1.jpg';
+import image2 from '../../../assets/gallery/store_front1.jpg';
+import image3 from '../../../assets/gallery/store_front1.jpg';
 
 /**
  * A component for the homepage that provides a brief preview of the "Our Story" page.

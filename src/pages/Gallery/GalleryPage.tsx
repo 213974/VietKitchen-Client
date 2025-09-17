@@ -9,10 +9,10 @@ import SEO from '../../components/common/SEO/SEO';
 import { useGallery, type GalleryImage } from '../../hooks/useGallery';
 
 // Static Fallback Data
-import sittingArea1 from '../../assets/gallery/sitting_area1.webp';
-import storeSection1 from '../../assets/gallery/store_section1.webp';
+import sittingArea1 from '../../assets/gallery/store_front1.jpg';
+import storeSection1 from '../../assets/gallery/store_front1.jpg';
 import storeFront1 from '../../assets/gallery/store_front1.jpg';
-import cafeSeatDecoration1 from '../../assets/gallery/cafe_seat_decoration1.webp';
+import cafeSeatDecoration1 from '../../assets/gallery/store_front1.jpg';
 
 const staticGalleryData = {
   title: 'Our Cozy Cafe',

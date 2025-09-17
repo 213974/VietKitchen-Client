@@ -58,6 +58,6 @@ export const mockMenuItems: MenuItem[] = [
     description: 'A hearty vegetable broth with tofu, mushrooms, bok choy, and fresh herbs.',
     price: 13.99,
     category: 'Pho',
-    imageUrl: '/src/assets/gallery/sitting_area1.webp', // Placeholder
+    imageUrl: '/src/assets/gallery/store_front1.jpg', // Placeholder
   },
 ];
