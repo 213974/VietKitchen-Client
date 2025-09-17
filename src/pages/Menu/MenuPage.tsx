@@ -47,7 +47,6 @@ const MenuPage = () => {
           <p>Authentic flavors crafted with the freshest ingredients.</p>
         </header>
 
-        {/* --- NEW: Full Menu Notice --- */}
         <div className="full-menu-notice">
           <p>
             Browse our curated selections below. For our complete menu and to place an order, please visit our online ordering portal.
@@ -67,6 +66,11 @@ const MenuPage = () => {
               {filter}
             </button>
           ))}
+        </div>
+
+        {/* --- NEW: Instructional Text --- */}
+        <div className="menu-click-hint">
+          <p>Click on a menu to see more details.</p>
         </div>
 
         <motion.div 

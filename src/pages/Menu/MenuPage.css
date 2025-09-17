@@ -90,6 +90,20 @@
 }
 /* --- END --- */
 
+/* --- NEW: Menu Click Hint --- */
+.menu-click-hint {
+  text-align: center;
+  margin: -1.5rem 0 3rem 0;
+}
+
+.menu-click-hint p {
+  margin: 0;
+  font-style: italic;
+  color: var(--text-primary);
+  opacity: 0.8;
+}
+/* --- END --- */
+
 
 /* --- Updated Grid Layout --- */
 .menu-posters-grid {
