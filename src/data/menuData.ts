@@ -90,25 +90,81 @@ export const menuData: MenuPoster[] = [
     imageSrc: milkTea,
     altText: "Milk Tea Menu",
     category: 'Drinks',
-    details: []
+    details: [
+      {
+        categoryTitle: 'Milk Tea',
+        items: [
+          { name: "Strawberry Matcha", price: "(S) $5.25 - (L) $6.25" },
+          { name: "Crème Brule Milk Tea", price: "(S) $5.25 - (L) $6.25" },
+          { name: "Taro Milk Tea", price: "(S) $5.25 - (L) $6.25" },
+          { name: "Brown Sugar Latte", price: "(S) $5.25 - (L) $6.25" },
+          { name: "Green Thai Milk Tea", price: "(S) $5.25 - (L) $6.25" },
+          { name: "Brown Sugar Crème Brule", price: "(S) $5.25 - (L) $6.25" },
+          { name: "Matcha Latte", price: "(S) $5.25 - (L) $6.25" },
+          { name: "Classic Milk Tea", price: "(S) $5.25 - (L) $6.25" },
+          { name: "Mango Matcha", price: "(S) $5.25 - (L) $6.25" },
+          { name: "Chocolate Latte", price: "(S) $5.25 - (L) $6.25" },
+          { name: "Thai Milk Tea", price: "(S) $5.25 - (L) $6.25" },
+        ]
+      }
+    ]
   },
   {
     imageSrc: fruitTeaLemonades,
     altText: "Fruit Tea & Lemonades Menu",
     category: 'Drinks',
-    details: []
+    details: [
+      {
+        categoryTitle: 'Fruit Tea & Lemonades',
+        items: [
+          { name: "Butterfly Sky-burst Lemonade", price: "$7.00" },
+          { name: "Butterfly Pea Lemonade", price: "$7.00" },
+          { name: "Fruit Tea", price: "$7.00" },
+          { name: "Refreshing Fruity Soda", price: "$7.00" },
+          { name: "Pineapple Peach Lemonade", price: "$7.00" },
+        ]
+      }
+    ]
   },
   {
     imageSrc: smoothies,
     altText: "Smoothies Menu",
     category: 'Drinks',
-    details: []
+    details: [
+      {
+        categoryTitle: 'Smoothies',
+        items: [
+          { name: "Thai Tea", price: "$7.00" },
+          { name: "Cookies & Cream", price: "$7.00" },
+          { name: "Tropical Mango", price: "$7.00" },
+          { name: "Pina Colada", price: "$7.00" },
+          { name: "Vanilla Yogurt", price: "$7.00" },
+          { name: "Chocolate Strawberry", price: "$7.00" },
+          { name: "Strawberry Kiwi", price: "$7.00" },
+          { name: "Strawberry", price: "$7.00" },
+          { name: "Banana", price: "$7.00" },
+          { name: "Tropical Guava", price: "$7.00" },
+          { name: "Passion Fruit Colada", price: "$7.00" },
+          { name: "Strawberry Banana", price: "$7.00" },
+        ]
+      }
+    ]
   },
   {
     imageSrc: coffee,
     altText: "Coffee Menu",
     category: 'Drinks',
-    details: []
+    details: [
+      {
+        categoryTitle: 'Coffee',
+        items: [
+          { name: "Vietnamese Coffee", price: "$7.00" },
+          { name: "Creamy Vietnamese Coffee", price: "$7.00" },
+          { name: "Vietnamese Coffee Crème Brule", price: "$7.00" },
+          { name: "Caramel Vietnamese Coffee", price: "$7.00" },
+        ]
+      }
+    ]
   },
   // Desserts Menu
   {

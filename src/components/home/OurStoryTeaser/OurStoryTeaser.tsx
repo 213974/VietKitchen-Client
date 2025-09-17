@@ -1,35 +1,60 @@
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './OurStoryTeaser.css';
 import { useResponsive } from '../../../hooks/useResponsive';
 
-// Import the specific images used in this teaser section.
-import image1 from '../../../assets/gallery/store_front1.jpg';
-import image2 from '../../../assets/gallery/store_front1.jpg';
-import image3 from '../../../assets/gallery/store_front1.jpg';
+// UPDATED: Import all customer images for the slideshow
+import image4 from '../../../assets/gallery/Customers1.jpg';
+import image2 from '../../../assets/gallery/Customers2.jpg';
+import image3 from '../../../assets/gallery/Customers3.jpg';
+import image1 from '../../../assets/gallery/Customers4.jpg';
 
-/**
- * A component for the homepage that provides a brief preview of the "Our Story" page.
- * It features an animated image collage and text block.
- */
+// Create an array of the images to cycle through
+const storyImages = [
+  { src: image1, alt: "Happy customers dining inside the cafe" },
+  { src: image2, alt: "A friendly group of visitors enjoying the outdoor patio" },
+  { src: image3, alt: "A wonderful group of customers enjoying the outdoor patio" },
+  { src: image4, alt: "Happy guests dining inside the cafe" },
+];
+
 const OurStoryTeaser = () => {
-  // Hook to apply different animations based on the viewport size.
   const { isDesktop } = useResponsive();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Effect to handle the automatic cycling of images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % storyImages.length);
+    }, 8000); // Change image every 8 seconds
+
+    return () => clearInterval(interval); // Cleanup on component unmount
+  }, []);
 
   return (
     <section className="story-teaser-section">
       <div className="story-teaser-container">
-        {/* --- Animated Image Collage --- */}
+        {/* --- Animated Image Slideshow --- */}
         <motion.div 
-          className="story-teaser-images"
+          className="story-teaser-image-wrapper"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: isDesktop ? 0.8 : 0.5, ease: 'easeOut' }}
         >
-          <img src={image1} alt="Cozy cafe seating" className="teaser-img-1" />
-          <img src={image2} alt="Bowl of pho" className="teaser-img-2" />
-          <img src={image3} alt="Bubble tea drinks" className="teaser-img-3" />
+          {/* CORRECTED: Removed mode="wait" to allow animations to overlap */}
+          <AnimatePresence>
+            <motion.img
+              key={currentIndex}
+              src={storyImages[currentIndex].src}
+              alt={storyImages[currentIndex].alt}
+              className="story-teaser-img"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
+            />
+          </AnimatePresence>
         </motion.div>
 
         {/* --- Animated Text Content --- */}

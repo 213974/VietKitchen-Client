@@ -108,8 +108,8 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
 
   const navbarClasses = `navbar ${isHomePage ? 'navbar-home' : 'navbar-sticky'}`;
 
+  // UPDATED: Removed "Gallery" from the dropdown items.
   const dropdownItems = [
-    { path: '/gallery', label: 'Gallery' },
     { path: '/our-story', label: 'Our Story' },
     { path: '/contact', label: 'Contact Us' }
   ];
@@ -182,7 +182,7 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
             <div className="mobile-menu-links">
               <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
               <NavLink to="/menu" onClick={handleLinkClick}>Menu</NavLink>
-              <NavLink to="/gallery" onClick={handleLinkClick}>Gallery</NavLink>
+              {/* UPDATED: Removed "Gallery" NavLink */}
               <NavLink to="/our-story" onClick={handleLinkClick}>Our Story</NavLink>
               <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink>
               <a href={orderPickupUrl} target="_blank" rel="noopener noreferrer" className="mobile-cta-link">

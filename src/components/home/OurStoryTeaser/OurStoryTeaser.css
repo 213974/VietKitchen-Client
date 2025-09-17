@@ -10,55 +10,32 @@
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  /* Creates a two-column layout on desktop. */
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 4rem;
 }
 
-/* ------------------- Image Collage Styles ------------------- */
-.story-teaser-images {
-  position: relative;
+/* ------------------- Image Styles --- */
+.story-teaser-image-wrapper {
+  position: relative; /* Crucial for stacking absolute children */
   height: 450px;
-}
-
-.story-teaser-images img {
-  position: absolute;
   border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
 }
 
-/* Individual image positioning and layering for the collage effect. */
-.teaser-img-1 {
-  width: 60%;
-  height: 60%;
+.story-teaser-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute; /* Stack images on top of each other for fading */
   top: 0;
   left: 0;
-  z-index: 1;
-}
-.teaser-img-2 {
-  width: 50%;
-  height: 50%;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
-}
-.teaser-img-3 {
-  width: 40%;
-  height: 40%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  /* The border uses the theme's primary background to "cut out" the image. */
-  border: 4px solid var(--bg-primary);
 }
 
 /* ------------------- Text Content Styles ------------------- */
 .story-teaser-text {
   text-align: left;
-  /* The color is handled by the .frosted-container utility class. */
   color: var(--text-primary);
 }
 
@@ -74,19 +51,16 @@
 }
 
 .story-teaser-text .hero-button {
-  /* Inherits from HomePage.css, but ensures it's not underlined like a typical link. */
   text-decoration: none;
 }
 
 /* ------------------- Responsive Adjustments ------------------- */
 @media (max-width: 900px) {
-  /* Stack the columns on smaller screens. */
   .story-teaser-container {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem; 
   }
-  .story-teaser-images {
-    /* Moves the image collage below the text on mobile. */
+  .story-teaser-image-wrapper {
     order: 2;
     height: 400px;
   }

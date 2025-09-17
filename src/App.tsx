@@ -10,7 +10,7 @@ import Footer from './components/layout/Footer/Footer';
 // Public Pages
 import HomePage from './pages/Home/HomePage';
 import MenuPage from './pages/Menu/MenuPage';
-import GalleryPage from './pages/Gallery/GalleryPage';
+// import GalleryPage from './pages/Gallery/GalleryPage';
 import OurStoryPage from './pages/OurStory/OurStoryPage';
 import ContactPage from './pages/Contact/ContactPage';
 import NotFoundPage from './pages/NotFound/NotFoundPage';
@@ -51,7 +51,6 @@ const AnimatedPage = ({ children }: { children: React.ReactNode }) => (
 
 /**
  * A simplified layout for all public-facing pages.
- * The Navbar and Footer are rendered in the main App component for persistence.
  */
 const PublicLayout = () => (
     <main className="main-content">
@@ -66,7 +65,6 @@ const PublicLayout = () => (
  */
 const NotFoundLayout = ({ children }: { children: React.ReactNode }) => (
     <main className="main-content">
-      {/* Need to wrap the 404 page content as well */}
       <GenericErrorBoundary>
         {children}
       </GenericErrorBoundary>
@@ -76,32 +74,26 @@ const NotFoundLayout = ({ children }: { children: React.ReactNode }) => (
 // ------------------- Main App Component -------------------
 
 function App() {
-  // Hooks for managing application-wide state.
   const { consent, showBanner, startOnSettings, acceptAll, rejectAll, saveConsent, openConsentManager } = useCookieConsent();
   const { activeTheme } = useStoreInfo();
   const location = useLocation();
 
-  // Determine the current page type to conditionally render layouts.
   const isAdminPage = location.pathname.startsWith('/admin');
   const isAdminLoginPage = location.pathname === '/admin-login';
   const isHomePage = location.pathname === '/';
 
-  // Effect to dynamically load the active theme's CSS file.
   useEffect(() => {
     const themeFileName = activeTheme === 'default' ? 'theme' : activeTheme;
-    // Find and remove any existing dynamic theme to prevent style conflicts.
     const existingLink = document.getElementById('dynamic-theme');
     if (existingLink) {
         existingLink.remove();
     }
-    // Create and inject a new <link> tag for the current theme.
     const link = document.createElement('link');
     link.id = 'dynamic-theme';
     link.rel = 'stylesheet';
     link.href = `/src/styles/${themeFileName}.css`; 
     document.head.appendChild(link);
 
-    // Cleanup function to remove the link when the component unmounts or theme changes.
     return () => {
         const themeLink = document.getElementById('dynamic-theme');
         if (themeLink) {
@@ -113,13 +105,10 @@ function App() {
   return (
     <div className="site-wrapper">
       <div className="app-container">
-        {/* Render persistent UI elements outside the animated routes. */}
         <ScrollToTopButton />
 
-        {/* Conditionally render the public Navbar. */}
         {!isAdminPage && !isAdminLoginPage && <Navbar isHomePage={isHomePage} />}
 
-        {/* Render the cookie banner if consent has not been given. */}
         {showBanner && (
           <CookieConsentBanner
             startInSettingsView={startOnSettings}
@@ -129,14 +118,14 @@ function App() {
           />
         )}
 
-        {/* AnimatePresence handles the exit animations for routes. */}
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             {/* --- Public Routes --- */}
             <Route path="/" element={<PublicLayout />}>
               <Route index element={<AnimatedPage><HomePage /></AnimatedPage>} />
               <Route path="menu" element={<AnimatedPage><MenuPage /></AnimatedPage>} />
-              <Route path="gallery" element={<AnimatedPage><GalleryPage /></AnimatedPage>} />
+              {/* UPDATED: The /gallery route is now removed */}
+              {/* <Route path="gallery" element={<AnimatedPage><GalleryPage /></AnimatedPage>} /> */}
               <Route path="our-story" element={<AnimatedPage><OurStoryPage /></AnimatedPage>} />
               <Route path="contact" element={<AnimatedPage><ContactPage /></AnimatedPage>} />
             </Route>
@@ -158,7 +147,6 @@ function App() {
           </Routes>
         </AnimatePresence>
 
-        {/* Conditionally render the public Footer and cookie settings trigger. */}
         {!isAdminPage && !isAdminLoginPage && (
           <>
             <Footer />
@@ -172,14 +160,9 @@ function App() {
   );
 }
 
-/**
- * A wrapper component that provides necessary context providers to the App.
- * This includes Helmet for SEO and BrowserRouter for routing.
- */
 const AppWrapper = () => (
   <HelmetProvider>
     <BrowserRouter>
-      {/* Ensures page scrolls to top on every navigation change. */}
       <ScrollToTop />
       <App />
     </BrowserRouter>
