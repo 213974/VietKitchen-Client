@@ -32,6 +32,7 @@ export interface MenuPoster {
 }
 
 // Export the comprehensive list of all menu posters
+// Export the comprehensive list of all menu posters
 export const menuData: MenuPoster[] = [
   // Food Menus
   {
@@ -40,17 +41,13 @@ export const menuData: MenuPoster[] = [
     category: 'Food',
     details: [
       {
-        categoryTitle: 'Pho (Noodle Soup)',
+        categoryTitle: 'Pho',
         items: [
-          { name: "P1. House Special (Dac Biet)", price: "$15.95" },
-          { name: "P2. Rare Steak", price: "$14.95" },
-          { name: "P3. Rare Steak & Brisket", price: "$14.95" },
-          { name: "P4. Rare Steak & Meatball", price: "$14.95" },
-          { name: "P5. Brisket & Meatball", price: "$14.95" },
-          { name: "P6. Meatball", price: "$14.95" },
-          { name: "P7. Chicken", price: "$14.95" },
-          { name: "P8. Shrimp", price: "$15.95" },
-          { name: "P9. Tofu & Veggies", price: "$14.95" },
+          { name: "Pho Beef Combination", price: "$16.00", description: "Includes { Eye Round, Brisket, Flank, Meatball, Tendon }" },
+          { name: "Pho Beef", price: "$13.00", description: "Protein Choice (2) Eye Round | Brisket | Flank | Tendon | Meatball" },
+          { name: "Pho Shrimp", price: "$16.00" },
+          { name: "Pho Vegetarian", price: "$13.00", description: "Includes { Broccoli, Carrot, Mushroom - Vegie Broth }" },
+          { name: "Pho Chicken", price: "$13.00", description: "(White Meat - Chicken Broth)" },
         ]
       }
     ]
@@ -171,6 +168,17 @@ export const menuData: MenuPoster[] = [
     imageSrc: desserts,
     altText: "Desserts Menu",
     category: 'Desserts',
-    details: []
+    details: [
+      {
+        categoryTitle: 'Desserts',
+        items: [
+          { name: "Chocolate Cake", price: "$5.50" },
+          { name: "Mango Mousse", price: "$5.50" },
+          { name: "Crème Brulee Cheese Cake", price: "$5.50" },
+          { name: "Tiramisu", price: "$5.50" },
+          { name: "Key Lime Pie", price: "$5.50" },
+        ]
+      }
+    ]
   },
 ];
