@@ -1,0 +1,12 @@
+:root {
+  --bg-primary: #fde8f0;
+  --bg-primary-rgb: 253, 232, 240;
+  --bg-footer: #fbdde9;
+  --text-primary: #5c283c;
+  --accent-primary: #e53982;
+  --accent-hover: #c22b6b;
+  --border-light: #f7d0e1;
+
+  --font-family-sans: 'Poppins', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+  --font-family-serif: 'Lora', 'Georgia', 'Times New Roman', serif;
+}

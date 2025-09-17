@@ -1,0 +1,92 @@
+/* ------------------- Main Section Layout ------------------- */
+.menu-teaser-section {
+  width: 100%;
+  padding: 6rem 2rem;
+  box-sizing: border-box;
+  background-color: var(--bg-primary);
+  /* Position relative and z-index ensure it sits correctly on top of parallax sections. */
+  position: relative;
+  z-index: 2;
+}
+
+.teaser-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.teaser-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teaser-header h2 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.teaser-header p {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0;
+  max-width: 500px;
+}
+
+/* ------------------- Item Grid Styles ------------------- */
+/* This wrapper prevents layout shift while the menu items are loading. */
+.teaser-items-grid-wrapper {
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+}
+
+.teaser-items-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* ------------------- Item Card Styles ------------------- */
+.teaser-item-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  overflow: hidden;
+  text-align: center;
+}
+
+.teaser-item-image {
+  height: 250px;
+}
+.teaser-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.teaser-item-card h3 {
+  font-size: 1.5rem;
+  margin: 1.5rem 1rem 0.5rem 1rem;
+}
+
+.teaser-item-price {
+  display: block;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--accent-primary);
+  margin-bottom: 1.5rem;
+}
+
+/* ------------------- Responsive Adjustments ------------------- */
+@media (max-width: 900px) {
+  /* Stack the cards into a single column on smaller screens. */
+  .teaser-items-grid {
+    grid-template-columns: 1fr;
+  }
+  .teaser-items-grid-wrapper {
+    min-height: 0;
+  }
+}

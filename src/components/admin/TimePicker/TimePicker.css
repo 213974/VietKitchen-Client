@@ -1,0 +1,65 @@
+/* ------------------- Main Component Layout ------------------- */
+.time-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-grow: 1;
+  width: 100%;
+}
+
+/* ------------------- Sub-containers for Responsive Control ------------------- */
+.time-picker-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-grow: 2; /* Gives more relative space to the hour/minute inputs. */
+  width: 100%;
+}
+.time-picker-period {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+}
+
+/* ------------------- Select Element Styling ------------------- */
+.time-picker select {
+  padding: 0.6rem 0.5rem;
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: var(--font-family-sans);
+  background-color: #fff;
+  /* Remove default browser appearance for custom styling. */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add a custom dropdown arrow as a background image. */
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 8 4 4 4-4"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 0.5em; /* Smaller arrow size. */
+  padding-right: 1rem; 
+  /* Flex properties for even distribution within their containers. */
+  flex-grow: 1;
+  flex-basis: 0;
+  min-width: 0; /* Allows the select box to shrink properly if needed. */
+}
+
+.time-picker select:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.time-picker span {
+  font-weight: 600;
+  color: #999;
+}
+
+/* ------------------- Responsive Adjustments ------------------- */
+@media (max-width: 400px) {
+  /* On very narrow screens, stack the time and period sections vertically. */
+  .time-picker {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

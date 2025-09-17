@@ -1,0 +1,48 @@
+/* ------------------- Main Section Layout ------------------- */
+.contact-teaser-section {
+  padding: 6rem 2rem;
+}
+
+.contact-teaser-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ------------------- Content Styles ------------------- */
+.contact-welcome-img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.contact-teaser-box {
+  /* The frosted-container utility class handles the main background and colors. */
+  border-top: 1px solid rgba(var(--text-primary-rgb), 0.2);
+  padding-top: 2rem;
+}
+
+.contact-teaser-box h3 {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.contact-teaser-box p {
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 1rem auto 2rem auto;
+}
+
+.contact-teaser-btn {
+  display: inline-block;
+  background-color: var(--accent-primary);
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+.contact-teaser-btn:hover {
+  background-color: var(--accent-hover);
+}

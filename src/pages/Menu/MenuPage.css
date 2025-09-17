@@ -1,0 +1,123 @@
+.menu-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.menu-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.menu-header h1 {
+  font-size: 3.5rem;
+  color: var(--accent-primary);
+  margin-bottom: 0.5rem;
+}
+
+.menu-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.menu-posters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.menu-poster-card {
+  line-height: 0;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.menu-poster-card.interactive {
+  cursor: pointer;
+}
+
+.menu-poster-card img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.menu-poster-card.interactive:hover img {
+  transform: scale(1.05);
+}
+
+
+/* --- Poster Overlay Styles --- */
+.poster-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left; /* Align text to the left */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.poster-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Space between categories */
+  width: 100%;
+}
+
+.poster-category-title {
+  font-family: var(--font-family-sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  margin: 0 0 1rem 0;
+}
+
+.poster-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 2rem; /* Row and column gap */
+  width: 100%;
+}
+
+.poster-item-detail {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.item-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.item-price {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+
+@media (max-width: 900px) {
+  .menu-posters-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-posters-grid {
+    grid-template-columns: 1fr;
+  }
+  .menu-header h1 {
+    font-size: 2.5rem;
+  }
+}

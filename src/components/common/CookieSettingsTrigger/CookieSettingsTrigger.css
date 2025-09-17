@@ -1,0 +1,34 @@
+.cookie-settings-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1999;
+  transition: transform 0.2s ease-out;
+}
+
+.cookie-settings-fab svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--text-primary);
+}
+
+@media (hover: hover) {
+  .cookie-settings-fab:hover {
+    transform: scale(1.1);
+  }
+}
+
+/* 
+  The media query to hide the button on mobile is no longer needed,
+  as visibility is now controlled by the component's logic for all devices.
+*/

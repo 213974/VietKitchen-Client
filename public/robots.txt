@@ -1,0 +1,6 @@
+# Allow all user agents to crawl the site
+User-agent: *
+Disallow:
+
+# Sitemap location
+Sitemap: https://vietkitchen.com/sitemap.xml

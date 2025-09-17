@@ -1,0 +1,86 @@
+/* ------------------- Section Wrappers ------------------- */
+/* This class provides the parallax background effect for homepage sections. */
+.home-section-wrapper {
+  background-size: cover;
+  background-position: center center;
+  /* `fixed` creates the parallax effect where the content scrolls over the background. */
+  background-attachment: fixed;
+}
+
+.hero-bg {
+  /* Defines a variable to control the vertical positioning of the hero content. */
+  --hero-padding-bottom: 25vh;
+
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../../assets/gallery/store_front1.jpg');
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end; /* Aligns content to the bottom of the section. */
+  justify-content: center;
+  padding-bottom: var(--hero-padding-bottom); /* Adds space from the bottom edge. */
+  box-sizing: border-box;
+}
+
+/* NEW: Background for the Menu Teaser section */
+.menu-bg {
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/gallery/noodles.webp');
+}
+
+.story-bg {
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../../assets/gallery/sitting_area1.webp');
+}
+
+.contact-bg {
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../assets/menu/pho.webp');
+}
+
+/* ------------------- Hero Content Styles ------------------- */
+.hero-section {
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #ffffff;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.hero-button {
+  background-color: var(--accent-primary);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.hero-button:hover {
+  background-color: var(--accent-hover);
+}
+
+.restaurant-details {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  color: #e5e5e5;
+  font-family: var(--font-family-sans);
+}
+
+.restaurant-details .separator {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ------------------- Responsive Adjustments ------------------- */
+@media (max-width: 900px) {
+  /* Disables the parallax effect on mobile, as it can be performance-intensive. */
+  .home-section-wrapper {
+    background-attachment: scroll;
+  }
+}
