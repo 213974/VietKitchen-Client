@@ -1,6 +1,9 @@
-# Allow all user agents to crawl the site
+# Allow all friendly crawlers to access the site
 User-agent: *
-Disallow:
+Allow: /
 
-# Sitemap location
-Sitemap: https://vietkitchen.com/sitemap.xml
+# Disallow crawling of the admin login page
+Disallow: /admin-login
+
+# Location of sitemap (update URL when live)
+Sitemap: https://www.vietkitchen.com/sitemap.xml
