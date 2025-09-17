@@ -1,5 +1,10 @@
 /* This file contains high-level structural styles for the application layout. */
 
+/* NEW: This is the definitive fix for the horizontal overflow issue on the homepage. */
+.site-wrapper {
+  overflow-x: hidden;
+}
+
 .app-container {
   /* Ensures the app container takes up at least the full viewport height. */
   display: flex;

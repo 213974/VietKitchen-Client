@@ -55,6 +55,42 @@
   color: #666;
 }
 
+/* --- NEW: Full Menu Notice --- */
+.full-menu-notice {
+  max-width: 700px;
+  margin: -1.5rem auto 3rem auto;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--bg-footer);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.full-menu-notice p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.notice-link-btn {
+  display: block;
+  margin: 0.75rem auto 0;
+  background-color: var(--accent-primary);
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  transition: background-color 0.2s, transform 0.2s;
+  max-width: 300px;
+}
+.notice-link-btn:hover {
+  background-color: var(--accent-hover);
+  transform: scale(1.05);
+}
+/* --- END --- */
+
+
 /* --- Updated Grid Layout --- */
 .menu-posters-grid {
   display: grid;

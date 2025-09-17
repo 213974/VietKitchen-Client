@@ -32,6 +32,8 @@ const MenuPage = () => {
       return acc;
     }, {} as Record<MenuFilter, MenuPoster[]>);
   }, []);
+  
+  const onlineOrderUrl = 'https://online.skytab.com/38bdc873ed00c1a08c9bb35ce20ee7be';
 
   return (
     <>
@@ -44,6 +46,16 @@ const MenuPage = () => {
           <h1>Our Menu</h1>
           <p>Authentic flavors crafted with the freshest ingredients.</p>
         </header>
+
+        {/* --- NEW: Full Menu Notice --- */}
+        <div className="full-menu-notice">
+          <p>
+            Browse our curated selections below. For our complete menu and to place an order, please visit our online ordering portal.
+            <a href={onlineOrderUrl} target="_blank" rel="noopener noreferrer" className="notice-link-btn">
+              View Full Menu & Order
+            </a>
+          </p>
+        </div>
 
         <div className="menu-filters">
           {filterCategories.map(filter => (

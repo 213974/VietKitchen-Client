@@ -17,6 +17,7 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box; /* Ensures padding is contained */
 }
 .teaser-header h2 {
   font-size: 2.5rem;
@@ -24,10 +25,16 @@
   text-align: center;
 }
 
+/* --- CORRECTED: Container now handles padding and overflow --- */
+.teaser-carousel-container {
+  padding: 0 1.5rem;
+  box-sizing: border-box; /* Ensures padding is contained */
+}
+
 .teaser-carousel {
   display: flex;
   gap: 1.5rem;
-  padding: 0 1.5rem;
+  /* Padding is removed from here */
 }
 
 .teaser-image-card {
@@ -56,5 +63,5 @@
 /* ------------------- Responsive Adjustments ------------------- */
 @media (max-width: 600px) {
   .teaser-image-card { flex-basis: 250px; height: 300px; }
-  .teaser-carousel, .teaser-header { padding: 0 1rem; }
+  .teaser-carousel-container, .teaser-header { padding: 0 1rem; }
 }
