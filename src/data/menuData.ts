@@ -33,6 +33,7 @@ export interface MenuPoster {
 
 // Export the comprehensive list of all menu posters
 // Export the comprehensive list of all menu posters
+// Export the comprehensive list of all menu posters
 export const menuData: MenuPoster[] = [
   // Food Menus
   {
@@ -56,31 +57,93 @@ export const menuData: MenuPoster[] = [
     imageSrc: riceNoodles,
     altText: "Rice & Noodles Menu",
     category: 'Food',
-    details: []
+    details: [
+        {
+            categoryTitle: 'Rice & Noodles',
+            items: [
+                { name: "Rice with Grilled Meat", price: "$14.00", description: "Protein Choice (1): Pork | Beef | Chicken | Fried Tofu | +$4 Combination | +$3 Shrimp" },
+                { name: "Fried Rice with Grilled Meat", price: "$16.00", description: "Protein Choice (1): Pork | Beef | Chicken | Fried Tofu | +$4 Combination | +$3 Shrimp" },
+                { name: "Pineapple Fried Rice", price: "$18.00", description: "Protein Choice (1): Pork | Beef | Chicken | Fried Tofu | +$4 Combination | +$3 Shrimp" },
+                { name: "Curry Fried Rice", price: "$16.00", description: "Protein Choice (1): Pork | Beef | Chicken | Fried Tofu | +$4 Combination | +$3 Shrimp" },
+                { name: "Vermicelli Noodle with Grilled Meat", price: "$14.00", description: "Protein Choice (1): Pork | Beef | Chicken | Fried Tofu | +$3 Shrimp" },
+                { name: "Vermicelli Noodle Combination", price: "$18.00", description: "Chicken, Beef, Pork & Shrimp" },
+            ]
+        }
+    ]
   },
   {
     imageSrc: vietEntrees,
     altText: "Vietnamese Entrees Menu",
     category: 'Food',
-    details: []
+    details: [
+        {
+            categoryTitle: 'Viet Entrees',
+            items: [
+                { name: "Garlic Noodle with Shrimp", price: "$18.00", description: "Protein Choice: +$7 Crab" },
+                { name: "Garlic Noodle with Grilled Meat", price: "$15.00", description: "Protein Choice (1): Pork | Beef | Chicken | Fried Tofu | +$2 Combination" },
+                { name: "Butter Glazed Salmon", price: "$22.00", description: "Served with Steamed Vegetables" },
+                { name: "Pad Thai with Grilled Meat", price: "$15.00", description: "Protein Choice (1): Pork | Beef | Chicken | Fried Tofu | +$2 Combination" },
+                { name: "Pad Thai with Shrimp", price: "$18.00" },
+            ]
+        }
+    ]
   },
   {
     imageSrc: smallBites,
     altText: "Small Bites & Appetizers Menu",
     category: 'Food',
-    details: []
+    details: [
+        {
+            categoryTitle: 'Small Bites & Appetizers',
+            items: [
+                { name: "Steamed Shrimp Hacao", price: "$6 - 4pcs / $8 - 6pcs" },
+                { name: "Mango Bowl", price: "$6.00" },
+                { name: "Steamed Shumai", price: "$6 - 4pcs / $8 - 6pcs", description: "(Contains Chicken, Pork & Shrimp)" },
+                { name: "Crispy Spring Rolls", price: "$6 - 4pcs / $8 - 8pcs", description: "(Contains Shrimp & Pork - Vegetable Option Available)" },
+                { name: "Crispy Musubi", price: "$8 - 2pcs / $10 - 3pcs" },
+                { name: "Fresh Summer Rolls", price: "$7 - 2pcs / $10 - 3pcs", description: "Protein Choice (1): Shrimp | Grilled Pork | Chicken | Tofu" },
+                { name: "Avocado Rolls", price: "$7 - 2pcs / $10 - 3pcs" },
+                { name: "Steamed Buns", price: "$8 - 2pcs / $10 - 3pcs", description: "Protein Choice (1): Pork Belly | Chicken" },
+                { name: "Coconut Shrimp", price: "$8 - 3pcs / $10 - 4pcs" },
+                { name: "Pineapple & Pork Skewers", price: "$8 - 3pcs / $10 - 4pcs" },
+                { name: "Crispy Shrimp & Chicken Wonton", price: "$8 - 3pcs / $10 - 4pcs" },
+                { name: "Chicken Skewers", price: "$8 - 3pcs / $10 - 4pcs" },
+            ]
+        }
+    ]
   },
   {
     imageSrc: wingFries,
     altText: "Wings & Fries Menu",
     category: 'Food',
-    details: []
+    details: [
+        {
+            categoryTitle: 'Wing & Fries Zone',
+            items: [
+                { name: "Chicken Wings", price: "$11 - 6pcs / $15 - 10pcs", description: "Sauce Flavors (Up to 2): Viet Mamba | Garlic Honey Soy | Mango Habanero | Sweet & Sour | Salt & Pepper | Buffalo" },
+                { name: "Parmesan Fries", price: "$6.00" },
+                { name: "French Fries", price: "$4.00" },
+                { name: "Viet Fries", price: "$10.00", description: "Protein Choice (1): Pork | Beef | Chicken" },
+            ]
+        }
+    ]
   },
   {
     imageSrc: freshLite,
-    altText: "Fresh & Lite Options Menu",
+    altText: "Banh Mi - Fresh & Lite Menu",
     category: 'Food',
-    details: []
+    details: [
+        {
+            categoryTitle: 'Banh Mi - Fresh & Lite',
+            items: [
+                { name: "Banh Mi with Grilled Meat", price: "$10.00", description: "Protein Choice (1): Pork | Beef | Chicken | Fried Tofu" },
+                { name: "Banh Mi with Grilled Shrimp", price: "$13.00" },
+                { name: "Banh Mi Cheese Steak", price: "$12.00" },
+                { name: "Mango Salad", price: "$10.00" },
+                { name: "Steamed Vegetables with Grilled Meat", price: "$12.00", description: "Protein Choice (1): Pork | Beef | Chicken | Fried Tofu | +$3 Shrimp" },
+            ]
+        }
+    ]
   },
   // Drinks Menus
   {
