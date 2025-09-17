@@ -2,22 +2,21 @@
   width: 100%;
 }
 
-/* --- Hero Video Styles --- */
 .story-video-container {
   width: 100%;
-  height: 70vh; /* Takes 70% of the viewport height */
+  height: 70vh;
   overflow: hidden;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000; /* Fallback for video load */
+  background-color: #000;
 }
 
 .story-hero-video {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures video covers the container */
+  object-fit: cover;
 }
 
 .video-overlay-text {
@@ -28,15 +27,14 @@
 }
 
 .video-overlay-text h1 {
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin: 0;
 }
 
-/* --- Content Styles --- */
 .story-content-container {
   max-width: 800px;
-  margin: 4rem auto;
+  margin: 3rem auto;
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
@@ -44,7 +42,7 @@
 }
 
 .story-section h3 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-light);
@@ -53,21 +51,20 @@
 
 .story-section p {
   line-height: 1.8;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-/* --- Static Image Styles --- */
 .story-image-container {
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  margin: 1rem 0; /* Adds space above and below the image */
+  margin: 1rem 0;
 }
 
 .story-image-container img {
   width: 100%;
-  display: block; /* Removes bottom space */
+  display: block;
 }
 
 .image-caption {
@@ -80,18 +77,19 @@
   line-height: 1.4;
 }
 
-/* --- Responsive Adjustments --- */
-@media (max-width: 600px) {
-  .video-overlay-text h1 {
-    font-size: 2.5rem;
+/* --- Desktop Adjustments --- */
+@media (min-width: 901px) {
+  .story-video-container {
+    display: none; /* Hide video container on desktop */
   }
   .story-content-container {
-    margin: 3rem auto;
+    margin: 4rem auto; /* Add more top margin to compensate for lack of video */
   }
+  .video-overlay-text h1,
   .story-section h3 {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
   .story-section p {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }

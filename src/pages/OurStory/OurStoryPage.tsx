@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import './OurStoryPage.css';
-import StoryImage from '../../assets/gallery/store_front1.jpg'; // Corrected extension
+import StoryImage from '../../assets/gallery/store_front1.jpg';
 import CafeShowcaseVideo from '../../assets/gallery/CafeShowcase.mp4';
 import SEO from '../../components/common/SEO/SEO';
 
@@ -12,12 +12,11 @@ const OurStoryPage = () => {
         description="Learn about the passion and tradition behind Viet Kitchen & Tea House. Discover our story, our philosophy, and the cultural inspiration for our authentic Vietnamese cuisine."
       />
       <div className="our-story-page">
-        {/* --- Hero Video Section --- */}
         <div className="story-video-container">
           <video
             src={CafeShowcaseVideo}
             autoPlay
-            loop // Loop for a continuous, atmospheric effect
+            loop
             muted
             playsInline
             className="story-hero-video"
@@ -27,17 +26,13 @@ const OurStoryPage = () => {
           </div>
         </div>
 
-        {/* --- Main Content Section --- */}
-        <motion.div 
-          className="story-content-container"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ staggerChildren: 0.2 }}
-        >
+        <main className="story-content-container">
           <motion.div 
             className="story-section"
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
           >
             <h3>Our Journey</h3>
             <p>
@@ -47,7 +42,10 @@ const OurStoryPage = () => {
 
           <motion.div 
             className="story-section"
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
           >
             <h3>Our Philosophy</h3>
             <p>
@@ -55,11 +53,12 @@ const OurStoryPage = () => {
             </p>
           </motion.div>
 
-          {/* --- Static Image Section --- */}
           <motion.div 
             className="story-image-container"
-            variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 } }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6 }}
           >
             <img src={StoryImage} alt="The welcoming storefront of Viet Kitchen" />
             <div className="image-caption">
@@ -69,14 +68,17 @@ const OurStoryPage = () => {
           
           <motion.div 
             className="story-section"
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6 }}
           >
             <h3>The Viet Kitchen Experience</h3>
             <p>
               From the rich, aromatic steam of a classic bowl of Pho to the delightful chew of boba in our artisanal milk teas, every item on our menu is a labor of love. We blend the timeless techniques of Vietnamese cooking with a fresh, contemporary approach. Whether you’re stopping by for a quick lunch, a comforting dinner, or a refreshing bubble tea, we invite you to relax, savor the moment, and become a part of our story.
             </p>
           </motion.div>
-        </motion.div>
+        </main>
       </div>
     </>
   );
