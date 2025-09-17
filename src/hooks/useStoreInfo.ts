@@ -16,8 +16,8 @@ interface StoreInfo {
   phoneNumber: string;
 }
 
-// Provides fallback data for store hours in case the API call fails.
-const fallbackHours: OpeningHour[] = [
+// Provides fallback/default data for the store.
+const defaultHours: OpeningHour[] = [
   { day: 'Monday', time: '11:00 AM – 9:00 PM' },
   { day: 'Tuesday', time: '11:00 AM – 9:00 PM' },
   { day: 'Wednesday', time: '11:00 AM – 9:00 PM' },
@@ -26,40 +26,36 @@ const fallbackHours: OpeningHour[] = [
   { day: 'Saturday', time: '11:00 AM – 9:00 PM' },
   { day: 'Sunday', time: '11:00 AM – 9:00 PM' },
 ];
+const defaultPhoneNumber = '(571) 918-0641';
 
 /**
  * A custom hook to fetch and manage global store information.
- * It handles fetching initial data via API and listening for real-time updates via WebSockets.
+ * It provides default data immediately and then fetches live data in the background.
  */
 export const useStoreInfo = () => {
-  const [hours, setHours] = useState<OpeningHour[]>([]);
+  // UPDATED: Initialize state with default data instead of empty values.
+  const [hours, setHours] = useState<OpeningHour[]>(defaultHours);
   const [activeTheme, setActiveTheme] = useState('default');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(defaultPhoneNumber);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  /**
-   * A memoized function to fetch the latest store info from the API.
-   * Uses fallback data in case of an error to ensure the site remains functional.
-   */
   const fetchStoreInfo = useCallback(async () => {
+    setIsLoading(true); // Set loading to true at the start of a fetch
     try {
       const response = await apiClient.get<StoreInfo>('/store-info');
       if (response.data) {
-        setHours(response.data.hours.length > 0 ? response.data.hours : fallbackHours);
+        setHours(response.data.hours.length > 0 ? response.data.hours : defaultHours);
         setActiveTheme(response.data.activeTheme || 'default');
-        setPhoneNumber(response.data.phoneNumber || '(571) 918-0641');
-      } else {
-        // Use fallback data if API returns an empty response.
-        setHours(fallbackHours);
-        setPhoneNumber('(571) 918-0641');
+        setPhoneNumber(response.data.phoneNumber || defaultPhoneNumber);
       }
+      // No need for an else block, as state is already set to defaults.
     } catch (err) {
-      // Use fallback data if the API call fails.
       console.error("Failed to fetch store info:", err);
       setError('Could not load store information.');
-      setHours(fallbackHours);
-      setPhoneNumber('(571) 918-0641');
+      // Keep default data on error.
+      setHours(defaultHours);
+      setPhoneNumber(defaultPhoneNumber);
     } finally {
       setIsLoading(false);
     }
@@ -69,24 +65,18 @@ export const useStoreInfo = () => {
   useEffect(() => {
     fetchStoreInfo();
 
-    // The handler for the 'store_info_updated' event from the server.
     const handleStoreInfoUpdate = () => {
       console.log("Received 'store_info_updated' event. Refetching data...");
       fetchStoreInfo();
     };
 
-    // Subscribe to the event.
     socket.on('store_info_updated', handleStoreInfoUpdate);
 
-    // Cleanup function to unsubscribe from the event when the component unmounts.
     return () => {
       socket.off('store_info_updated', handleStoreInfoUpdate);
     };
   }, [fetchStoreInfo]);
   
-  /**
-   * Updates the store hours. The server will emit an event that triggers a refetch.
-   */
   const updateStoreHours = async (updatedHours: OpeningHour[]): Promise<boolean> => {
     try {
       await apiClient.put('/store-info', { hours: updatedHours });
@@ -97,9 +87,6 @@ export const useStoreInfo = () => {
     }
   };
 
-  /**
-   * Updates other store details like theme or phone number.
-   */
   const updateStoreDetails = async (details: Partial<StoreInfo>): Promise<boolean> => {
     try {
         await apiClient.put('/store-info', details);

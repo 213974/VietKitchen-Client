@@ -17,10 +17,10 @@ interface NavbarProps {
 }
 
 const Navbar = ({ isHomePage }: NavbarProps) => {
+  // Destructure isLoading from the hook
   const { hours, isLoading } = useStoreInfo();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [storeStatus, setStoreStatus] = useState({ text: "Loading...", color: "#666" });
   
   const { isMobile } = useResponsive();
   const hoursModalRef = useRef<HTMLDivElement>(null);
@@ -46,7 +46,7 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
       const [time, modifier] = timeStr.split(' ');
       let h: number;
       const [parsedH, m] = time.split(':').map(Number);
-      h = parsedH;
+h = parsedH;
 
       if (modifier === 'PM' && h < 12) h += 12;
       if (modifier === 'AM' && h === 12) h = 0;
@@ -72,6 +72,8 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
     
     return { text: "Currently Closed", color: "#b91c1c" };
   }, [hours]);
+  
+  const storeStatus = getStoreStatus();
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -79,21 +81,9 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
     } else {
       document.body.style.overflow = 'unset';
     }
-    
-    if (!isLoading) {
-      setStoreStatus(getStoreStatus());
-    }
+  }, [isMobileMenuOpen]);
 
-    const interval = setInterval(() => {
-      if (!isLoading) {
-        setStoreStatus(getStoreStatus());
-      }
-    }, 60000);
-
-    return () => clearInterval(interval);
-  }, [isMobileMenuOpen, getStoreStatus, isLoading]);
-
-  const orderPickupUrl = 'https://online.skytab.com/38bdc873ed00c1a08c9bb35ce20ee7be';
+  const orderPickupUrl = 'https://online.skytab.com/38bdc873ed00c1a08c9bb3ce20ee7be';
   const handleLinkClick = () => setMobileMenuOpen(false);
   
   const mobileMenuVariants: Variants = {
@@ -108,7 +98,6 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
 
   const navbarClasses = `navbar ${isHomePage ? 'navbar-home' : 'navbar-sticky'}`;
 
-  // UPDATED: Removed "Gallery" from the dropdown items.
   const dropdownItems = [
     { path: '/our-story', label: 'Our Story' },
     { path: '/contact', label: 'Contact Us' }
@@ -149,7 +138,8 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
                 </div>
               </button>
               <AnimatePresence>
-                {isModalOpen && <HoursModal hours={hours} isLoading={isLoading} isHomePage={isHomePage} />}
+                {/* CORRECTED: Added the missing isLoading prop */}
+                {isModalOpen && <HoursModal hours={hours} isLoading={isLoading} isPreview={false} isHomePage={isHomePage} />}
               </AnimatePresence>
             </div>
             <a href={orderPickupUrl} target="_blank" rel="noopener noreferrer" className="navbar-cta-button">
@@ -182,7 +172,6 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
             <div className="mobile-menu-links">
               <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
               <NavLink to="/menu" onClick={handleLinkClick}>Menu</NavLink>
-              {/* UPDATED: Removed "Gallery" NavLink */}
               <NavLink to="/our-story" onClick={handleLinkClick}>Our Story</NavLink>
               <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink>
               <a href={orderPickupUrl} target="_blank" rel="noopener noreferrer" className="mobile-cta-link">
