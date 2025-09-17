@@ -7,7 +7,6 @@ interface MenuItemDetail {
   description?: string;
 }
 
-// The shape of the details prop is now more structured.
 interface MenuCategoryDetail {
   categoryTitle: string;
   items: MenuItemDetail[];
@@ -16,7 +15,7 @@ interface MenuCategoryDetail {
 interface MenuPosterCardProps {
   imageSrc: string;
   altText: string;
-  details: MenuCategoryDetail[]; // Use the new, structured type.
+  details: MenuCategoryDetail[];
 }
 
 const MenuPosterCard = ({ imageSrc, altText, details }: MenuPosterCardProps) => {
@@ -28,10 +27,11 @@ const MenuPosterCard = ({ imageSrc, altText, details }: MenuPosterCardProps) => 
     <motion.div
       className={`menu-poster-card ${isInteractive ? 'interactive' : ''}`}
       onClick={() => isInteractive && setOverlayVisible(!isOverlayVisible)}
-      variants={{
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
-      }}
+      // Updated animation for simple fade
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
       <img src={imageSrc} alt={altText} loading="lazy" />
       <AnimatePresence>
@@ -43,12 +43,10 @@ const MenuPosterCard = ({ imageSrc, altText, details }: MenuPosterCardProps) => 
             exit={{ opacity: 0 }}
           >
             <div className="poster-details-wrapper">
-              {/* Map over the categories first */}
               {details.map(category => (
                 <div key={category.categoryTitle} className="poster-category">
                   <h3 className="poster-category-title">{category.categoryTitle}</h3>
                   <div className="poster-details-grid">
-                    {/* Then map over the items within each category */}
                     {category.items.map(item => (
                       <div key={item.name} className="poster-item-detail">
                         <span className="item-name">{item.name}</span>

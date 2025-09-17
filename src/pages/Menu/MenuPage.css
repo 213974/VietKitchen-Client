@@ -1,3 +1,38 @@
+/* --- Menu Filter Styles --- */
+.menu-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background-color: transparent;
+  border: 2px solid var(--border-light);
+  color: var(--text-primary);
+  opacity: 0.7;
+  padding: 0.6rem 1.5rem;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.filter-btn:hover {
+  opacity: 1;
+  border-color: var(--accent-primary);
+}
+
+.filter-btn.active {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #fff;
+  opacity: 1;
+}
+
+/* --- Original Styles --- */
 .menu-page-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -20,11 +55,30 @@
   color: #666;
 }
 
+/* --- Updated Grid Layout --- */
 .menu-posters-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* Default to 1 column for mobile */
+  grid-template-columns: 1fr;
   gap: 2rem;
 }
+
+/* --- NEW: Category Header for "All" View --- */
+.menu-category-header {
+  grid-column: 1 / -1; /* Make header span all columns */
+  font-family: var(--font-family-serif);
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 2rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-light);
+}
+/* Don't add top margin to the very first header */
+.menu-category-header:first-of-type {
+  margin-top: 0;
+}
+
 
 .menu-poster-card {
   line-height: 0;
@@ -61,14 +115,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: left; /* Align text to the left */
-  overflow-y: auto; /* Allow scrolling if content overflows */
+  text-align: left;
+  overflow-y: auto;
 }
 
 .poster-details-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Space between categories */
+  gap: 1.5rem;
   width: 100%;
 }
 
@@ -86,7 +140,7 @@
 .poster-details-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem 2rem; /* Row and column gap */
+  gap: 0.75rem 2rem;
   width: 100%;
 }
 
@@ -106,17 +160,20 @@
   opacity: 0.8;
 }
 
-
-@media (max-width: 900px) {
+/* --- Responsive Grid Adjustments --- */
+@media (min-width: 600px) {
   .menu-posters-grid {
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .menu-posters-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .menu-posters-grid {
-    grid-template-columns: 1fr;
-  }
   .menu-header h1 {
     font-size: 2.5rem;
   }

@@ -1,90 +1,38 @@
-import { motion } from 'framer-motion';
+import { useState, useMemo, Fragment } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './MenuPage.css';
 import SEO from '../../components/common/SEO/SEO';
 import MenuPosterCard from './MenuPosterCard';
+// CORRECTED: Split into a value import and a type-only import
+import { menuData } from '../../data/menuData';
+import type { MenuPoster } from '../../data/menuData';
 
-// Import the menu poster images
-import snackBar from '../../assets/menu/SnackBar.avif';
-import entree from '../../assets/menu/Entree.avif';
-import entree2 from '../../assets/menu/Entree2.avif';
-import latteCoffee from '../../assets/menu/Latte_Coffee.avif';
-import teaFruityTea from '../../assets/menu/Tea_FruityTea.avif';
-import shakesSmoothies from '../../assets/menu/Shakes_Smoothies.avif';
-import wingZone from '../../assets/menu/WingZone.avif';
-import extraMenuInfo from '../../assets/menu/ExtraMenuInfo.avif';
-
-// --- Menu Details Data ---
-// The `details` array now contains category objects.
-const menuData = [
-  {
-    imageSrc: snackBar,
-    altText: "Snack Bar Menu",
-    details: []
-  },
-  {
-    imageSrc: entree2,
-    altText: "Entrees Menu Part 2",
-    details: []
-  },
-  {
-    imageSrc: entree,
-    altText: "Entrees Menu Part 1",
-    details: []
-  },
-  {
-    imageSrc: latteCoffee,
-    altText: "Latte & Coffee Menu",
-    details: []
-  },
-  {
-    imageSrc: teaFruityTea,
-    altText: "Fruity Tea Menu",
-    details: []
-  },
-  {
-    imageSrc: shakesSmoothies,
-    altText: "Shakes & Smoothies Menu",
-    details: [
-      {
-        categoryTitle: 'Coladas',
-        items: [
-          { name: "Passion Colada", price: "$7.50" },
-          { name: "Pina Colada", price: "$7.50" },
-        ]
-      },
-      {
-        categoryTitle: 'Shakes & Smoothies',
-        items: [
-          { name: "Strawberry Smoothie", price: "$7.50" },
-          { name: "Mango Peach Smoothie", price: "$7.50" },
-          { name: "Chocolate Strawberry", price: "$7.50" },
-          { name: "Cookies & Cream", price: "$7.50" },
-          { name: "Mango Smoothie", price: "$7.50" },
-          { name: "Guava Tropical Smoothie", price: "$7.50" },
-        ]
-      },
-      {
-        categoryTitle: 'Hot',
-        items: [
-          { name: "Hot Choco Milo", price: "$6.00" },
-          { name: "Ginger Honey Tea", price: "$5.00" },
-        ]
-      }
-    ]
-  },
-  {
-    imageSrc: wingZone,
-    altText: "Wing Zone Menu",
-    details: []
-  },
-  {
-    imageSrc: extraMenuInfo,
-    altText: "Extra Menu Information",
-    details: []
-  }
-];
+type MenuFilter = 'All' | 'Food' | 'Drinks' | 'Desserts';
+const filterCategories: MenuFilter[] = ['All', 'Food', 'Drinks', 'Desserts'];
 
 const MenuPage = () => {
+  const [activeFilter, setActiveFilter] = useState<MenuFilter>('All');
+
+  // useMemo will prevent re-calculating the filtered lists on every render
+  const filteredMenu = useMemo(() => {
+    if (activeFilter === 'All') {
+      return menuData;
+    }
+    return menuData.filter(poster => poster.category === activeFilter);
+  }, [activeFilter]);
+
+  // Create a grouped structure for rendering the "All" view with headers
+  const groupedMenu = useMemo(() => {
+    return menuData.reduce((acc, poster) => {
+      const category = poster.category;
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(poster);
+      return acc;
+    }, {} as Record<MenuFilter, MenuPoster[]>);
+  }, []);
+
   return (
     <>
       <SEO
@@ -97,21 +45,49 @@ const MenuPage = () => {
           <p>Authentic flavors crafted with the freshest ingredients.</p>
         </header>
 
+        <div className="menu-filters">
+          {filterCategories.map(filter => (
+            <button
+              key={filter}
+              className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
+              onClick={() => setActiveFilter(filter)}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
         <motion.div 
           className="menu-posters-grid"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ staggerChildren: 0.1 }}
         >
-          {menuData.map((poster, index) => (
-            <MenuPosterCard
-              key={index}
-              imageSrc={poster.imageSrc}
-              altText={poster.altText}
-              details={poster.details}
-            />
-          ))}
+          <AnimatePresence mode="wait">
+            {activeFilter === 'All' ? (
+              // Render with category headers
+              Object.entries(groupedMenu).map(([category, posters]) => (
+                <Fragment key={category}>
+                  <h2 className="menu-category-header">{category}</h2>
+                  {posters.map((poster) => (
+                    <MenuPosterCard
+                      key={poster.altText}
+                      imageSrc={poster.imageSrc}
+                      altText={poster.altText}
+                      details={poster.details}
+                    />
+                  ))}
+                </Fragment>
+              ))
+            ) : (
+              // Render the filtered list directly
+              filteredMenu.map((poster) => (
+                <MenuPosterCard
+                  key={poster.altText}
+                  imageSrc={poster.imageSrc}
+                  altText={poster.altText}
+                  details={poster.details}
+                />
+              ))
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
     </>
