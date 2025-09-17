@@ -13,7 +13,6 @@
     width: 100%;
     max-width: 1200px;
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 2rem;
@@ -37,6 +36,7 @@
 .footer-info p {
     margin: 0;
     font-size: 0.9rem;
+    word-break: break-word; /* NEW: Prevents long addresses from overflowing */
 }
 
 .footer-icon {
@@ -49,8 +49,9 @@
 .footer-right-section {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-end; /* Aligns content to the right on desktop */
     gap: 1.5rem;
+    margin-left: auto;
 }
 
 .footer-socials {
@@ -58,6 +59,8 @@
   flex-direction: row;
   gap: 1.5rem;
   align-items: center;
+  flex-wrap: wrap; /* NEW: Allows social links to stack on narrow screens */
+  justify-content: center; /* NEW: Ensures links are centered when they wrap */
 }
 
 .social-item {
@@ -66,6 +69,10 @@
   gap: 0.5rem;
   text-decoration: none;
   color: var(--text-primary);
+}
+
+.social-item span {
+  word-break: break-word; /* NEW: Prevents long handles from overflowing */
 }
 
 .social-icon {
@@ -78,18 +85,21 @@
 }
 
 .tiktok-icon {
-  /* Future styling for the TikTok icon can go here */
-  fill: var(--text-primary); /* Default to primary text color */
+  fill: var(--text-primary);
+}
+
+.facebook-icon {
+  fill: #1877F2; /* Official Facebook blue */
 }
 
 .footer-copyright {
-    text-align: right;
+    text-align: right; /* Aligns text to the right on desktop */
     font-size: 0.9rem;
     color: #777;
 }
 
 .footer-copyright p {
-    margin: 0.25rem 0 0;
+    margin: 0;
 }
 
 /* ------------------- Hover Effects ------------------- */
@@ -104,24 +114,26 @@
 /* Tablet & Small Laptop Breakpoint */
 @media (max-width: 900px) {
   .footer-container {
-    /* Center the items instead of space-between to prevent awkward stretching. */
     justify-content: center;
-    text-align: center;
+    gap: 2.5rem;
   }
-  .footer-right-section {
-    /* Align the right section to the center as well. */
+  .footer-info, .footer-right-section {
     align-items: center;
+    text-align: center;
+    margin-left: 0;
+  }
+  .footer-info a.info-item {
+    justify-content: center;
+  }
+  .footer-copyright {
+    text-align: center;
   }
 }
 
 /* Mobile Breakpoint */
 @media (max-width: 768px) {
-  /* Stack the main sections vertically. */
   .footer-container {
     flex-direction: column;
     align-items: center;
-  }
-  .footer-socials {
-    justify-content: center;
   }
 }

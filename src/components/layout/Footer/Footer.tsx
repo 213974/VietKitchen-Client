@@ -54,7 +54,7 @@ const Footer = () => {
             </a>
             <a href="https://www.tiktok.com/@vietkitchenteahouse" target="_blank" rel="noopener noreferrer" className="social-item">
               <TiktokIcon className="social-icon tiktok-icon" />
-              <span>@vietkitchenteahouse</span>
+              <span>@vietkitchenandteahouse</span>
             </a>
             <a href="https://www.facebook.com/profile.php?id=61575199565412" target="_blank" rel="noopener noreferrer" className="social-item">
               <FacebookIcon className="social-icon facebook-icon" />
