@@ -48,18 +48,18 @@ export const useStoreInfo = () => {
       if (response.data) {
         setHours(response.data.hours.length > 0 ? response.data.hours : fallbackHours);
         setActiveTheme(response.data.activeTheme || 'default');
-        setPhoneNumber(response.data.phoneNumber || '(301) 396-2073');
+        setPhoneNumber(response.data.phoneNumber || '(571) 918-0641');
       } else {
         // Use fallback data if API returns an empty response.
         setHours(fallbackHours);
-        setPhoneNumber('(301) 396-2073');
+        setPhoneNumber('(571) 918-0641');
       }
     } catch (err) {
       // Use fallback data if the API call fails.
       console.error("Failed to fetch store info:", err);
       setError('Could not load store information.');
       setHours(fallbackHours);
-      setPhoneNumber('(301) 396-2073');
+      setPhoneNumber('(571) 918-0641');
     } finally {
       setIsLoading(false);
     }
