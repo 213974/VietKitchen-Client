@@ -3,10 +3,10 @@ import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import './AdminLayout.css';
 import { useResponsive } from '../../hooks/useResponsive';
 import { useClickOutside } from '../../hooks/useClickOutside';
-import GalleryIcon from '../../assets/icons/gallery.svg';
-import ClockIcon from '../../assets/icons/clock.svg';
-import DashboardIcon from '../../assets/icons/dashboard.svg';
-import HamburgerIcon from '../../assets/icons/hamburger-menu.svg';
+import GalleryIcon from '../../assets/icons/gallery.svg?react';
+import ClockIcon from '../../assets/icons/clock.svg?react';
+import DashboardIcon from '../../assets/icons/dashboard.svg?react';
+import HamburgerIcon from '../../assets/icons/hamburger-menu.svg?react';
 import { supabase } from '../../services/supabaseClient'; // Import supabase
 
 const AdminLayout = () => {

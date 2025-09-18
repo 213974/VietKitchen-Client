@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import './CookieSettingsTrigger.css';
-import CookieIcon from '../../../assets/icons/cookie-settings.svg';
+import CookieIcon from '../../../assets/icons/cookie-settings.svg?react';
 import { useMouseProximity } from '../../../hooks/useMouseProximity';
 import { useScrollPosition } from '../../../hooks/useScrollPosition';
 import { useResponsive } from '../../../hooks/useResponsive'; // Import the correct hook

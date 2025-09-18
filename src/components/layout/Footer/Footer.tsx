@@ -1,11 +1,11 @@
 import './Footer.css';
 import { useStoreInfo } from '../../../hooks/useStoreInfo';
-import PhoneIcon from '../../../assets/icons/phone.svg';
-import LocationIcon from '../../../assets/icons/location-pin.svg';
-import InstagramIcon from '../../../assets/icons/instagram.svg';
-import TiktokIcon from '../../../assets/icons/tiktok.svg';
-import EmailIcon from '../../../assets/icons/email.svg';
-import FacebookIcon from '../../../assets/icons/facebook-logo.svg';
+import PhoneIcon from '../../../assets/icons/phone.svg?react';
+import LocationIcon from '../../../assets/icons/location-pin.svg?react';
+import InstagramIcon from '../../../assets/icons/instagram.svg?react';
+import TiktokIcon from '../../../assets/icons/tiktok.svg?react';
+import EmailIcon from '../../../assets/icons/email.svg?react';
+import FacebookIcon from '../../../assets/icons/facebook-logo.svg?react';
 
 const Footer = () => {
   const { phoneNumber } = useStoreInfo();
@@ -20,36 +20,36 @@ const Footer = () => {
         <div className="footer-info">
           <h3>Viet Kitchen & Tea House</h3>
           <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" className="info-item">
-            {/* CORRECTED: Use a div with the mask technique */}
-            <div className="footer-icon" style={{ WebkitMaskImage: `url(${LocationIcon})`, maskImage: `url(${LocationIcon})` }} />
+            {/* REVERTED: Use the component directly */}
+            <LocationIcon className="footer-icon" />
             <p>{address}</p>
           </a>
           <a href={`tel:${phoneNumber}`} className="info-item">
-            {/* CORRECTED: Use a div with the mask technique */}
-            <div className="footer-icon" style={{ WebkitMaskImage: `url(${PhoneIcon})`, maskImage: `url(${PhoneIcon})` }} />
+            {/* REVERTED: Use the component directly */}
+            <PhoneIcon className="footer-icon" />
             <p>{phoneNumber || 'Loading...'}</p>
           </a>
           <a href={`mailto:${email}`} className="info-item">
-            {/* CORRECTED: Use a div with the mask technique */}
-            <div className="footer-icon" style={{ WebkitMaskImage: `url(${EmailIcon})`, maskImage: `url(${EmailIcon})` }} />
+            {/* REVERTED: Use the component directly */}
+            <EmailIcon className="footer-icon" />
             <p>{email}</p>
           </a>
         </div>
         <div className="footer-right-section">
           <div className="footer-socials">
             <a href="https://www.instagram.com/vietkitchenandteahouse/?hl=en" target="_blank" rel="noopener noreferrer" className="social-item">
-              {/* CORRECTED: Use a div with the mask technique */}
-              <div className="social-icon instagram-icon" style={{ WebkitMaskImage: `url(${InstagramIcon})`, maskImage: `url(${InstagramIcon})` }} />
+              {/* REVERTED: Use the component directly */}
+              <InstagramIcon className="social-icon instagram-icon" />
               <span>@vietkitchenandteahouse</span>
             </a>
             <a href="https://www.tiktok.com/@vietkitchenteahouse" target="_blank" rel="noopener noreferrer" className="social-item">
-              {/* CORRECTED: Use a div with the mask technique */}
-              <div className="social-icon tiktok-icon" style={{ WebkitMaskImage: `url(${TiktokIcon})`, maskImage: `url(${TiktokIcon})` }} />
+              {/* REVERTED: Use the component directly */}
+              <TiktokIcon className="social-icon tiktok-icon" />
               <span>@vietkitchenandteahouse</span>
             </a>
             <a href="https://www.facebook.com/profile.php?id=61575199565412" target="_blank" rel="noopener noreferrer" className="social-item">
-              {/* CORRECTED: Use a div with the mask technique */}
-              <div className="social-icon facebook-icon" style={{ WebkitMaskImage: `url(${FacebookIcon})`, maskImage: `url(${FacebookIcon})` }} />
+              {/* REVERTED: Use the component directly */}
+              <FacebookIcon className="social-icon facebook-icon" />
               <span>@vietkitchenandteahouse</span>
             </a>
           </div>

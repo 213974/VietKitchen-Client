@@ -15,6 +15,19 @@
   color: var(--text-primary);
   padding: 0.5rem 0;
 }
+
+/* NEW: Styles for the arrow icon div */
+.dropdown-arrow-icon {
+  width: 16px;
+  height: 16px;
+  background-color: currentColor; /* Inherits color from the button text */
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+}
 .nav-dropdown-toggle svg {
   width: 16px;
   height: 16px;

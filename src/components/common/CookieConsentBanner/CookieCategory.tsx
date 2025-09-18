@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import ArrowRightIcon from '../../../assets/icons/arrow-right.svg';
+import ArrowRightIcon from '../../../assets/icons/arrow-right.svg?react';
 
 interface CookieCategoryProps {
   title: string;

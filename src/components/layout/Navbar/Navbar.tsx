@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
-import ClockIcon from '../../../assets/icons/clock.svg';
-import HamburgerIcon from '../../../assets/icons/hamburger-menu.svg';
-import CloseIcon from '../../../assets/icons/close.svg';
+import ClockIcon from '../../../assets/icons/clock.svg?react';
+import HamburgerIcon from '../../../assets/icons/hamburger-menu.svg?react';
+import CloseIcon from '../../../assets/icons/close.svg?react';
+
 import HoursModal from '../../common/HoursModal/HoursModal';
 import NavDropdown from './NavDropdown';
 import { AnimatePresence, motion, type Variants } from 'framer-motion';
@@ -25,7 +26,6 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
   const hoursModalRef = useRef<HTMLDivElement>(null);
   useClickOutside(hoursModalRef, () => setIsModalOpen(false));
 
-  // ... getStoreStatus and other logic remains exactly the same ...
   const getStoreStatus = useCallback(() => {
     if (!hours || hours.length === 0) return { text: "Hours Unavailable", color: "#b91c1c" };
     const now = new Date();

@@ -4,8 +4,8 @@ import './MenuPage.css';
 import SEO from '../../components/common/SEO/SEO';
 import MenuPosterCard from './MenuPosterCard';
 import MenuDetailCard from './MenuDetailCard';
-import ViewImageIcon from '../../assets/icons/view-image.svg';
-import ViewListIcon from '../../assets/icons/view-list.svg';
+import ViewImageIcon from '../../assets/icons/view-image.svg?react';
+import ViewListIcon from '../../assets/icons/view-list.svg?react';
 
 import { menuData } from '../../data/menuData';
 import type { MenuPoster } from '../../data/menuData';

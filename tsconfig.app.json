@@ -24,7 +24,7 @@
     "noFallthroughCasesInSwitch": true,
 
     /* NEW: Add "node" to types to fix serverless function errors */
-    "types": ["vite/client", "node"]
+    "types": ["vite/client", "vite-plugin-svgr/client", "node"]
   },
   "include": ["src", "api"]
 }

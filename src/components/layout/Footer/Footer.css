@@ -26,7 +26,6 @@
 
 .footer-info a.info-item {
     display: flex;
-    /* CORRECTED: Align to the top of the text block */
     align-items: flex-start; 
     gap: 0.75rem;
     margin-bottom: 1rem;
@@ -40,24 +39,19 @@
     word-break: break-word;
 }
 
+/* REVERTED: Use fill for SVG color */
 .footer-icon {
     width: 16px;
     height: 16px;
-    background-color: var(--text-primary);
+    fill: var(--text-primary);
     flex-shrink: 0;
     margin-top: 2px;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    -webkit-mask-size: contain;
 }
 
 .footer-right-section {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Aligns content to the right on desktop */
+    align-items: flex-end;
     gap: 1.5rem;
     margin-left: auto;
 }
@@ -83,31 +77,26 @@
   word-break: break-word;
 }
 
+/* REVERTED: Use fill for SVG color */
 .social-icon {
   width: 24px;
   height: 24px;
-  background-color: var(--text-primary); /* Default color */
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
 }
 
-/* CORRECTED: Use background-color instead of fill */
 .instagram-icon { 
-  background-color: #E1306C; 
+  fill: #E1306C; 
 }
+
 .tiktok-icon {
-  background-color: var(--text-primary);
+  fill: var(--text-primary);
 }
+
 .facebook-icon {
-  background-color: #1877F2;
+  fill: #1877F2;
 }
 
 .footer-copyright {
-    text-align: right; /* Aligns text to the right on desktop */
+    text-align: right;
     font-size: 0.9rem;
     color: #777;
 }
@@ -125,7 +114,6 @@
 }
 
 /* ------------------- Responsive Adjustments ------------------- */
-/* Tablet & Small Laptop Breakpoint */
 @media (max-width: 900px) {
   .footer-container {
     justify-content: center;
@@ -144,7 +132,6 @@
   }
 }
 
-/* Mobile Breakpoint */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
