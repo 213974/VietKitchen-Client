@@ -16,23 +16,16 @@
   padding: 0.5rem 0;
 }
 
-/* NEW: Styles for the arrow icon div */
-.dropdown-arrow-icon {
-  width: 16px;
-  height: 16px;
-  background-color: currentColor; /* Inherits color from the button text */
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-size: contain;
-}
+/* REMOVED: The old mask-based style is no longer needed */
+/* .dropdown-arrow-icon { ... } */
+
+/* This rule correctly styles the SVG component */
 .nav-dropdown-toggle svg {
   width: 16px;
   height: 16px;
-  fill: currentColor;
+  fill: currentColor; /* Inherits color from the button text, which is perfect */
 }
+
 .nav-dropdown-menu {
   position: absolute;
   top: 100%;
@@ -63,7 +56,6 @@
   background-color: var(--bg-footer);
 }
 
-/* --- NEW: Homepage Styles for Dropdown --- */
 .nav-dropdown-menu.is-home {
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
@@ -71,12 +63,12 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .nav-dropdown-menu.is-home a {
-  color: #ffffff; /* Make text white */
+  color: #ffffff;
 }
 .nav-dropdown-menu.is-home a:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 .nav-dropdown-menu.is-home a.active {
-  color: #ffeea8; /* Use the same bright highlight color */
+  color: #ffeea8;
   background-color: rgba(255, 255, 255, 0.1);
 }

@@ -4,6 +4,7 @@ import './Navbar.css';
 import ClockIcon from '../../../assets/icons/clock.svg?react';
 import HamburgerIcon from '../../../assets/icons/hamburger-menu.svg?react';
 import CloseIcon from '../../../assets/icons/close.svg?react';
+
 import HoursModal from '../../common/HoursModal/HoursModal';
 import NavDropdown from './NavDropdown';
 import { AnimatePresence, motion, type Variants } from 'framer-motion';

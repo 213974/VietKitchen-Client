@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useClickOutside } from '../../../hooks/useClickOutside';
-import ArrowDownIcon from '../../../assets/icons/arrow-down.svg?react';
+// import ArrowDownIcon from '../../../assets/icons/arrow-down.svg?react';
 import './NavDropdown.css';
 
 interface NavDropdownProps {
@@ -35,11 +35,7 @@ const NavDropdown = ({ title, items, isHomePage }: NavDropdownProps) => {
       <button className="nav-dropdown-toggle" onClick={() => setIsOpen(!isOpen)}>
         <span>{title}</span>
         <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
-          {/* CORRECTED: Use a div with the mask technique */}
-          <div 
-            className="dropdown-arrow-icon"
-            style={{ WebkitMaskImage: `url(${ArrowDownIcon})`, maskImage: `url(${ArrowDownIcon})` }}
-          />
+          {/* <ArrowDownIcon /> */}
         </motion.div>
       </button>
       <AnimatePresence>
