@@ -84,7 +84,7 @@ h = parsedH;
     }
   }, [isMobileMenuOpen]);
 
-  const orderPickupUrl = 'https://online.skytab.com/38bdc873ed00c1a08c9bb3ce20ee7be';
+  const orderPickupUrl = 'https://online.skytab.com/38bdc873ed00c1a08c9bb35ce20ee7be';
   const handleLinkClick = () => setMobileMenuOpen(false);
   
   const mobileMenuVariants: Variants = {
