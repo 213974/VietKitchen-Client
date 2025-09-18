@@ -1,17 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
-import { supabase } from '../services/supabaseClient'; // Import our new Supabase client
+import { supabase } from '../services/supabaseClient';
 
 export interface OpeningHour {
-  _id?: string; // This will no longer be provided by Supabase
+  _id?: string;
   day: string;
   time: string;
 }
 
-// interface StoreInfo {
-//   hours: OpeningHour[];
-//  active_theme: string; // Supabase uses snake_case by default
-//  phone_number: string;
-// }
+interface StoreInfo {
+  hours: OpeningHour[];
+  active_theme: string;
+  phone_number: string;
+}
 
 const defaultHours: OpeningHour[] = [
   { day: 'Monday', time: '11:00 AM – 9:00 PM' },
@@ -65,8 +65,8 @@ export const useStoreInfo = () => {
       .on(
         'postgres_changes',
         { event: 'UPDATE', schema: 'public', table: 'store_info' },
-        (payload) => {
-          console.log('Change received from Supabase!', payload);
+        () => {
+          console.log('Change received from Supabase! Refetching data...');
           fetchStoreInfo();
         }
       )
@@ -77,16 +77,16 @@ export const useStoreInfo = () => {
     };
   }, [fetchStoreInfo]);
   
-  // NOTE: The update functions will be used by the admin panel later.
-  // They will also need to be converted to use Supabase.
-  const updateStoreHours = async (/* updatedHours: OpeningHour[] */): Promise<boolean> => {
-    // This logic will be updated to use supabase.from('store_info').update(...)
-    console.log("updateStoreHours needs to be migrated to Supabase.");
+  // CORRECTED: The functions now correctly accept parameters.
+  const updateStoreHours = async (updatedHours: OpeningHour[]): Promise<boolean> => {
+    console.log("updateStoreHours needs to be migrated to Supabase.", updatedHours);
+    // Placeholder logic for now, will be replaced with actual Supabase call.
     return false;
   };
 
-  const updateStoreDetails = async (/* details: Partial<StoreInfo> */): Promise<boolean> => {
-    console.log("updateStoreDetails needs to be migrated to Supabase.");
+  const updateStoreDetails = async (details: Partial<Omit<StoreInfo, 'hours'>>): Promise<boolean> => {
+    console.log("updateStoreDetails needs to be migrated to Supabase.", details);
+    // Placeholder logic for now, will be replaced with actual Supabase call.
     return false;
   };
 

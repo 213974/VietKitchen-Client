@@ -7,14 +7,12 @@ import ConfirmationModal from '../../../components/common/ConfirmationModal/Conf
 import TimePicker from '../../../components/admin/TimePicker/TimePicker';
 import HoursModal from '../../../components/common/HoursModal/HoursModal';
 
-// A more detailed type for our local component state
 interface LocalOpeningHour extends OpeningHour {
   open: string;
   close: string;
   isClosed: boolean;
 }
 
-// --- Helper Functions ---
 const parseTime = (timeStr: string): { open: string; close: string; isClosed: boolean } => {
   if (timeStr.toLowerCase() === 'closed') {
     return { open: '11:00 AM', close: '9:00 PM', isClosed: true };
@@ -34,7 +32,6 @@ const combineTime = (day: LocalOpeningHour): OpeningHour => {
     time: day.isClosed ? 'Closed' : `${day.open} – ${day.close}`,
   };
 };
-// --- End Helper Functions ---
 
 const UpdateHoursPage = () => {
   const { hours: initialHours, updateStoreHours, isLoading, error } = useStoreInfo();
@@ -46,12 +43,11 @@ const UpdateHoursPage = () => {
 
   const hasChanges = useMemo(() => !isEqual(pristineHours, localHours), [pristineHours, localHours]);
 
-  // Effect to prevent leaving the page with unsaved changes
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (hasChanges) {
         e.preventDefault();
-        e.returnValue = ''; // Required for Chrome
+        e.returnValue = '';
       }
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -90,10 +86,12 @@ const UpdateHoursPage = () => {
   const handleConfirmSave = async () => {
     setStatus({ message: '', type: '' });
     const formattedForApi = localHours.map(combineTime);
+    // CORRECTED: Pass the formatted data to the update function
     const success = await updateStoreHours(formattedForApi);
 
     if (success) {
       setStatus({ message: 'Store hours updated successfully!', type: 'success' });
+      setPristineHours(localHours); // Update pristine state on success
     } else {
       setStatus({ message: 'Failed to update store hours. Please try again.', type: 'error' });
     }

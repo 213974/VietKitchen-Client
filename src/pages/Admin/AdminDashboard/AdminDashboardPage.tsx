@@ -6,14 +6,13 @@ import { useDashboardStats } from '../../../hooks/useDashboardStats';
 import ConfirmationModal from '../../../components/common/ConfirmationModal/ConfirmationModal';
 import './AdminDashboardPage.css';
 
-// Expanded theme data to include color palettes for the preview
 const availableThemes = [
-  { value: 'default', name: 'Default (Cream & Orange)', colors: { bg: '#f2dfc1', text: '#4a443b', accent: '#c87a58' } },
-  { value: 'valentines', name: 'Valentines (Pink & Red)', colors: { bg: '#fde8f0', text: '#5c283c', accent: '#e53982' } },
-  { value: 'stpatricks', name: 'St. Patrick\'s (Green & Gold)', colors: { bg: '#f0fbf3', text: '#1e4620', accent: '#16a34a' } },
+  { value: 'default', name: 'Default (Mint & Green)', colors: { bg: '#f0f7f5', text: '#2a4b42', accent: '#3e8a78' } },
+  { value: 'valentines', name: 'Valentines (Pink & Red)', colors: { bg: '#fff5f8', text: '#6d2243', accent: '#e53982' } },
+  { value: 'stpatricks', name: 'St. Patrick\'s (Green)', colors: { bg: '#f0fbf3', text: '#1a3c1f', accent: '#16a34a' } },
   { value: 'halloween', name: 'Halloween (Orange & Black)', colors: { bg: '#1a1a1a', text: '#e5e5e5', accent: '#f97316' } },
-  { value: 'thanksgiving', name: 'Thanksgiving (Brown & Amber)', colors: { bg: '#fef7f2', text: '#5c4033', accent: '#d97706' } },
-  { value: 'christmas', name: 'Christmas (Red & Green)', colors: { bg: '#fdfbf6', text: '#4d4d4d', accent: '#b91c1c' } },
+  { value: 'thanksgiving', name: 'Thanksgiving (Brown & Amber)', colors: { bg: '#fef7f2', text: '#5c3d2e', accent: '#d97706' } },
+  { value: 'christmas', name: 'Christmas (Red & Cream)', colors: { bg: '#f8fbf7', text: '#3e4a3e', accent: '#c51d1d' } },
 ];
 
 const ThemePalette = ({ themeValue }: { themeValue: string }) => {
@@ -63,8 +62,8 @@ const AdminDashboardPage = () => {
     setIsModalOpen(false);
     setStatus({ message: 'Saving...', type: 'loading' });
     const success = await updateStoreDetails({
-      activeTheme: formData.theme,
-      phoneNumber: formData.phone,
+      active_theme: formData.theme,
+      phone_number: formData.phone,
     });
     if (success) {
       setStatus({ message: 'Changes saved successfully!', type: 'success' });
@@ -125,17 +124,13 @@ const AdminDashboardPage = () => {
         </div>
 
         <div className="dashboard-grid">
-          {/* --- Stats Card --- */}
           <div className="dashboard-card stats-card">
             <h3>At a Glance</h3>
             {isStatsLoading && <p>Loading stats...</p>}
             {statsError && <p className="status-message error">{statsError}</p>}
             {stats && (
               <div className="stats-container">
-                <div className="stat-item">
-                  <span className="stat-value">{stats.menuItemCount}</span>
-                  <span className="stat-label">Menu Items</span>
-                </div>
+                {/* CORRECTED: Removed the menuItemCount stat block */}
                 <div className="stat-item">
                   <span className="stat-value">{stats.galleryImageCount}</span>
                   <span className="stat-label">Gallery Images</span>
@@ -144,7 +139,6 @@ const AdminDashboardPage = () => {
             )}
           </div>
 
-          {/* --- Settings Card --- */}
           <div className="dashboard-card settings-card">
             <h3>Quick Settings</h3>
             {isStoreInfoLoading ? <p>Loading settings...</p> : (
