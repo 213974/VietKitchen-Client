@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import './ContactPage.css';
+import './ContactTeaser.css';
 import SEO from '../../common/SEO/SEO';
 import axios, { isAxiosError } from 'axios'; // We can use axios directly for this simple case
 

@@ -2,9 +2,9 @@ import { motion, type Variants } from 'framer-motion';
 import './GalleryImageCard.css';
 
 // Import Primary Share Icons
-import XLogoIcon from '../../../assets/icons/x-logo.svg?react';
-import FacebookIcon from '../../../assets/icons/facebook-logo.svg?react';
-import PinterestLogoIcon from '../../../assets/icons/pinterest-logo.svg?react';
+import XLogoIcon from '../../../assets/icons/x-logo.svg';
+import FacebookIcon from '../../../assets/icons/facebook-logo.svg';
+import PinterestLogoIcon from '../../../assets/icons/pinterest-logo.svg';
 
 interface GalleryImageCardProps {
   src: string;

@@ -43,10 +43,15 @@
 .footer-icon {
     width: 16px;
     height: 16px;
-    fill: var(--text-primary);
+    background-color: var(--text-primary);
     flex-shrink: 0;
-    /* Add a little top margin to perfectly align with the text's line-height */
     margin-top: 2px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
 }
 
 .footer-right-section {
@@ -81,18 +86,24 @@
 .social-icon {
   width: 24px;
   height: 24px;
+  background-color: var(--text-primary); /* Default color */
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 }
 
+/* CORRECTED: Use background-color instead of fill */
 .instagram-icon { 
-  fill: #E1306C; 
+  background-color: #E1306C; 
 }
-
 .tiktok-icon {
-  fill: var(--text-primary);
+  background-color: var(--text-primary);
 }
-
 .facebook-icon {
-  fill: #1877F2; /* Official Facebook blue */
+  background-color: #1877F2;
 }
 
 .footer-copyright {
