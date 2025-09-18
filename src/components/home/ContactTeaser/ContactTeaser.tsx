@@ -1,63 +1,117 @@
-import './ContactTeaser.css';
-import { Link } from 'react-router-dom';
-import { motion, useAnimationControls } from 'framer-motion';
-import ContactWelcome from '../../../assets/Misc/ContactWelcome.png';
-import { useResponsive } from '../../../hooks/useResponsive';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import './ContactPage.css';
+import SEO from '../../common/SEO/SEO';
+import axios, { isAxiosError } from 'axios'; // We can use axios directly for this simple case
 
-/**
- * A component for the homepage that encourages users to get in touch.
- * It links to the main contact page and features a coordinated animation effect.
- */
-const ContactTeaser = () => {
-  // ------------------- Hooks -------------------
-  // Animation controls allow one element's animation to trigger another's.
-  const imageControls = useAnimationControls();
-  const { isDesktop } = useResponsive();
+const ContactPage = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  
+  const [status, setStatus] = useState({ message: '', type: '' });
+  const [isLoading, setIsLoading] = useState(false);
 
-  /**
-   * A handler that is called when the main text box scrolls into view.
-   * It manually starts the animation for the "Let's get in touch" image.
-   */
-  const handleBoxInView = () => {
-    imageControls.start({
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.7, ease: 'easeOut' }
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
   };
 
-  // ------------------- Render Method -------------------
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setStatus({ message: '', type: '' });
+
+    try {
+      // UPDATED: We now post to the relative path '/api/contact'.
+      // Vercel automatically routes this to our serverless function.
+      const response = await axios.post('/api/contact', formData);
+
+      setStatus({ message: response.data.message || 'Thank you! Your message has been sent.', type: 'success' });
+      // Clear form on success
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (err) {
+      if (isAxiosError(err) && err.response) {
+        setStatus({ message: err.response.data.message || 'An error occurred.', type: 'error' });
+      } else {
+        setStatus({ message: 'An unexpected error occurred. Please try again.', type: 'error' });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <section className="contact-teaser-section">
-      <div className="contact-teaser-content">
-        {/* --- "Let's get in touch" Image --- */}
-        <motion.img 
-          src={ContactWelcome} 
-          alt="Let's get in touch, we'd love to hear from you" 
-          className="contact-welcome-img"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={imageControls} // This animation is controlled by the box below.
-        />
-        {/* --- Main Text Box --- */}
-        <motion.div 
-          className="contact-teaser-box frosted-container"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: isDesktop ? 0.8 : 0.3 }}
-          transition={{ duration: 0.5 }}
-          onViewportEnter={handleBoxInView} // When this comes into view, it triggers the image animation.
-        >
-          <h3>CUSTOMER INQUIRIES</h3>
-          <p>
-            Share an experience you had, ask a question about our restaurant, or anything else you'd like to ask or share? We're all ears!
-          </p>
-          <Link to="/contact" className="contact-teaser-btn">
-            Customer Inquiries
-          </Link>
-        </motion.div>
-      </div>
-    </section>
+    <>
+      <SEO 
+        title="Contact Us"
+        description="Get in touch with Viet Kitchen & Tea House. Send us a message, find our address, or view our location on the map. We'd love to hear from you."
+      />
+      <motion.div
+        className="contact-page-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="contact-header">
+          <h1>We’d Love to Hear From You!</h1>
+          <p>Whether you have a question, feedback, or just want to say hello, feel free to reach out.</p>
+        </div>
+
+        <div className="contact-content-wrapper">
+          <div className="contact-form-section">
+            <form className="contact-form" onSubmit={handleSubmit}>
+              {status.message && <p className={`form-status-message ${status.type}`}>{status.message}</p>}
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="name">Name (Required)</label>
+                  <input type="text" id="name" value={formData.name} onChange={handleChange} required disabled={isLoading} />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email (Required)</label>
+                  <input type="email" id="email" value={formData.email} onChange={handleChange} required disabled={isLoading} />
+                </div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="subject">Subject (Optional)</label>
+                <input type="text" id="subject" value={formData.subject} onChange={handleChange} disabled={isLoading} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="message">Message</label>
+                <textarea id="message" rows={8} value={formData.message} onChange={handleChange} required disabled={isLoading}></textarea>
+              </div>
+              <button type="submit" className="submit-btn" disabled={isLoading}>
+                {isLoading ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+          </div>
+          <div className="contact-info-section">
+            <div className="info-box">
+              <h3>Our Location</h3>
+              <p>20789 Great Falls Plaza #174<br />Sterling, VA 20165</p>
+              <h3>Contact Info</h3>
+              <p>(571) 918-0641<br/>vietkitchenteahouse@gmail.com</p>
+            </div>
+            <div className="map-container">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3101.378954737756!2d-77.45781602482399!3d39.03058997170131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b638f28b323c6d%3A0x67130a08625902d1!2sViet%20Kitchen%20%26%20Tea%20House!5e0!3m2!1sen!2sus!4v1727718933221!5m2!1sen!2sus"
+                width="600"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Google Maps location of Viet Kitchen & Tea House"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </>
   );
 };
 
-export default ContactTeaser;
+export default ContactPage;

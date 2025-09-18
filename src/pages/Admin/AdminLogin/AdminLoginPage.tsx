@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import apiClient from '../../../services/apiClient';
 import { useNavigate } from 'react-router-dom';
 import './AdminLogin.css';
-import { isAxiosError } from 'axios';
+import { supabase } from '../../../services/supabaseClient';
+import { AuthError } from '@supabase/supabase-js'; // Import the specific error type
 
 const AdminLoginPage = () => {
   const [email, setEmail] = useState('');
@@ -16,22 +16,26 @@ const AdminLoginPage = () => {
     setError('');
     setIsLoading(true);
     try {
-      const response = await apiClient.post('/auth/login', { email, password });
-      
-      if (response.data.token) {
-        localStorage.setItem('adminToken', response.data.token);
-        // Redirect to the new admin dashboard
-        navigate('/admin/dashboard'); 
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (signInError) {
+        throw signInError;
       }
 
+      navigate('/admin/dashboard');
+
     } catch (err) {
-      if (isAxiosError(err) && err.response) {
-        setError(err.response.data.message || 'Login failed.');
+      // CORRECTED: Use the specific AuthError type
+      if (err instanceof AuthError) {
+        setError(err.message);
       } else {
-        setError('An unexpected error occurred.');
+        setError('An unexpected error occurred. Please try again.');
       }
     } finally {
-        setIsLoading(false);
+      setIsLoading(false);
     }
   };
 

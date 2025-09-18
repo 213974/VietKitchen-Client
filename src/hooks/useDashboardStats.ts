@@ -1,43 +1,41 @@
-import { useState, useEffect } from 'react';
-import apiClient from '../services/apiClient';
+import { useState, useEffect, useCallback } from 'react';
+import { supabase } from '../services/supabaseClient';
 
-// Defines the shape of the statistics data received from the API.
 interface DashboardStats {
-  menuItemCount: number;
   galleryImageCount: number;
 }
 
-/**
- * A custom hook to fetch aggregate statistics for the admin dashboard.
- * @returns An object containing the fetched `stats`, `isLoading` state, and any `error` that occurred.
- */
 export const useDashboardStats = () => {
-  // State for the fetched statistics data.
   const [stats, setStats] = useState<DashboardStats | null>(null);
-  // State to track the loading status of the API request.
   const [isLoading, setIsLoading] = useState(true);
-  // State to store any potential error messages.
   const [error, setError] = useState<string | null>(null);
 
+  const fetchStats = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      // Use the Supabase client to count the rows in the gallery_images table
+      const { count, error: countError } = await supabase
+        .from('gallery_images')
+        .select('*', { count: 'exact', head: true }); // A special query to only get the count
+
+      if (countError) throw countError;
+
+      setStats({
+        galleryImageCount: count ?? 0,
+      });
+    } catch (err) {
+      console.error('Failed to fetch dashboard stats from Supabase:', err);
+      setError('Could not load website statistics.');
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        // Fetch the data from the protected '/dashboard/stats' endpoint.
-        const response = await apiClient.get<DashboardStats>('/dashboard/stats');
-        setStats(response.data);
-      } catch (err) {
-        console.error('Failed to fetch dashboard stats:', err);
-        setError('Could not load website statistics.');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    // Fetch stats on initial component mount.
     fetchStats();
-  }, []); // Empty dependency array ensures this runs only once.
+  }, [fetchStats]);
 
-  return { stats, isLoading, error };
+  return { stats, isLoading, error, refetch: fetchStats }; // Expose a refetch function
 };

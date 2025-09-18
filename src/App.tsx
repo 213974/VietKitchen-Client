@@ -15,7 +15,7 @@ import OurStoryPage from './pages/OurStory/OurStoryPage';
 import ContactPage from './pages/Contact/ContactPage';
 import NotFoundPage from './pages/NotFound/NotFoundPage';
 // Admin Pages & Auth
-import AdminLoginPage from './pages/Admin/AdminLogin/AdminLogin';
+import AdminLoginPage from './pages/Admin/AdminLogin/AdminLoginPage';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboardPage from './pages/Admin/AdminDashboard/AdminDashboardPage';

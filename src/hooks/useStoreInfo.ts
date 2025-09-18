@@ -1,22 +1,18 @@
 import { useState, useEffect, useCallback } from 'react';
-import apiClient from '../services/apiClient';
-import { socket } from '../services/socket';
+import { supabase } from '../services/supabaseClient'; // Import our new Supabase client
 
-// Defines the structure for a single day's opening hours.
 export interface OpeningHour {
-  _id?: string;
+  _id?: string; // This will no longer be provided by Supabase
   day: string;
   time: string;
 }
 
-// Defines the structure of the main store information object.
-interface StoreInfo {
-  hours: OpeningHour[];
-  activeTheme: string;
-  phoneNumber: string;
-}
+// interface StoreInfo {
+//   hours: OpeningHour[];
+//  active_theme: string; // Supabase uses snake_case by default
+//  phone_number: string;
+// }
 
-// Provides fallback/default data for the store.
 const defaultHours: OpeningHour[] = [
   { day: 'Monday', time: '11:00 AM – 9:00 PM' },
   { day: 'Tuesday', time: '11:00 AM – 9:00 PM' },
@@ -28,12 +24,7 @@ const defaultHours: OpeningHour[] = [
 ];
 const defaultPhoneNumber = '(571) 918-0641';
 
-/**
- * A custom hook to fetch and manage global store information.
- * It provides default data immediately and then fetches live data in the background.
- */
 export const useStoreInfo = () => {
-  // UPDATED: Initialize state with default data instead of empty values.
   const [hours, setHours] = useState<OpeningHour[]>(defaultHours);
   const [activeTheme, setActiveTheme] = useState('default');
   const [phoneNumber, setPhoneNumber] = useState(defaultPhoneNumber);
@@ -41,19 +32,24 @@ export const useStoreInfo = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchStoreInfo = useCallback(async () => {
-    setIsLoading(true); // Set loading to true at the start of a fetch
+    setIsLoading(true);
     try {
-      const response = await apiClient.get<StoreInfo>('/store-info');
-      if (response.data) {
-        setHours(response.data.hours.length > 0 ? response.data.hours : defaultHours);
-        setActiveTheme(response.data.activeTheme || 'default');
-        setPhoneNumber(response.data.phoneNumber || defaultPhoneNumber);
+      const { data, error: dbError } = await supabase
+        .from('store_info')
+        .select('*')
+        .eq('identifier', 'main_store_info')
+        .single();
+
+      if (dbError) throw dbError;
+
+      if (data) {
+        setHours(data.hours.length > 0 ? data.hours : defaultHours);
+        setActiveTheme(data.active_theme || 'default');
+        setPhoneNumber(data.phone_number || defaultPhoneNumber);
       }
-      // No need for an else block, as state is already set to defaults.
     } catch (err) {
-      console.error("Failed to fetch store info:", err);
+      console.error("Failed to fetch store info from Supabase:", err);
       setError('Could not load store information.');
-      // Keep default data on error.
       setHours(defaultHours);
       setPhoneNumber(defaultPhoneNumber);
     } finally {
@@ -61,40 +57,37 @@ export const useStoreInfo = () => {
     }
   }, []);
 
-  // Effect to fetch initial data and set up WebSocket listener.
   useEffect(() => {
     fetchStoreInfo();
 
-    const handleStoreInfoUpdate = () => {
-      console.log("Received 'store_info_updated' event. Refetching data...");
-      fetchStoreInfo();
-    };
-
-    socket.on('store_info_updated', handleStoreInfoUpdate);
+    const channel = supabase
+      .channel('store_info_changes')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'store_info' },
+        (payload) => {
+          console.log('Change received from Supabase!', payload);
+          fetchStoreInfo();
+        }
+      )
+      .subscribe();
 
     return () => {
-      socket.off('store_info_updated', handleStoreInfoUpdate);
+      supabase.removeChannel(channel);
     };
   }, [fetchStoreInfo]);
   
-  const updateStoreHours = async (updatedHours: OpeningHour[]): Promise<boolean> => {
-    try {
-      await apiClient.put('/store-info', { hours: updatedHours });
-      return true;
-    } catch (err) {
-      console.error("Failed to update store hours:", err);
-      return false;
-    }
+  // NOTE: The update functions will be used by the admin panel later.
+  // They will also need to be converted to use Supabase.
+  const updateStoreHours = async (/* updatedHours: OpeningHour[] */): Promise<boolean> => {
+    // This logic will be updated to use supabase.from('store_info').update(...)
+    console.log("updateStoreHours needs to be migrated to Supabase.");
+    return false;
   };
 
-  const updateStoreDetails = async (details: Partial<StoreInfo>): Promise<boolean> => {
-    try {
-        await apiClient.put('/store-info', details);
-        return true;
-    } catch (err) {
-        console.error("Failed to update store details:", err);
-        return false;
-    }
+  const updateStoreDetails = async (/* details: Partial<StoreInfo> */): Promise<boolean> => {
+    console.log("updateStoreDetails needs to be migrated to Supabase.");
+    return false;
   };
 
   return { hours, activeTheme, phoneNumber, isLoading, error, updateStoreHours, updateStoreDetails };

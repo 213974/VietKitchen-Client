@@ -7,6 +7,7 @@ import GalleryIcon from '../../assets/icons/gallery.svg?react';
 import ClockIcon from '../../assets/icons/clock.svg?react';
 import DashboardIcon from '../../assets/icons/dashboard.svg?react';
 import HamburgerIcon from '../../assets/icons/hamburger-menu.svg?react';
+import { supabase } from '../../services/supabaseClient'; // Import supabase
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -16,22 +17,23 @@ const AdminLayout = () => {
 
   const sidebarRef = useRef<HTMLElement>(null);
 
-  // Close the sidebar when clicking outside of it on mobile/tablet
   useClickOutside(sidebarRef, () => {
     if (!isDesktop && isSidebarOpen) {
       setSidebarOpen(false);
     }
   });
 
-  // Close the sidebar when navigating to a new page
   useEffect(() => {
     if (!isDesktop) {
       setSidebarOpen(false);
     }
   }, [location.pathname, isDesktop]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('adminToken');
+  const handleLogout = async () => {
+    // Use Supabase to sign out
+    await supabase.auth.signOut();
+    // The AuthContext listener will automatically handle the session change.
+    // Navigate back to the login page.
     navigate('/admin-login');
   };
 
@@ -39,7 +41,6 @@ const AdminLayout = () => {
 
   return (
     <div className="admin-layout">
-      {/* --- Mobile/Tablet Top Bar --- */}
       {!isDesktop && (
         <header className="admin-topbar">
           <button className="sidebar-toggle" onClick={() => setSidebarOpen(true)}>
@@ -49,7 +50,6 @@ const AdminLayout = () => {
         </header>
       )}
 
-      {/* --- Sidebar (Desktop) / Off-canvas Menu (Mobile) --- */}
       <aside className={sidebarClasses} ref={sidebarRef}>
         <div className="sidebar-header">
           <h3>Admin Panel</h3>
@@ -73,7 +73,6 @@ const AdminLayout = () => {
         </div>
       </aside>
 
-      {/* --- Main Content Area --- */}
       <main className="admin-content">
         <Outlet />
       </main>

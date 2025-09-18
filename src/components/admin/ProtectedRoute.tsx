@@ -1,11 +1,14 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth'; // Updated import path
 
 const ProtectedRoute = () => {
-  const token = localStorage.getItem('adminToken');
+  const { session, isLoading } = useAuth();
 
-  // If a token exists, render the child routes (via Outlet).
-  // Otherwise, navigate to the login page.
-  return token ? <Outlet /> : <Navigate to="/admin-login" replace />;
+  if (isLoading) {
+    return null; 
+  }
+
+  return session ? <Outlet /> : <Navigate to="/admin-login" replace />;
 };
 
 export default ProtectedRoute;
