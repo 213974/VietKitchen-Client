@@ -9,10 +9,10 @@ import Navbar from './components/layout/Navbar/Navbar';
 import Footer from './components/layout/Footer/Footer';
 // Public Pages
 import HomePage from './pages/Home/HomePage';
-import MenuPage from './pages/Menu/MenuPage';
+// import MenuPage from './pages/Menu/MenuPage'; // Kept commented out
 // import GalleryPage from './pages/Gallery/GalleryPage';
 import OurStoryPage from './pages/OurStory/OurStoryPage';
-// import ContactPage from './pages/Contact/ContactPage';
+import ContactPage from './pages/Contact/ContactPage';
 import NotFoundPage from './pages/NotFound/NotFoundPage';
 // Admin Pages & Auth
 import AdminLoginPage from './pages/Admin/AdminLogin/AdminLoginPage';
@@ -35,9 +35,6 @@ import './App.css';
 
 // ------------------- Reusable Components -------------------
 
-/**
- * A reusable wrapper component that applies a consistent fade animation to pages.
- */
 const AnimatedPage = ({ children }: { children: React.ReactNode }) => (
   <motion.div
     initial={{ opacity: 0 }}
@@ -49,9 +46,6 @@ const AnimatedPage = ({ children }: { children: React.ReactNode }) => (
   </motion.div>
 );
 
-/**
- * A simplified layout for all public-facing pages.
- */
 const PublicLayout = () => (
     <main className="main-content">
       <GenericErrorBoundary>
@@ -60,9 +54,6 @@ const PublicLayout = () => (
     </main>
 );
 
-/**
- * A simplified layout for the 404 Not Found page.
- */
 const NotFoundLayout = ({ children }: { children: React.ReactNode }) => (
     <main className="main-content">
       <GenericErrorBoundary>
@@ -123,11 +114,10 @@ function App() {
             {/* --- Public Routes --- */}
             <Route path="/" element={<PublicLayout />}>
               <Route index element={<AnimatedPage><HomePage /></AnimatedPage>} />
-              <Route path="menu" element={<AnimatedPage><MenuPage /></AnimatedPage>} />
-              {/* UPDATED: The /gallery route is now removed */}
-              {/* <Route path="gallery" element={<AnimatedPage><GalleryPage /></AnimatedPage>} /> */}
-              <Route path="our-story" element={<AnimatedPage><OurStoryPage /></AnimatedPage>} />
               {/* <Route path="menu" element={<AnimatedPage><MenuPage /></AnimatedPage>} /> TEMPORARILY DISABLED */}
+              <Route path="our-story" element={<AnimatedPage><OurStoryPage /></AnimatedPage>} />
+              {/* --- FIX: Changed path from "contacts" to "contact" to match links --- */}
+              <Route path="contact" element={<AnimatedPage><ContactPage /></AnimatedPage>} />
             </Route>
 
             {/* --- Admin Auth Route --- */}

@@ -18,7 +18,6 @@ interface NavbarProps {
 }
 
 const Navbar = ({ isHomePage }: NavbarProps) => {
-  // Destructure isLoading from the hook
   const { hours, isLoading } = useStoreInfo();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -47,7 +46,7 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
       const [time, modifier] = timeStr.split(' ');
       let h: number;
       const [parsedH, m] = time.split(':').map(Number);
-h = parsedH;
+      h = parsedH;
 
       if (modifier === 'PM' && h < 12) h += 12;
       if (modifier === 'AM' && h === 12) h = 0;
@@ -101,6 +100,7 @@ h = parsedH;
 
   const dropdownItems = [
     { path: '/our-story', label: 'Our Story' },
+    // --- FIX: Ensure the Contact Us link is active ---
     { path: '/contact', label: 'Contact Us' }
   ];
 
@@ -116,6 +116,7 @@ h = parsedH;
           </NavLink>
           <div className="navbar-links-desktop">
             <NavLink to="/">Home</NavLink>
+            {/* --- FIX: Ensure the Menu link is the one that's disabled --- */}
             {/* <NavLink to="/menu">Menu</NavLink>  TEMPORARILY DISABLED */}
             <NavDropdown title="About Us" items={dropdownItems} isHomePage={isHomePage} />
           </div>
@@ -171,8 +172,10 @@ h = parsedH;
             </div>
             <div className="mobile-menu-links">
               <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
+              {/* --- FIX: Ensure the Menu link is the one that's disabled --- */}
               {/* <NavLink to="/menu" onClick={handleLinkClick}>Menu</NavLink> TEMPORARILY DISABLED */}
               <NavLink to="/our-story" onClick={handleLinkClick}>Our Story</NavLink>
+              {/* --- FIX: Ensure the Contact link is active --- */}
               <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink>
               <a href={orderPickupUrl} target="_blank" rel="noopener noreferrer" className="mobile-cta-link">
                 Order Pickup
