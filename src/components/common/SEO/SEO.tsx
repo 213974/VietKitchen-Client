@@ -10,7 +10,7 @@ interface SEOProps {
 
 const SEO = ({ title, description, children }: SEOProps) => {
   const siteName = "Viet Kitchen & Tea House";
-  const siteUrl = "https://www.vietkitchen.com"; // Your production URL
+  const siteUrl = "https://www.vietkitchenteahouse.com"; // Your production URL
   const location = useLocation();
 
   const fullTitle = title.toLowerCase() === 'home' 

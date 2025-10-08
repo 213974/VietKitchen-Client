@@ -11,7 +11,7 @@ import { AnimatePresence, motion, type Variants } from 'framer-motion';
 import { useStoreInfo } from '../../../hooks/useStoreInfo';
 import { useResponsive } from '../../../hooks/useResponsive';
 import { useClickOutside } from '../../../hooks/useClickOutside';
-import logo from '/VietKitchen.png';
+import logo from '/vietkitchenteahouse.png';
 
 interface NavbarProps {
   isHomePage: boolean;

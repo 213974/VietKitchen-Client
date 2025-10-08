@@ -23,7 +23,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
 
-    /* NEW: Add "node" to types to fix serverless function errors */
+    /* "node" to types to fix serverless function errors */
     "types": ["vite/client", "vite-plugin-svgr/client", "node"]
   },
   "include": ["src", "api"]

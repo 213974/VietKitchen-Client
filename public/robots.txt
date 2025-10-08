@@ -6,4 +6,4 @@ Allow: /
 Disallow: /admin-login
 
 # Location of sitemap (update URL when live)
-Sitemap: https://www.vietkitchen.com/sitemap.xml
+Sitemap: https://www.vietkitchenteahouse.com/sitemap.xml
