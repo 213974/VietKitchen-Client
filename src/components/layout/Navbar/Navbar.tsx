@@ -116,7 +116,7 @@ h = parsedH;
           </NavLink>
           <div className="navbar-links-desktop">
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/menu">Menu</NavLink>
+            {/* <NavLink to="/menu">Menu</NavLink>  TEMPORARILY DISABLED */}
             <NavDropdown title="About Us" items={dropdownItems} isHomePage={isHomePage} />
           </div>
           <div className="navbar-info-desktop">
@@ -171,7 +171,7 @@ h = parsedH;
             </div>
             <div className="mobile-menu-links">
               <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
-              <NavLink to="/menu" onClick={handleLinkClick}>Menu</NavLink>
+              {/* <NavLink to="/menu" onClick={handleLinkClick}>Menu</NavLink> TEMPORARILY DISABLED */}
               <NavLink to="/our-story" onClick={handleLinkClick}>Our Story</NavLink>
               <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink>
               <a href={orderPickupUrl} target="_blank" rel="noopener noreferrer" className="mobile-cta-link">

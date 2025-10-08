@@ -12,7 +12,7 @@ import HomePage from './pages/Home/HomePage';
 import MenuPage from './pages/Menu/MenuPage';
 // import GalleryPage from './pages/Gallery/GalleryPage';
 import OurStoryPage from './pages/OurStory/OurStoryPage';
-import ContactPage from './pages/Contact/ContactPage';
+// import ContactPage from './pages/Contact/ContactPage';
 import NotFoundPage from './pages/NotFound/NotFoundPage';
 // Admin Pages & Auth
 import AdminLoginPage from './pages/Admin/AdminLogin/AdminLoginPage';
@@ -127,7 +127,7 @@ function App() {
               {/* UPDATED: The /gallery route is now removed */}
               {/* <Route path="gallery" element={<AnimatedPage><GalleryPage /></AnimatedPage>} /> */}
               <Route path="our-story" element={<AnimatedPage><OurStoryPage /></AnimatedPage>} />
-              <Route path="contact" element={<AnimatedPage><ContactPage /></AnimatedPage>} />
+              {/* <Route path="menu" element={<AnimatedPage><MenuPage /></AnimatedPage>} /> TEMPORARILY DISABLED */}
             </Route>
 
             {/* --- Admin Auth Route --- */}
