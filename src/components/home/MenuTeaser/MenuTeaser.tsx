@@ -12,7 +12,6 @@ const signatureItems = [
 ];
 
 const MenuTeaser = () => {
-  // CORRECTED: Explicitly apply the 'Variants' type
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -21,7 +20,6 @@ const MenuTeaser = () => {
     },
   };
 
-  // CORRECTED: Explicitly apply the 'Variants' type
   const childVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },

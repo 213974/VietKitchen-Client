@@ -20,11 +20,9 @@ export default async function handler(
   }
 
   try {
-    // CORRECTED: Removed the unused 'data' variable.
     const { error } = await resend.emails.send({
       from: 'Viet Kitchen Contact Form <onboarding@resend.dev>',
       to: ['vietkitchenteahouse@gmail.com'], 
-      // CORRECTED: Changed 'reply_to' to the correct 'replyTo'.
       replyTo: email,
       subject: `Contact Form: ${subject || 'No Subject'}`,
       html: `

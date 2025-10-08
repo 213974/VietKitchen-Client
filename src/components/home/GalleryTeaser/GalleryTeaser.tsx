@@ -3,29 +3,29 @@ import { motion, useAnimationControls } from 'framer-motion';
 import './GalleryTeaser.css';
 import { useResponsive } from '../../../hooks/useResponsive';
 
-// UPDATED: Import the new, curated images for the teaser.
+// Import the new, curated images for the teaser.
 import glassCoffee from '../../../assets/gallery/Glass_Coffee.jpg';
-import storeFront from '../../../assets/gallery/store_front1.jpg';
+// import storeFront from '../../../assets/gallery/store_front1.jpg';
 import tropicalMangoSmoothie from '../../../assets/gallery/TropicalMangoSmoothie.jpg';
 import pinaColada from '../../../assets/gallery/PinaColada.jpg';
 import thaiMilkTea from '../../../assets/gallery/ThaiMilkTea.jpg';
 import thaiTeaSmoothie from '../../../assets/gallery/ThaiTeaSmoothie.jpg';
 
 // Create the array of images to be displayed in the carousel.
-const teaserImages = [glassCoffee, tropicalMangoSmoothie, storeFront, pinaColada, thaiMilkTea, thaiTeaSmoothie];
+const teaserImages = [glassCoffee, tropicalMangoSmoothie, pinaColada, thaiMilkTea, thaiTeaSmoothie];
 const duplicatedImages = [...teaserImages, ...teaserImages];
 
 const GalleryTeaser = () => {
   const controls = useAnimationControls();
   const carouselRef = useRef<HTMLDivElement>(null);
-  // UPDATED: Destructuring isMobile to control speed
+  // Destructuring isMobile to control speed
   const { isMobile } = useResponsive();
 
   useEffect(() => {
     const carouselWidth = carouselRef.current?.scrollWidth || 0;
     const animationWidth = carouselWidth / 2;
     
-    // UPDATED: Conditional animation speed
+    // Conditional animation speed
     const animationDuration = isMobile ? 40 : 80;
 
     if (animationWidth > 0) {
@@ -50,7 +50,7 @@ const GalleryTeaser = () => {
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.5 }}
       >
-        <h2>A Glimpse of Our Cafe</h2>
+        <h2>Glimpse of Our Beloved Drinks</h2>
       </motion.div>
 
       <div className="teaser-carousel-container">

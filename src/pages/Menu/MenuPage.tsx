@@ -81,7 +81,6 @@ const MenuPage = () => {
           <p>{!isDetailedView ? "Click on a menu to see more details." : "All details shown below."}</p>
         </div>
 
-        {/* CORRECTED: Removed the `layout` prop to prevent sliding */}
         <motion.div 
           className="menu-posters-grid"
         >

@@ -24,7 +24,6 @@ const MenuDetailCard = ({ altText, details }: MenuDetailCardProps) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      // CORRECTED: Removed the `layout` prop
     >
       <h3 className="detail-card-title">{altText}</h3>
       <div className="detail-card-content">

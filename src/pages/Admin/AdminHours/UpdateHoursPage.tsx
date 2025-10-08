@@ -86,7 +86,6 @@ const UpdateHoursPage = () => {
   const handleConfirmSave = async () => {
     setStatus({ message: '', type: '' });
     const formattedForApi = localHours.map(combineTime);
-    // CORRECTED: Pass the formatted data to the update function
     const success = await updateStoreHours(formattedForApi);
 
     if (success) {

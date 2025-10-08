@@ -130,7 +130,6 @@ const AdminDashboardPage = () => {
             {statsError && <p className="status-message error">{statsError}</p>}
             {stats && (
               <div className="stats-container">
-                {/* CORRECTED: Removed the menuItemCount stat block */}
                 <div className="stat-item">
                   <span className="stat-value">{stats.galleryImageCount}</span>
                   <span className="stat-label">Gallery Images</span>

@@ -28,7 +28,6 @@ const AdminLoginPage = () => {
       navigate('/admin/dashboard');
 
     } catch (err) {
-      // CORRECTED: Use the specific AuthError type
       if (err instanceof AuthError) {
         setError(err.message);
       } else {

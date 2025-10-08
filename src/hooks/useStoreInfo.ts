@@ -77,7 +77,6 @@ export const useStoreInfo = () => {
     };
   }, [fetchStoreInfo]);
   
-  // CORRECTED: The functions now correctly accept parameters.
   const updateStoreHours = async (updatedHours: OpeningHour[]): Promise<boolean> => {
     console.log("updateStoreHours needs to be migrated to Supabase.", updatedHours);
     // Placeholder logic for now, will be replaced with actual Supabase call.

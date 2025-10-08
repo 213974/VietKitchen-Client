@@ -139,7 +139,6 @@ h = parsedH;
                 </div>
               </button>
               <AnimatePresence>
-                {/* CORRECTED: Added the missing isLoading prop */}
                 {isModalOpen && <HoursModal hours={hours} isLoading={isLoading} isPreview={false} isHomePage={isHomePage} />}
               </AnimatePresence>
             </div>

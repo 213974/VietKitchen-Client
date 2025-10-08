@@ -42,7 +42,6 @@ const OurStoryTeaser = () => {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: isDesktop ? 0.8 : 0.5, ease: 'easeOut' }}
         >
-          {/* CORRECTED: Removed mode="wait" to allow animations to overlap */}
           <AnimatePresence>
             <motion.img
               key={currentIndex}
