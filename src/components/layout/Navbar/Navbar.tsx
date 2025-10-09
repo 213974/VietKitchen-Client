@@ -100,7 +100,6 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
 
   const dropdownItems = [
     { path: '/our-story', label: 'Our Story' },
-    // --- FIX: Ensure the Contact Us link is active ---
     { path: '/contact', label: 'Contact Us' }
   ];
 
@@ -116,8 +115,7 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
           </NavLink>
           <div className="navbar-links-desktop">
             <NavLink to="/">Home</NavLink>
-            {/* --- FIX: Ensure the Menu link is the one that's disabled --- */}
-            {/* <NavLink to="/menu">Menu</NavLink>  TEMPORARILY DISABLED */}
+            <NavLink to="/menu">Menu</NavLink>
             <NavDropdown title="About Us" items={dropdownItems} isHomePage={isHomePage} />
           </div>
           <div className="navbar-info-desktop">
@@ -172,10 +170,8 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
             </div>
             <div className="mobile-menu-links">
               <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
-              {/* --- FIX: Ensure the Menu link is the one that's disabled --- */}
-              {/* <NavLink to="/menu" onClick={handleLinkClick}>Menu</NavLink> TEMPORARILY DISABLED */}
+              <NavLink to="/menu" onClick={handleLinkClick}>Menu</NavLink>
               <NavLink to="/our-story" onClick={handleLinkClick}>Our Story</NavLink>
-              {/* --- FIX: Ensure the Contact link is active --- */}
               <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink>
               <a href={orderPickupUrl} target="_blank" rel="noopener noreferrer" className="mobile-cta-link">
                 Order Pickup

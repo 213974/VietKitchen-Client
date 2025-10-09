@@ -15,7 +15,7 @@ const filterCategories: MenuFilter[] = ['All', 'Food', 'Drinks', 'Desserts'];
 
 const MenuPage = () => {
   const [activeFilter, setActiveFilter] = useState<MenuFilter>('All');
-  const [isDetailedView, setIsDetailedView] = useState(false);
+  const [isDetailedView, setIsDetailedView] = useState(true);
 
   const filteredMenu = useMemo(() => {
     if (activeFilter === 'All') return menuData;
@@ -77,9 +77,11 @@ const MenuPage = () => {
           </div>
         </div>
 
-        <div className="menu-click-hint">
-          <p>{!isDetailedView ? "Click on a menu to see more details." : "All details shown below."}</p>
-        </div>
+        {!isDetailedView && (
+          <div className="menu-click-hint">
+            <p>Click on a menu to see more details.</p>
+          </div>
+        )}
 
         <motion.div 
           className="menu-posters-grid"

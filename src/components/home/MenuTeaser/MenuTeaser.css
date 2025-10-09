@@ -6,11 +6,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* NEW: Added background color to match the gallery teaser */
   background-color: var(--bg-footer);
 }
 
-/* The main content box with the frosted glass effect */
 .teaser-container {
   max-width: 700px;
   width: 100%;
@@ -49,10 +47,22 @@
   font-weight: 500;
   font-size: 0.9rem;
   border: 1px solid rgba(var(--text-primary-rgb), 0.1);
+  /* --- NEW: Align icon and text --- */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adds space between icon and text */
+}
+
+/* --- NEW: Styles for the icon itself --- */
+.signature-item-icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--text-primary); /* Use the same color as the text */
+  opacity: 0.7;
+  flex-shrink: 0; /* Prevents the icon from shrinking */
 }
 
 /* ------------------- Call to Action ------------------- */
-/* The .hero-button style is inherited from HomePage.css */
 .teaser-container .hero-button {
   text-decoration: none;
 }

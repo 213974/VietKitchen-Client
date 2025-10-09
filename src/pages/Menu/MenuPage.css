@@ -99,7 +99,6 @@
 .menu-poster-card { line-height: 0; position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 .menu-poster-card.interactive { cursor: pointer; }
 .menu-poster-card img { width: 100%; height: auto; transition: transform 0.3s ease; }
-.menu-poster-card.interactive:hover img { transform: scale(1.05); }
 
 /* --- Poster Overlay Styles --- */
 .poster-overlay { position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); color: white; padding: 1.5rem; display: flex; justify-content: center; align-items: center; text-align: left; overflow-y: auto; }

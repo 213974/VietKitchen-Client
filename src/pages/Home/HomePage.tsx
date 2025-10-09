@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import GalleryTeaser from '../../components/home/GalleryTeaser/GalleryTeaser';
 import OurStoryTeaser from '../../components/home/OurStoryTeaser/OurStoryTeaser';
 import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser';
-// import MenuTeaser from '../../components/home/MenuTeaser/MenuTeaser'; // Kept commented out
+import MenuTeaser from '../../components/home/MenuTeaser/MenuTeaser';
 import { useResponsive } from '../../hooks/useResponsive';
 import SEO from '../../components/common/SEO/SEO';
 import { useStoreInfo } from '../../hooks/useStoreInfo';
@@ -85,15 +85,13 @@ const HomePage = () => {
       </div>
       
       {/* --- Page Content Sections --- */}
-      {/* --- FIX: Ensure the MenuTeaser section is the one that's disabled --- */}
-      {/* <div className="home-section-wrapper menu-bg">
+      <div className="home-section-wrapper menu-bg">
         <MenuTeaser />
-      </div> TEMPORARILY DISABLED */}
+      </div>
       <div className="home-section-wrapper story-bg">
         <OurStoryTeaser />
       </div>
       <GalleryTeaser />
-      {/* --- FIX: Ensure the ContactTeaser is active --- */}
       <div className="home-section-wrapper contact-bg">
         <ContactTeaser />
       </div>

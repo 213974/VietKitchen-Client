@@ -9,7 +9,7 @@ import Navbar from './components/layout/Navbar/Navbar';
 import Footer from './components/layout/Footer/Footer';
 // Public Pages
 import HomePage from './pages/Home/HomePage';
-// import MenuPage from './pages/Menu/MenuPage'; // Kept commented out
+import MenuPage from './pages/Menu/MenuPage';
 // import GalleryPage from './pages/Gallery/GalleryPage';
 import OurStoryPage from './pages/OurStory/OurStoryPage';
 import ContactPage from './pages/Contact/ContactPage';
@@ -114,9 +114,8 @@ function App() {
             {/* --- Public Routes --- */}
             <Route path="/" element={<PublicLayout />}>
               <Route index element={<AnimatedPage><HomePage /></AnimatedPage>} />
-              {/* <Route path="menu" element={<AnimatedPage><MenuPage /></AnimatedPage>} /> TEMPORARILY DISABLED */}
+              <Route path="menu" element={<AnimatedPage><MenuPage /></AnimatedPage>} />
               <Route path="our-story" element={<AnimatedPage><OurStoryPage /></AnimatedPage>} />
-              {/* --- FIX: Changed path from "contacts" to "contact" to match links --- */}
               <Route path="contact" element={<AnimatedPage><ContactPage /></AnimatedPage>} />
             </Route>
 

@@ -27,7 +27,6 @@ const MenuPosterCard = ({ imageSrc, altText, details }: MenuPosterCardProps) => 
     <motion.div
       className={`menu-poster-card ${isInteractive ? 'interactive' : ''}`}
       onClick={() => isInteractive && setOverlayVisible(!isOverlayVisible)}
-      // Updated animation for simple fade
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
