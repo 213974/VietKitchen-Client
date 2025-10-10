@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useClickOutside } from '../../../hooks/useClickOutside';
-// import ArrowDownIcon from '../../../assets/icons/arrow-down.svg';
+// import { ReactComponent as ArrowDownIcon } from '../../../assets/icons/arrow-down.svg';
 import './NavDropdown.css';
 
 interface NavDropdownProps {

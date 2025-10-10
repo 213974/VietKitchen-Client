@@ -18,7 +18,7 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import './ManageGalleryPage.css';
-import DragHandleIcon from '../../../assets/icons/drag-handle.svg';
+import { ReactComponent as DragHandleIcon } from '../../../assets/icons/drag-handle.svg';
 
 // New component for a single sortable category item
 const SortableCategoryItem = ({ category, onInitiateDelete }: { category: GalleryCategory; onInitiateDelete: (cat: GalleryCategory) => void; }) => {

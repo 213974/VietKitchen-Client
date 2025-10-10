@@ -3,16 +3,16 @@ import './Lightbox.css';
 import { type GalleryImage } from '../../../hooks/useGallery';
 
 // Import Icons
-import CloseIcon from '../../../assets/icons/close.svg';
-import ArrowLeftIcon from '../../../assets/icons/arrow-left.svg';
-import ArrowRightIcon from '../../../assets/icons/arrow-right.svg';
-import XLogoIcon from '../../../assets/icons/x-logo.svg';
-import FacebookIcon from '../../../assets/icons/facebook-logo.svg';
-import LinkedInLogoIcon from '../../../assets/icons/linkedin-logo.svg';
-import PinterestLogoIcon from '../../../assets/icons/pinterest-logo.svg';
-import TumblrIcon from '../../../assets/icons/tumblr-logo.svg';
-import RedditLogoIcon from '../../../assets/icons/reddit-logo.svg';
-import EmailIcon from '../../../assets/icons/email.svg';
+import { ReactComponent as CloseIcon } from '../../../assets/icons/close.svg';
+import { ReactComponent as ArrowLeftIcon } from '../../../assets/icons/arrow-left.svg';
+import { ReactComponent as ArrowRightIcon } from '../../../assets/icons/arrow-right.svg';
+import { ReactComponent as XLogoIcon } from '../../../assets/icons/x-logo.svg';
+import { ReactComponent as FacebookIcon } from '../../../assets/icons/facebook-logo.svg';
+import { ReactComponent as LinkedInLogoIcon } from '../../../assets/icons/linkedin-logo.svg';
+import { ReactComponent as PinterestLogoIcon } from '../../../assets/icons/pinterest-logo.svg';
+import { ReactComponent as TumblrIcon } from '../../../assets/icons/tumblr-logo.svg';
+import { ReactComponent as RedditLogoIcon } from '../../../assets/icons/reddit-logo.svg';
+import { ReactComponent as EmailIcon } from '../../../assets/icons/email.svg';
 
 interface LightboxProps {
   images: GalleryImage[];

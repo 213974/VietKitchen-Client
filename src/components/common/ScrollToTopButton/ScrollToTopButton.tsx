@@ -1,10 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollPosition } from '../../../hooks/useScrollPosition';
 import './ScrollToTopButton.css';
-import ArrowUpIcon from '../../../assets/icons/arrow-up.svg';
+import { ReactComponent as ArrowUpIcon } from '../../../assets/icons/arrow-up.svg';
 
 const ScrollToTopButton = () => {
-  // --- FIX: Destructure the 'isScrolled' boolean from the returned object ---
   const { isScrolled } = useScrollPosition(500);
 
   const scrollToTop = () => {
