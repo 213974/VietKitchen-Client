@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
-import ClockIcon from '../../../assets/icons/clock.svg?react';
-import HamburgerIcon from '../../../assets/icons/hamburger-menu.svg?react';
-import CloseIcon from '../../../assets/icons/close.svg?react';
+
+// --- FIX: Correct way to import SVGs as components with CRA 5+ ---
+import { ReactComponent as ClockIcon } from '../../../assets/icons/clock.svg';
+import { ReactComponent as HamburgerIcon } from '../../../assets/icons/hamburger-menu.svg';
+import { ReactComponent as CloseIcon } from '../../../assets/icons/close.svg';
 
 import HoursModal from '../../common/HoursModal/HoursModal';
 import NavDropdown from './NavDropdown';
@@ -11,7 +13,8 @@ import { AnimatePresence, motion, type Variants } from 'framer-motion';
 import { useStoreInfo } from '../../../hooks/useStoreInfo';
 import { useResponsive } from '../../../hooks/useResponsive';
 import { useClickOutside } from '../../../hooks/useClickOutside';
-import logo from '/vietkitchenteahouse.png';
+// --- FIX: Correct relative import for the logo ---
+import logo from '../../../assets/vietkitchenteahouse.png';
 
 interface NavbarProps {
   isHomePage: boolean;
@@ -27,39 +30,33 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
   useClickOutside(hoursModalRef, () => setIsModalOpen(false));
 
   const getStoreStatus = useCallback(() => {
+    // ... (rest of this function is unchanged)
     if (!hours || hours.length === 0) {
       return { text: "Hours Unavailable", color: "#b91c1c" };
     }
-
     const now = new Date();
     const currentDay = now.getDay();
     const todayIndex = currentDay === 0 ? 6 : currentDay - 1;
     const todayHours = hours[todayIndex];
-
     if (!todayHours || todayHours.time.toLowerCase() === 'closed') {
       return { text: "Currently Closed", color: "#b91c1c" };
     }
-
     const [openTimeStr, closeTimeStr] = todayHours.time.split('–').map(t => t.trim());
-
     const parseTime = (timeStr: string) => {
       const [time, modifier] = timeStr.split(' ');
       let h: number;
       const [parsedH, m] = time.split(':').map(Number);
       h = parsedH;
-
       if (modifier === 'PM' && h < 12) h += 12;
       if (modifier === 'AM' && h === 12) h = 0;
       const date = new Date();
       date.setHours(h, m, 0, 0);
       return date;
     };
-
     const openTime = parseTime(openTimeStr);
     const closeTime = parseTime(closeTimeStr);
     const openingSoonTime = new Date(openTime.getTime() - 30 * 60000);
     const closingSoonTime = new Date(closeTime.getTime() - 30 * 60000);
-
     if (now >= openTime && now < closingSoonTime) {
       return { text: `Open until ${closeTimeStr}`, color: "#4C7C6D" };
     }
@@ -69,7 +66,6 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
     if (now >= openingSoonTime && now < openTime) {
       return { text: `Opening at ${openTimeStr}`, color: "#f59e0b" };
     }
-    
     return { text: "Currently Closed", color: "#b91c1c" };
   }, [hours]);
   
@@ -121,6 +117,7 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
           <div className="navbar-info-desktop">
             <div className="hours-modal-wrapper" ref={hoursModalRef}>
               <button className="info-item-btn" onClick={() => setIsModalOpen(!isModalOpen)}>
+                {/* --- FIX: The imported SVG is now used as a component --- */}
                 <ClockIcon className="nav-icon" style={{ fill: storeStatus.color, transition: 'fill 0.3s ease' }} />
                 <div className="status-text-container">
                   <AnimatePresence mode="wait">

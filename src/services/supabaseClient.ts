@@ -3,8 +3,8 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Get the Supabase URL and Anon Key from our environment variables.
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
 
 // Check if the variables are missing to prevent runtime errors.
 if (!supabaseUrl || !supabaseAnonKey) {

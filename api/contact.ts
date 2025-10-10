@@ -22,7 +22,7 @@ export default async function handler(
   try {
     const { error } = await resend.emails.send({
       from: 'Viet Kitchen Contact Form <onboarding@resend.dev>',
-      to: ['vietkitchenteahouse@gmail.com'], 
+      to: ['213974@protonmail.com'], 
       replyTo: email,
       subject: `Contact Form: ${subject || 'No Subject'}`,
       html: `

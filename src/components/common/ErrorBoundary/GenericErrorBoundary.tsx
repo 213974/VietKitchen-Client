@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import type { ErrorInfo, ReactNode } from 'react'; // <-- FIX: Use type-only imports
+import type { ErrorInfo, ReactNode } from 'react';
 import './GenericErrorBoundary.css';
 
 interface Props {
@@ -55,7 +55,7 @@ class GenericErrorBoundary extends Component<Props, State> {
           <p>An unexpected error occurred. Please try refreshing the page.</p>
           <button onClick={this.handleReset}>Try again</button>
           {/* Only show the test trigger in development mode */}
-          {import.meta.env.DEV && <ErrorTrigger />}
+          {process.env.NODE_ENV === 'development' && <ErrorTrigger />}
         </div>
       );
     }

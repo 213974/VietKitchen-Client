@@ -2,11 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/vietkitchenteahouse.png" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- These assets are in the root of the public folder -->
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/vietkitchenteahouse.png" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" type="image/x-icon">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- SEO Meta Description -->
     <meta name="description" content="Authentic Vietnamese cuisine and bubble tea in Sterling, VA. Explore our menu of pho, banh mi, boba tea, and more in a modern, welcoming setting." />
 
     <!-- Google Fonts -->
@@ -14,20 +16,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Static Theme Fallback to prevent FOUC (Flash of Unstyled Content) -->
-    <link id="dynamic-theme" rel="stylesheet" href="/src/styles/theme.css" />
-
-    <!-- Open Graph Tags (for Social Media Sharing) -->
+    <!-- Open Graph Tags -->
     <meta property="og:title" content="Viet Kitchen & Tea House - Sterling, VA" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.vietkitchenteahouse.com" />
     <meta property="og:description" content="Authentic Vietnamese cuisine and bubble tea in Sterling, VA." />
-    <meta property="og:image" content="https://www.vietkitchenteahouse.com/src/assets/gallery/store_front1.jpg" />
+    <!-- This now correctly points to the image in public/gallery/ -->
+    <meta property="og:image" content="%PUBLIC_URL%/gallery/store_front1.jpg" />
 
     <title>Viet Kitchen & Tea House</title>
   </head>
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Create React App injects the script tag for src/index.tsx here automatically -->
   </body>
 </html>

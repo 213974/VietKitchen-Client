@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import './ContactPage.css';
 import apiClient from '../../services/apiClient';
 import { isAxiosError } from 'axios';
-import SEO from '../../components/common/SEO/SEO'; // Import SEO component
+import SEO from '../../components/common/SEO/SEO';
 
 const ContactPage = () => {
   const [name, setName] = useState('');

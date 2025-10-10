@@ -3,11 +3,12 @@ import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import './AdminLayout.css';
 import { useResponsive } from '../../hooks/useResponsive';
 import { useClickOutside } from '../../hooks/useClickOutside';
-import GalleryIcon from '../../assets/icons/gallery.svg?react';
-import ClockIcon from '../../assets/icons/clock.svg?react';
-import DashboardIcon from '../../assets/icons/dashboard.svg?react';
-import HamburgerIcon from '../../assets/icons/hamburger-menu.svg?react';
-import { supabase } from '../../services/supabaseClient'; // Import supabase
+// --- FIX: Correct way to import SVGs as components ---
+import { ReactComponent as GalleryIcon } from '../../assets/icons/gallery.svg';
+import { ReactComponent as ClockIcon } from '../../assets/icons/clock.svg';
+import { ReactComponent as DashboardIcon } from '../../assets/icons/dashboard.svg';
+import { ReactComponent as HamburgerIcon } from '../../assets/icons/hamburger-menu.svg';
+import { supabase } from '../../services/supabaseClient';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -30,10 +31,7 @@ const AdminLayout = () => {
   }, [location.pathname, isDesktop]);
 
   const handleLogout = async () => {
-    // Use Supabase to sign out
     await supabase.auth.signOut();
-    // The AuthContext listener will automatically handle the session change.
-    // Navigate back to the login page.
     navigate('/admin-login');
   };
 

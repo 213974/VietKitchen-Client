@@ -16,7 +16,7 @@
   color: #666;
 }
 
-/* --- NEW: Two-Column Layout --- */
+/* --- Two-Column Layout --- */
 .contact-content-wrapper {
   display: grid;
   grid-template-columns: 1.2fr 1fr; /* Make form slightly wider */
@@ -52,7 +52,7 @@
 .map-container {
   border-radius: 8px;
   overflow: hidden;
-  line-height: 0; /* Removes bottom space under iframe */
+  line-height: 0; 
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 .map-container iframe {

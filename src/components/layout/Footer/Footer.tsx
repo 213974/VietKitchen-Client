@@ -1,11 +1,13 @@
 import './Footer.css';
 import { useStoreInfo } from '../../../hooks/useStoreInfo';
-import PhoneIcon from '../../../assets/icons/phone.svg?react';
-import LocationIcon from '../../../assets/icons/location-pin.svg?react';
-import InstagramIcon from '../../../assets/icons/instagram.svg?react';
-import TiktokIcon from '../../../assets/icons/tiktok.svg?react';
-import EmailIcon from '../../../assets/icons/email.svg?react';
-import FacebookIcon from '../../../assets/icons/facebook-logo.svg?react';
+
+// --- FIX: Change all SVG imports to the correct Create React App syntax ---
+import { ReactComponent as PhoneIcon } from '../../../assets/icons/phone.svg';
+import { ReactComponent as LocationIcon } from '../../../assets/icons/location-pin.svg';
+import { ReactComponent as InstagramIcon } from '../../../assets/icons/instagram.svg';
+import { ReactComponent as TiktokIcon } from '../../../assets/icons/tiktok.svg';
+import { ReactComponent as EmailIcon } from '../../../assets/icons/email.svg';
+import { ReactComponent as FacebookIcon } from '../../../assets/icons/facebook-logo.svg';
 
 const Footer = () => {
   const { phoneNumber } = useStoreInfo();
@@ -20,17 +22,17 @@ const Footer = () => {
         <div className="footer-info">
           <h3>Viet Kitchen & Tea House</h3>
           <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" className="info-item">
-            {/* REVERTED: Use the component directly */}
+            {/* Now this will work because LocationIcon is a component */}
             <LocationIcon className="footer-icon" />
             <p>{address}</p>
           </a>
           <a href={`tel:${phoneNumber}`} className="info-item">
-            {/* REVERTED: Use the component directly */}
+            {/* Now this will work because PhoneIcon is a component */}
             <PhoneIcon className="footer-icon" />
             <p>{phoneNumber || 'Loading...'}</p>
           </a>
           <a href={`mailto:${email}`} className="info-item">
-            {/* REVERTED: Use the component directly */}
+            {/* Now this will work because EmailIcon is a component */}
             <EmailIcon className="footer-icon" />
             <p>{email}</p>
           </a>
@@ -38,17 +40,17 @@ const Footer = () => {
         <div className="footer-right-section">
           <div className="footer-socials">
             <a href="https://www.instagram.com/vietkitchenandteahouse/?hl=en" target="_blank" rel="noopener noreferrer" className="social-item">
-              {/* REVERTED: Use the component directly */}
+              {/* Now this will work because InstagramIcon is a component */}
               <InstagramIcon className="social-icon instagram-icon" />
               <span>@vietkitchenandteahouse</span>
             </a>
             <a href="https://www.tiktok.com/@vietkitchenteahouse" target="_blank" rel="noopener noreferrer" className="social-item">
-              {/* REVERTED: Use the component directly */}
+              {/* Now this will work because TiktokIcon is a component */}
               <TiktokIcon className="social-icon tiktok-icon" />
               <span>@vietkitchenandteahouse</span>
             </a>
             <a href="https://www.facebook.com/profile.php?id=61575199565412" target="_blank" rel="noopener noreferrer" className="social-item">
-              {/* REVERTED: Use the component directly */}
+              {/* Now this will work because FacebookIcon is a component */}
               <FacebookIcon className="social-icon facebook-icon" />
               <span>@vietkitchenandteahouse</span>
             </a>

@@ -1,9 +1,10 @@
-// src/main.tsx
+// src/index.tsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import AppWrapper from './App.tsx';
-import GenericErrorBoundary from './components/common/ErrorBoundary/GenericErrorBoundary.tsx';
-import { AuthProvider } from './contexts/AuthProvider.tsx'; // Updated import
+
+import AppWrapper from './App';
+import GenericErrorBoundary from './components/common/ErrorBoundary/GenericErrorBoundary';
+import { AuthProvider } from './contexts/AuthProvider';
 
 import './styles/base.css';
 

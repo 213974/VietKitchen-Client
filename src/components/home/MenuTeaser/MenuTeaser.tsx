@@ -2,20 +2,18 @@ import { motion, type Variants } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './MenuTeaser.css';
 
-// --- Step 1: Import the SVG icons as React components ---
-import NoodleBowlIcon from '../../../assets/icons/noodle-bowl.svg?react';
-import RiceBowlIcon from '../../../assets/icons/rice-bowl.svg?react';
-import TeaIcon from '../../../assets/icons/tea.svg?react';
-import SmoothieIcon from '../../../assets/icons/smoothie.svg?react';
-// Note: We don't need the coffee icon for this specific list, but it's available.
+// --- FIX: Correct way to import SVGs as components for Create React App ---
+import { ReactComponent as NoodleBowlIcon } from '../../../assets/icons/noodle-bowl.svg';
+import { ReactComponent as RiceBowlIcon } from '../../../assets/icons/rice-bowl.svg';
+import { ReactComponent as TeaIcon } from '../../../assets/icons/tea.svg';
+import { ReactComponent as SmoothieIcon } from '../../../assets/icons/smoothie.svg';
 
-// --- Step 2: Update signatureItems to an array of objects with names and icons ---
 const signatureItems = [
   { name: 'Pho Beef Combination', icon: NoodleBowlIcon },
-  { name: 'Banh Mi Cheese Steak', icon: RiceBowlIcon }, // Using rice-bowl as a general food icon
-  { name: 'Fresh Summer Rolls', icon: RiceBowlIcon }, // Using rice-bowl as a general food icon
+  { name: 'Banh Mi Cheese Steak', icon: RiceBowlIcon },
+  { name: 'Fresh Summer Rolls', icon: RiceBowlIcon },
   { name: 'Brown Sugar Crème Brule', icon: TeaIcon },
-  { name: 'Butterfly Sky-burst Lemonade', icon: SmoothieIcon } // Using smoothie as a general drink icon
+  { name: 'Butterfly Sky-burst Lemonade', icon: SmoothieIcon }
 ];
 
 const MenuTeaser = () => {
@@ -46,10 +44,9 @@ const MenuTeaser = () => {
           Every dish is a celebration of authentic flavors, crafted with the freshest ingredients and a passion for community.
         </motion.p>
         
-        {/* --- Step 3: Update the map function to render the icon and name --- */}
         <motion.div className="signature-items-list" variants={childVariants}>
           {signatureItems.map((item) => {
-            const IconComponent = item.icon; // Assign to a capitalized variable to use as a component
+            const IconComponent = item.icon;
             return (
               <div key={item.name} className="signature-item">
                 <IconComponent className="signature-item-icon" />
