@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
-// --- FIX: Correct way to import SVGs as components with CRA 5+ ---
 import { ReactComponent as ClockIcon } from '../../../assets/icons/clock.svg';
 import { ReactComponent as HamburgerIcon } from '../../../assets/icons/hamburger-menu.svg';
 import { ReactComponent as CloseIcon } from '../../../assets/icons/close.svg';
@@ -13,7 +12,6 @@ import { AnimatePresence, motion, type Variants } from 'framer-motion';
 import { useStoreInfo } from '../../../hooks/useStoreInfo';
 import { useResponsive } from '../../../hooks/useResponsive';
 import { useClickOutside } from '../../../hooks/useClickOutside';
-// --- FIX: Correct relative import for the logo ---
 import logo from '../../../assets/vietkitchenteahouse.png';
 
 interface NavbarProps {
@@ -30,7 +28,6 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
   useClickOutside(hoursModalRef, () => setIsModalOpen(false));
 
   const getStoreStatus = useCallback(() => {
-    // ... (rest of this function is unchanged)
     if (!hours || hours.length === 0) {
       return { text: "Hours Unavailable", color: "#b91c1c" };
     }
@@ -96,7 +93,7 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
 
   const dropdownItems = [
     { path: '/our-story', label: 'Our Story' },
-    { path: '/contact', label: 'Contact Us' }
+    /* { path: '/contact', label: 'Contact Us' } */
   ];
 
   return (
@@ -117,7 +114,6 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
           <div className="navbar-info-desktop">
             <div className="hours-modal-wrapper" ref={hoursModalRef}>
               <button className="info-item-btn" onClick={() => setIsModalOpen(!isModalOpen)}>
-                {/* --- FIX: The imported SVG is now used as a component --- */}
                 <ClockIcon className="nav-icon" style={{ fill: storeStatus.color, transition: 'fill 0.3s ease' }} />
                 <div className="status-text-container">
                   <AnimatePresence mode="wait">
@@ -169,7 +165,7 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
               <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
               <NavLink to="/menu" onClick={handleLinkClick}>Menu</NavLink>
               <NavLink to="/our-story" onClick={handleLinkClick}>Our Story</NavLink>
-              <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink>
+              {/* <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink> */}
               <a href={orderPickupUrl} target="_blank" rel="noopener noreferrer" className="mobile-cta-link">
                 Order Pickup
               </a>
