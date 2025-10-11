@@ -7,6 +7,10 @@
   --text-primary-rgb: 42, 75, 66;
   --accent-primary: #3e8a78;
   --accent-hover: #316e5f;
+  
+  /* --- NEW: RGB version of accent color for the glow effect --- */
+  --accent-primary-rgb: 62, 138, 120;
+  
   --border-light: #d9e9e4;
 
   --font-family-sans: 'Poppins', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;

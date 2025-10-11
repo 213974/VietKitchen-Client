@@ -1,4 +1,4 @@
-/* --- New Layout for Menu Teaser & Promotions --- */
+/* --- Layout for Menu Teaser & Promotions --- */
 .promo-section-layout {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr; 
@@ -15,7 +15,7 @@
   margin: 0 auto;
 }
 
-/* --- FIX: New styles for the separated title --- */
+/* --- styles for the separated title --- */
 .side-promo-title {
   font-family: var(--font-family-serif);
   text-align: center;
@@ -34,7 +34,6 @@
 
 .side-promo-card img {
   width: 100%;
-  /* --- FIX: Remove fixed height to prevent cropping --- */
   /* height: 400px; */ 
   height: auto; /* Let the height scale with the width to maintain aspect ratio */
   display: block;
@@ -49,27 +48,19 @@
 }
 
 .hero-bg {
-  --hero-padding-bottom: 25vh;
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../../assets/gallery/store_front1.jpg');
   min-height: 100vh;
   display: flex;
-  align-items: flex-end;
+  /* Change align-items to center for vertical centering */
+  align-items: center; 
   justify-content: center;
-  padding-bottom: var(--hero-padding-bottom);
+  padding: 2rem; /* Add general padding */
   box-sizing: border-box;
-}
-
-.promo-section-layout .menu-bg {
-  width: 100%;
-}
-
-.story-bg {
   background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../../assets/gallery/store_front1.jpg');
 }
 
-.contact-bg {
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../assets/gallery/store_front1.jpg');
-}
+.promo-section-layout .menu-bg { width: 100%; }
+.story-bg { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../../assets/gallery/store_front1.jpg'); }
+.contact-bg { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../assets/gallery/store_front1.jpg'); }
 
 /* --- Hero Content Styles --- */
 .hero-section {
@@ -84,6 +75,16 @@
   line-height: 1.6;
   margin-bottom: 2rem;
   font-weight: 500;
+}
+.hero-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hero-details-group {
+  transform: translateY(25%);
 }
 .hero-button {
   background-color: var(--accent-primary);
@@ -103,9 +104,9 @@
   display: flex;
   justify-content: center;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
   color: #e5e5e5;
   font-family: var(--font-family-sans);
+  transform: translateY(15%);
 }
 .restaurant-details .separator {
   color: rgba(255, 255, 255, 0.5);

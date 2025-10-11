@@ -1,0 +1,109 @@
+/* --- Glow Animation Keyframes --- */
+@keyframes pulseGlow {
+  0% {
+    /* Use the theme's accent color (with transparency) for the glow */
+    box-shadow: 0 0 15px 0px rgba(var(--accent-primary-rgb), 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px 5px rgba(var(--accent-primary-rgb), 0.4);
+  }
+  100% {
+    box-shadow: 0 0 15px 0px rgba(var(--accent-primary-rgb), 0.2);
+  }
+}
+
+.weekly-special-container {
+  margin-top: 2.5rem;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 600px;
+  width: 100%;
+  animation: pulseGlow 4s infinite ease-in-out;
+
+  /* --- ADJUST THIS VALUE to move the entire container left or right --- */
+  /* Positive values move it right, negative values move it left. */
+  transform: translateX(15px);
+}
+
+.special-title {
+  font-family: var(--font-family-sans);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 1px;
+}
+
+.special-day-title {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #e0e0e0;
+  margin: 0 0 1.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1rem;
+}
+
+.todays-special-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.special-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.item-price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f97316;
+  flex-shrink: 0;
+  width: 80px;
+  text-align: right;
+}
+
+.item-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #f0f0f0;
+}
+
+.bogo-note {
+  text-align: center;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #ccc;
+  margin: 1.5rem 0 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.no-special-message {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 600px) {
+  .special-title {
+    font-size: 1.5rem;
+  }
+  .special-day-title {
+    font-size: 1rem;
+  }
+  .item-price {
+    font-size: 1.2rem;
+    width: 60px;
+  }
+  .item-name {
+    font-size: 1rem;
+  }
+}

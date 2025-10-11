@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 // ------------------- Component Imports -------------------
 import GalleryTeaser from '../../components/home/GalleryTeaser/GalleryTeaser';
 import OurStoryTeaser from '../../components/home/OurStoryTeaser/OurStoryTeaser';
-import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser'; // Re-added import
+import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser';
 import MenuTeaser from '../../components/home/MenuTeaser/MenuTeaser';
+import WeeklySpecialDisplay from '../../components/home/WeeklySpecial/WeeklySpecial';
 import SEO from '../../components/common/SEO/SEO';
 
 // ------------------- Hook Imports -------------------
@@ -69,9 +70,7 @@ const HomePage = () => {
         title="Home"
         description="Authentic Asian fusion cuisine and bubble tea in Sterling, VA. Serving delicious Vietnamese specialties, boba, and snacks in a welcoming, fast-casual setting."
       >
-        <script type="application/ld+json">
-          {JSON.stringify(restaurantSchema)}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(restaurantSchema)}</script>
       </SEO>
 
       <main>
@@ -79,18 +78,24 @@ const HomePage = () => {
         <div className="home-section-wrapper hero-bg">
           <header className="hero-section">
             <motion.div
+              className="hero-content-wrapper"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: isDesktop ? 0.75 : 0.2 }}
             >
-              <div className="restaurant-details">
-                <span>Asian Fusion</span>
-                <span className="separator">·</span>
-                <span>$10 – $20</span>
-                <span className="separator">·</span>
-                <span>Fast-Casual</span>
+              {/* --- New group for details and paragraph --- */}
+              <div className="hero-details-group">
+                <div className="restaurant-details">
+                  <span>Asian Fusion</span>
+                  <span className="separator">·</span>
+                  <span>$10 – $20</span>
+                  <span className="separator">·</span>
+                  <span>Fast-Casual</span>
+                </div>
+                <p>Serving up delightful bubble tea, tantalizing Asian fusion fare, and scrumptious snacks in Sterling, VA.</p>
               </div>
-              <p>Serving up delightful bubble tea, tantalizing Asian fusion fare, and scrumptious snacks in Sterling, VA.</p>
+
+              <WeeklySpecialDisplay />
             </motion.div>
           </header>
         </div>
