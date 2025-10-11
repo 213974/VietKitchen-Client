@@ -1,26 +1,50 @@
-/* ------------------- Section Wrappers ------------------- */
-/* This class provides the parallax background effect for homepage sections. */
+/* --- Side Promotions (Fixed Position) --- */
+.side-promo-container {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 300px;
+}
+
+.side-promo-container.left {
+  left: 2rem;
+}
+
+.side-promo-container.right {
+  right: 2rem;
+}
+
+.side-promo-card {
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.side-promo-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Section Wrappers --- */
 .home-section-wrapper {
   background-size: cover;
   background-position: center center;
-  /* `fixed` creates the parallax effect where the content scrolls over the background. */
   background-attachment: fixed;
 }
 
 .hero-bg {
-  /* Defines a variable to control the vertical positioning of the hero content. */
   --hero-padding-bottom: 25vh;
-
   background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../../assets/gallery/store_front1.jpg');
   min-height: 100vh;
   display: flex;
-  align-items: flex-end; /* Aligns content to the bottom of the section. */
+  align-items: flex-end;
   justify-content: center;
-  padding-bottom: var(--hero-padding-bottom); /* Adds space from the bottom edge. */
+  padding-bottom: var(--hero-padding-bottom);
   box-sizing: border-box;
 }
 
-/* NEW: Background for the Menu Teaser section */
 .menu-bg {
   background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/gallery/store_front1.jpg');
 }
@@ -30,11 +54,10 @@
 }
 
 .contact-bg {
-  /* CORRECTED PATH: Changed from /menu/ to /gallery/ */
   background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../../assets/gallery/store_front1.jpg');
 }
 
-/* ------------------- Hero Content Styles ------------------- */
+/* --- Hero Content Styles --- */
 .hero-section {
   text-align: center;
   padding: 2rem;
@@ -78,9 +101,15 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* ------------------- Responsive Adjustments ------------------- */
+/* --- Responsive Adjustments --- */
+@media (max-width: 1400px) {
+  /* On smaller screens, simply hide the side promotions */
+  .side-promo-container {
+    display: none;
+  }
+}
+
 @media (max-width: 900px) {
-  /* Disables the parallax effect on mobile, as it can be performance-intensive. */
   .home-section-wrapper {
     background-attachment: scroll;
   }

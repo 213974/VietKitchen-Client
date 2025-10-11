@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminLoginPage.css';
 import { supabase } from '../../../services/supabaseClient';
-import { AuthError } from '@supabase/supabase-js'; // Import the specific error type
+import { AuthError } from '@supabase/supabase-js';
 
 const AdminLoginPage = () => {
   const [email, setEmail] = useState('');

@@ -1,17 +1,27 @@
 import './HomePage.css';
 import { motion } from 'framer-motion';
+
+// ------------------- Component Imports -------------------
 import GalleryTeaser from '../../components/home/GalleryTeaser/GalleryTeaser';
 import OurStoryTeaser from '../../components/home/OurStoryTeaser/OurStoryTeaser';
-import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser';
+/* import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser'; */
 import MenuTeaser from '../../components/home/MenuTeaser/MenuTeaser';
-import { useResponsive } from '../../hooks/useResponsive';
 import SEO from '../../components/common/SEO/SEO';
+
+// ------------------- Hook Imports -------------------
+import { useResponsive } from '../../hooks/useResponsive';
 import { useStoreInfo } from '../../hooks/useStoreInfo';
+import { usePromotions } from '../../hooks/usePromotions';
 
 const HomePage = () => {
   // ------------------- Hooks -------------------
   const { isDesktop } = useResponsive();
   const { hours } = useStoreInfo();
+  const { promotions, isLoading: promotionsLoading } = usePromotions();
+
+  // ------------------- Data Filtering -------------------
+  const sidePromoLeft = promotions.find(p => p.display_type === 'SIDE_LEFT');
+  const sidePromoRight = promotions.find(p => p.display_type === 'SIDE_RIGHT');
 
   // ------------------- SEO & Schema Data -------------------
   const formatHoursForSchema = () => {
@@ -64,37 +74,65 @@ const HomePage = () => {
         </script>
       </SEO>
 
-      {/* --- Hero Section --- */}
-      <div className="home-section-wrapper hero-bg">
-        <header className="hero-section">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: isDesktop ? 0.75 : 0.2 }}
+      {/* --- Left Side Promotion --- */}
+      {!promotionsLoading && sidePromoLeft && (
+        <aside className="side-promo-container left">
+          <motion.div 
+            className="side-promo-card" 
+            initial={{ opacity: 0, x: -20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ delay: 1, duration: 0.5 }}
           >
-            <div className="restaurant-details">
-              <span>Asian Fusion</span>
-              <span className="separator">·</span>
-              <span>$10 – $20</span>
-              <span className="separator">·</span>
-              <span>Fast-Casual</span>
-            </div>
-            <p>Serving up delightful bubble tea, tantalizing Asian fusion fare, and scrumptious snacks in Sterling, VA.</p>
+            <img src={sidePromoLeft.image_url || 'https://via.placeholder.com/300x500.png?text=Special+Deal'} alt={sidePromoLeft.title} />
           </motion.div>
-        </header>
-      </div>
+        </aside>
+      )}
+
+      {/* --- Main Page Content --- */}
+      <main>
+        <div className="home-section-wrapper hero-bg">
+          <header className="hero-section">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: isDesktop ? 0.75 : 0.2 }}
+            >
+              <div className="restaurant-details">
+                <span>Asian Fusion</span>
+                <span className="separator">·</span>
+                <span>$10 – $20</span>
+                <span className="separator">·</span>
+                <span>Fast-Casual</span>
+              </div>
+              <p>Serving up delightful bubble tea, tantalizing Asian fusion fare, and scrumptious snacks in Sterling, VA.</p>
+            </motion.div>
+          </header>
+        </div>
+        <div className="home-section-wrapper menu-bg">
+          <MenuTeaser />
+        </div>
+        <div className="home-section-wrapper story-bg">
+          <OurStoryTeaser />
+        </div>
+        <GalleryTeaser />
+{/*         <div className="home-section-wrapper contact-bg">
+          <ContactTeaser />
+        </div> */}
+      </main>
       
-      {/* --- Page Content Sections --- */}
-      <div className="home-section-wrapper menu-bg">
-        <MenuTeaser />
-      </div>
-      <div className="home-section-wrapper story-bg">
-        <OurStoryTeaser />
-      </div>
-      <GalleryTeaser />
-      <div className="home-section-wrapper contact-bg">
-        <ContactTeaser />
-      </div>
+      {/* --- Right Side Promotion --- */}
+      {!promotionsLoading && sidePromoRight && (
+        <aside className="side-promo-container right">
+          <motion.div 
+            className="side-promo-card" 
+            initial={{ opacity: 0, x: 20 }} 
+            animate={{ opacity: 1, x: 0 }} 
+            transition={{ delay: 1, duration: 0.5 }}
+          >
+            <img src={sidePromoRight.image_url || 'https://via.placeholder.com/300x500.png?text=New+Item'} alt={sidePromoRight.title} />
+          </motion.div>
+        </aside>
+      )}
     </>
   );
 };

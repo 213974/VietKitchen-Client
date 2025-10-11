@@ -3,7 +3,7 @@ import { NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import './AdminLayout.css';
 import { useResponsive } from '../../hooks/useResponsive';
 import { useClickOutside } from '../../hooks/useClickOutside';
-// --- FIX: Correct way to import SVGs as components ---
+import { ReactComponent as MegaphoneIcon } from '../../assets/icons/megaphone.svg';
 import { ReactComponent as GalleryIcon } from '../../assets/icons/gallery.svg';
 import { ReactComponent as ClockIcon } from '../../assets/icons/clock.svg';
 import { ReactComponent as DashboardIcon } from '../../assets/icons/dashboard.svg';
@@ -64,6 +64,10 @@ const AdminLayout = () => {
           <NavLink to="/admin/hours">
             <ClockIcon />
             <span>Update Store Hours</span>
+          </NavLink>
+          <NavLink to="/admin/promotions">
+            <MegaphoneIcon />
+            <span>Manage Promotions</span>
           </NavLink>
         </nav>
         <div className="sidebar-footer">

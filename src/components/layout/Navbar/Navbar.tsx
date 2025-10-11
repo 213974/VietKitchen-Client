@@ -93,7 +93,7 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
 
   const dropdownItems = [
     { path: '/our-story', label: 'Our Story' },
-    { path: '/contact', label: 'Contact Us' }
+    /* { path: '/contact', label: 'Contact Us' } */
   ];
 
   return (
