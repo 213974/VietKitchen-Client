@@ -1,30 +1,44 @@
-/* --- Side Promotions (Fixed Position) --- */
+/* --- New Layout for Menu Teaser & Promotions --- */
+.promo-section-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; 
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  background-color: var(--bg-footer);
+}
+
+/* --- Side Promotion Card Styling --- */
 .side-promo-container {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 300px;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
 }
 
-.side-promo-container.left {
-  left: 2rem;
-}
-
-.side-promo-container.right {
-  right: 2rem;
+/* --- FIX: New styles for the separated title --- */
+.side-promo-title {
+  font-family: var(--font-family-serif);
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: var(--text-primary);
 }
 
 .side-promo-card {
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   overflow: hidden;
+  background-color: var(--bg-primary);
+  /* The card is now just an image wrapper, no internal padding needed */
 }
 
 .side-promo-card img {
   width: 100%;
-  height: auto;
+  /* --- FIX: Remove fixed height to prevent cropping --- */
+  /* height: 400px; */ 
+  height: auto; /* Let the height scale with the width to maintain aspect ratio */
   display: block;
+  object-fit: cover; 
 }
 
 /* --- Section Wrappers --- */
@@ -45,8 +59,8 @@
   box-sizing: border-box;
 }
 
-.menu-bg {
-  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../../assets/gallery/store_front1.jpg');
+.promo-section-layout .menu-bg {
+  width: 100%;
 }
 
 .story-bg {
@@ -65,14 +79,12 @@
   margin: 0 auto;
   color: #ffffff;
 }
-
 .hero-section p {
   font-size: 1.2rem;
   line-height: 1.6;
   margin-bottom: 2rem;
   font-weight: 500;
 }
-
 .hero-button {
   background-color: var(--accent-primary);
   color: white;
@@ -87,7 +99,6 @@
 .hero-button:hover {
   background-color: var(--accent-hover);
 }
-
 .restaurant-details {
   display: flex;
   justify-content: center;
@@ -96,16 +107,17 @@
   color: #e5e5e5;
   font-family: var(--font-family-sans);
 }
-
 .restaurant-details .separator {
   color: rgba(255, 255, 255, 0.5);
 }
 
 /* --- Responsive Adjustments --- */
-@media (max-width: 1400px) {
-  /* On smaller screens, simply hide the side promotions */
+@media (max-width: 1024px) {
+  .promo-section-layout {
+    grid-template-columns: 1fr; 
+  }
   .side-promo-container {
-    display: none;
+    margin: 2rem auto;
   }
 }
 

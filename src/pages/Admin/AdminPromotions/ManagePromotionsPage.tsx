@@ -16,7 +16,6 @@ const newPromotionInitialState = {
 
 const ManagePromotionsPage = () => {
   const { promotions, isLoading, error, refetch } = usePromotions(true);
-
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [editingPromo, setEditingPromo] = useState<Partial<Promotion> | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -46,22 +45,14 @@ const ManagePromotionsPage = () => {
     setStatus({ message: 'Saving...', type: 'loading' });
     let finalImageUrl = editingPromo.image_url || '';
 
-    // --- New Image Upload Logic ---
     if (selectedFile) {
       const fileName = `${Date.now()}-${selectedFile.name}`;
-      const { error: uploadError } = await supabase.storage
-        .from('promotions-images')
-        .upload(fileName, selectedFile);
-
+      const { error: uploadError } = await supabase.storage.from('promotions-images').upload(fileName, selectedFile);
       if (uploadError) {
         setStatus({ message: `Storage Error: ${uploadError.message}`, type: 'error' });
         return;
       }
-
-      const { data: urlData } = supabase.storage
-        .from('promotions-images')
-        .getPublicUrl(fileName);
-      
+      const { data: urlData } = supabase.storage.from('promotions-images').getPublicUrl(fileName);
       finalImageUrl = urlData.publicUrl;
     }
 
@@ -106,7 +97,7 @@ const ManagePromotionsPage = () => {
   
   const startEditingPromo = (promo: Promotion) => {
     setEditingPromo(promo);
-    setPreviewUrl(promo.image_url); // Set existing image as preview
+    setPreviewUrl(promo.image_url);
     setIsFormVisible(true);
   };
 
@@ -128,7 +119,6 @@ const ManagePromotionsPage = () => {
               <label htmlFor="title">Title</label>
               <input type="text" id="title" name="title" value={editingPromo.title || ''} onChange={handleInputChange} required />
             </div>
-
             <div className="form-group span-2">
               <label htmlFor="display_type">Display Type</label>
               <select id="display_type" name="display_type" value={editingPromo.display_type} onChange={handleInputChange}>
@@ -137,37 +127,20 @@ const ManagePromotionsPage = () => {
                 <option value="SIDE_RIGHT">Side - Right</option>
               </select>
             </div>
-            
-            {/* --- Conditional fields based on display type --- */}
             {editingPromo.display_type === 'BANNER' ? (
               <>
-                <div className="form-group">
-                  <label htmlFor="content">Banner Content</label>
-                  <textarea id="content" name="content" value={editingPromo.content || ''} onChange={handleInputChange} />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="persistence_type">Banner Behavior</label>
-                  <select id="persistence_type" name="persistence_type" value={editingPromo.persistence_type} onChange={handleInputChange}>
-                    <option value="PERMANENT">Permanent (Always shows)</option>
-                    <option value="SESSION">Session (Dismissible)</option>
-                  </select>
-                  <label htmlFor="duration_seconds" style={{marginTop: '1rem'}}>Auto-Dismiss (seconds)</label>
-                  <input type="number" id="duration_seconds" name="duration_seconds" value={editingPromo.duration_seconds || ''} onChange={handleInputChange} placeholder="e.g., 30 (optional)" />
-                </div>
+                <div className="form-group"><label htmlFor="content">Banner Content</label><textarea id="content" name="content" value={editingPromo.content || ''} onChange={handleInputChange} /></div>
+                <div className="form-group"><label htmlFor="persistence_type">Banner Behavior</label><select id="persistence_type" name="persistence_type" value={editingPromo.persistence_type} onChange={handleInputChange}><option value="PERMANENT">Permanent (Always shows)</option><option value="SESSION">Session (Dismissible)</option></select><label htmlFor="duration_seconds" style={{marginTop: '1rem'}}>Auto-Dismiss (seconds)</label><input type="number" id="duration_seconds" name="duration_seconds" value={editingPromo.duration_seconds || ''} onChange={handleInputChange} placeholder="e.g., 30 (optional)" /></div>
               </>
             ) : (
-              <div className="form-group span-2">
-                <label htmlFor="imageFile">Upload Image</label>
-                <input type="file" id="imageFile" name="imageFile" accept="image/*" onChange={handleFileChange} />
-                {previewUrl && <img src={previewUrl} alt="Promotion preview" className="image-preview" />}
-              </div>
+              <div className="form-group span-2"><label htmlFor="imageFile">Upload Image</label><input type="file" id="imageFile" name="imageFile" accept="image/*" onChange={handleFileChange} />{previewUrl && <img src={previewUrl} alt="Promotion preview" className="image-preview" />}</div>
             )}
-            
             <div className="form-group span-2 form-actions-group">
-              <div className="toggle-group">
-                <label htmlFor="is_active">Active</label>
-                <input type="checkbox" id="is_active" name="is_active" checked={editingPromo.is_active || false} onChange={handleInputChange} className="promo-toggle" />
-              </div>
+              {/* --- ALIGNMENT FIX --- */}
+              <label className="toggle-label">
+                <input type="checkbox" name="is_active" checked={editingPromo.is_active || false} onChange={handleInputChange} className="promo-toggle" />
+                <span>Active</span>
+              </label>
               <div className="form-actions">
                 <button type="button" className="secondary-button" onClick={() => setIsFormVisible(false)}>Cancel</button>
                 <button type="submit" className="save-button">Save Promotion</button>
@@ -181,17 +154,7 @@ const ManagePromotionsPage = () => {
         {isLoading && <p>Loading promotions...</p>}
         {error && <div className="status-message error">{error}</div>}
         {!isLoading && promotions.map(promo => (
-          <div key={promo.id} className="admin-card promo-list-item">
-            <div className={`status-indicator ${promo.is_active ? 'active' : 'inactive'}`}>{promo.is_active ? 'Active' : 'Inactive'}</div>
-            <div className="promo-info">
-              <h4>{promo.title}</h4>
-              <p>{promo.display_type}</p>
-            </div>
-            <div className="promo-actions">
-              <button className="secondary-button" onClick={() => startEditingPromo(promo)}>Edit</button>
-              <button className="delete-button" onClick={() => handleDelete(promo.id)}>Delete</button>
-            </div>
-          </div>
+          <div key={promo.id} className="admin-card promo-list-item"><div className={`status-indicator ${promo.is_active ? 'active' : 'inactive'}`}>{promo.is_active ? 'Active' : 'Inactive'}</div><div className="promo-info"><h4>{promo.title}</h4><p>{promo.display_type}</p></div><div className="promo-actions"><button className="secondary-button" onClick={() => startEditingPromo(promo)}>Edit</button><button className="delete-button" onClick={() => handleDelete(promo.id)}>Delete</button></div></div>
         ))}
       </div>
     </motion.div>

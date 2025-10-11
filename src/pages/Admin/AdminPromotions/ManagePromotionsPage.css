@@ -34,6 +34,7 @@
   margin-top: 1rem;
   border-radius: 4px;
   border: 1px solid var(--border-light);
+  object-fit: contain; /* ensures preview isn't squashed */
 }
 .form-actions-group {
   display: flex;
@@ -43,17 +44,21 @@
   border-top: 1px solid var(--border-light);
   padding-top: 1.5rem;
 }
-.toggle-group {
+
+/* --- ALIGNMENT FIX STYLES --- */
+.toggle-label {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
-.toggle-group label {
+  gap: 0.75rem;
   font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  width: 35px;
 }
 .promo-toggle {
   width: 20px;
   height: 20px;
+  accent-color: var(--accent-primary);
 }
 
 /* --- Promo List Styles --- */

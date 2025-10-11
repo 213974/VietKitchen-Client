@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 // ------------------- Component Imports -------------------
 import GalleryTeaser from '../../components/home/GalleryTeaser/GalleryTeaser';
 import OurStoryTeaser from '../../components/home/OurStoryTeaser/OurStoryTeaser';
-/* import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser'; */
+import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser'; // Re-added import
 import MenuTeaser from '../../components/home/MenuTeaser/MenuTeaser';
 import SEO from '../../components/common/SEO/SEO';
 
@@ -20,8 +20,8 @@ const HomePage = () => {
   const { promotions, isLoading: promotionsLoading } = usePromotions();
 
   // ------------------- Data Filtering -------------------
-  const sidePromoLeft = promotions.find(p => p.display_type === 'SIDE_LEFT');
-  const sidePromoRight = promotions.find(p => p.display_type === 'SIDE_RIGHT');
+  const sidePromoLeft = promotions.find(p => p.display_type === 'SIDE_LEFT' && p.is_active);
+  const sidePromoRight = promotions.find(p => p.display_type === 'SIDE_RIGHT' && p.is_active);
 
   // ------------------- SEO & Schema Data -------------------
   const formatHoursForSchema = () => {
@@ -74,22 +74,8 @@ const HomePage = () => {
         </script>
       </SEO>
 
-      {/* --- Left Side Promotion --- */}
-      {!promotionsLoading && sidePromoLeft && (
-        <aside className="side-promo-container left">
-          <motion.div 
-            className="side-promo-card" 
-            initial={{ opacity: 0, x: -20 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ delay: 1, duration: 0.5 }}
-          >
-            <img src={sidePromoLeft.image_url || 'https://via.placeholder.com/300x500.png?text=Special+Deal'} alt={sidePromoLeft.title} />
-          </motion.div>
-        </aside>
-      )}
-
-      {/* --- Main Page Content --- */}
       <main>
+        {/* --- Hero Section --- */}
         <div className="home-section-wrapper hero-bg">
           <header className="hero-section">
             <motion.div
@@ -108,31 +94,51 @@ const HomePage = () => {
             </motion.div>
           </header>
         </div>
-        <div className="home-section-wrapper menu-bg">
-          <MenuTeaser />
+
+        {/* --- Menu Teaser Section with Integrated Promotions --- */}
+        <div className="promo-section-layout">
+          {/* Left Side Promotion */}
+          <div className="side-promo-container">
+            {!promotionsLoading && sidePromoLeft && (
+              <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}>
+                {/* --- FIX: Title is now rendered OUTSIDE the card --- */}
+                <h4 className="side-promo-title">{sidePromoLeft.title}</h4>
+                <div className="side-promo-card">
+                  <img src={sidePromoLeft.image_url!} alt={sidePromoLeft.title} />
+                </div>
+              </motion.div>
+            )}
+          </div>
+
+          {/* Menu Teaser (Center) */}
+          <div className="home-section-wrapper menu-bg">
+            <MenuTeaser />
+          </div>
+
+          {/* Right Side Promotion */}
+          <div className="side-promo-container">
+            {!promotionsLoading && sidePromoRight && (
+              <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}>
+                 {/* --- FIX: Title is now rendered OUTSIDE the card --- */}
+                <h4 className="side-promo-title">{sidePromoRight.title}</h4>
+                <div className="side-promo-card">
+                  <img src={sidePromoRight.image_url!} alt={sidePromoRight.title} />
+                </div>
+              </motion.div>
+            )}
+          </div>
         </div>
+
+        {/* --- Other Page Sections --- */}
         <div className="home-section-wrapper story-bg">
           <OurStoryTeaser />
         </div>
         <GalleryTeaser />
-{/*         <div className="home-section-wrapper contact-bg">
+        {/* --- Re-added the ContactTeaser component --- */}
+        <div className="home-section-wrapper contact-bg">
           <ContactTeaser />
-        </div> */}
+        </div>
       </main>
-      
-      {/* --- Right Side Promotion --- */}
-      {!promotionsLoading && sidePromoRight && (
-        <aside className="side-promo-container right">
-          <motion.div 
-            className="side-promo-card" 
-            initial={{ opacity: 0, x: 20 }} 
-            animate={{ opacity: 1, x: 0 }} 
-            transition={{ delay: 1, duration: 0.5 }}
-          >
-            <img src={sidePromoRight.image_url || 'https://via.placeholder.com/300x500.png?text=New+Item'} alt={sidePromoRight.title} />
-          </motion.div>
-        </aside>
-      )}
     </>
   );
 };
