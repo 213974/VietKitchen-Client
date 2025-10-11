@@ -11,9 +11,10 @@
   box-sizing: border-box;
   display: flex;
   justify-content: center;
-  top: 0;
+  /* --- Key Change: top is now determined by the presence of .banner-visible --- */
+  top: 0; 
   z-index: 999;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, top 0.3s ease;
 }
 
 /* --- Conditional Positioning --- */
@@ -26,6 +27,12 @@
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border-bottom: none;
+}
+
+/* --- This class now correctly pushes the Navbar down --- */
+/* Assumes the banner is 50px tall. This can be made dynamic with CSS variables if needed. */
+.navbar.banner-visible {
+  top: 50px; 
 }
 
 /* --- Homepage-Specific Text Styling for Legibility --- */
@@ -47,24 +54,23 @@
 
 /* --- Homepage Logo Background --- */
 .navbar-home .navbar-logo {
-  background-color: #ffffff; /* The requested vanilla color */
+  background-color: #ffffff;
   border-radius: 50%;
   padding: 4px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-/* --- END --- */
 
 .navbar-home .navbar-links-desktop a:hover,
 .navbar-home .navbar-links-desktop a.active,
 .navbar-home .nav-dropdown-toggle:hover {
-  color: #e6efec; /* Updated hover color */
+  color: #e6efec;
 }
 .navbar-home .navbar-links-desktop a::after {
-  background-color: #e6efec; /* Updated hover color */
+  background-color: #e6efec;
 }
 .navbar-home .info-item-btn:hover, 
 .navbar-home .navbar-info-desktop a.info-item:hover {
-  color: #e6efec; /* Updated hover color */
+  color: #e6efec;
 }
 .navbar-home .status-text-container > span {
   color: #ffffff !important;
@@ -72,8 +78,6 @@
 .navbar-home .info-item-btn .nav-icon {
   fill: #ffffff !important;
 }
-/* --- END --- */
-
 
 .navbar-container {
   width: 100%;
@@ -99,7 +103,7 @@
 .navbar-logo {
   height: 40px;
   width: auto;
-  box-sizing: border-box; /* Ensures padding is included in height */
+  box-sizing: border-box;
 }
 .navbar-links-desktop {
   flex-grow: 1;
@@ -210,8 +214,6 @@
 .navbar-links-desktop a.active {
   color: var(--accent-primary);
 }
-
-/* Styles moved to NavDropdown.css */
 
 .mobile-menu-toggle { display: none; }
 .mobile-menu-overlay { display: none; }

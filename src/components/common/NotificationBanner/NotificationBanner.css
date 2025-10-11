@@ -1,13 +1,14 @@
 .notification-banner {
+  /* --- New Sticky Positioning --- */
   position: sticky;
   top: 0;
-  left: 0;
+  z-index: 1000; /* High z-index to stay on top of everything */
+
   width: 100%;
   background-color: var(--accent-primary);
   color: white;
   padding: 0.75rem 2rem;
   box-sizing: border-box;
-  z-index: 998; /* Below navbar, above content */
   display: flex;
   justify-content: space-between;
   align-items: center;

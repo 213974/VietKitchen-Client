@@ -16,9 +16,10 @@ import logo from '../../../assets/vietkitchenteahouse.png';
 
 interface NavbarProps {
   isHomePage: boolean;
+  isBannerVisible: boolean;
 }
 
-const Navbar = ({ isHomePage }: NavbarProps) => {
+const Navbar = ({ isHomePage, isBannerVisible }: NavbarProps) => {
   const { hours, isLoading } = useStoreInfo();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -89,12 +90,13 @@ const Navbar = ({ isHomePage }: NavbarProps) => {
   const displayText = isModalOpen && isKitchenNoteRelevant ? 'Kitchen closes 8:45 PM' : storeStatus.text;
   const displayColor = isModalOpen && isKitchenNoteRelevant ? '#777' : storeStatus.color;
 
-  const navbarClasses = `navbar ${isHomePage ? 'navbar-home' : 'navbar-sticky'}`;
+  const navbarClasses = `navbar ${isHomePage ? 'navbar-home' : 'navbar-sticky'} ${isBannerVisible ? 'banner-visible' : ''}`;
 
   const dropdownItems = [
     { path: '/our-story', label: 'Our Story' },
     /* { path: '/contact', label: 'Contact Us' } */
   ];
+  
 
   return (
     <>
