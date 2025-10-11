@@ -110,6 +110,10 @@ function App() {
             onAcceptAll={acceptAll}
             onRejectAll={rejectAll}
             onSave={(prefs) => saveConsent({ essential: true, ...prefs })}
+            initialPreferences={{
+              analytics: consent?.analytics || false,
+              marketing: consent?.marketing || false
+            }}
           />
         )}
 

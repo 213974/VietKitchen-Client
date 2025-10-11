@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import './CookieConsentBanner.css';
-import CookieCategory from './CookieCategory'; // Import the new component
+import CookieCategory from './CookieCategory';
 
 interface CookieConsentBannerProps {
   startInSettingsView: boolean;
   onAcceptAll: () => void;
   onRejectAll: () => void;
   onSave: (preferences: { analytics: boolean; marketing: boolean }) => void;
+  // PROP ADDED TO FIX THE BUG
+  initialPreferences: { analytics: boolean; marketing: boolean };
 }
 
-const CookieConsentBanner = ({ startInSettingsView, onAcceptAll, onRejectAll, onSave }: CookieConsentBannerProps) => {
+const CookieConsentBanner = ({ startInSettingsView, onAcceptAll, onRejectAll, onSave, initialPreferences }: CookieConsentBannerProps) => {
   const [showSettings, setShowSettings] = useState(startInSettingsView);
-  const [preferences, setPreferences] = useState({
-    analytics: false,
-    marketing: false,
-  });
+  
+  // STATE IS NOW INITIALIZED WITH THE PROP
+  const [preferences, setPreferences] = useState(initialPreferences);
 
   useEffect(() => {
     setShowSettings(startInSettingsView);
@@ -32,7 +33,6 @@ const CookieConsentBanner = ({ startInSettingsView, onAcceptAll, onRejectAll, on
   };
 
   return (
-    // The AnimatePresence in App.tsx handles the final exit animation
     <motion.div
       className="cookie-banner-container"
       variants={bannerVariants}
