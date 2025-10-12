@@ -6,7 +6,8 @@ import banhMiMenu from '../assets/menu/Banh_Mi_Menu.png';
 import coffeeMenu from '../assets/menu/Coffee_Menu.png';
 import dessertMenu from '../assets/menu/Dessert_Menu.png';
 import fruitTeaMenu from '../assets/menu/Fruit_Tea_Lemonade_Menu.png';
-/* import matchaMenu from '../assets/menu/Matcha_Special_Menu.png'; */
+// --- FIX: Uncomment the Matcha Menu import ---
+import matchaMenu from '../assets/menu/Matcha_Special_Menu.png';
 import milkTeaMenu from '../assets/menu/Milk_Tea_Menu.png';
 import phoMenu from '../assets/menu/Pho_Menu.png';
 import riceVermicelliMenu from '../assets/menu/Rice_Vermicelli_Menu.png';
@@ -180,23 +181,24 @@ export const menuData: MenuPoster[] = [
       }
     ]
   },
-/* {
+// --- FIX: Add the new Matcha Menu here ---
+{
     imageSrc: matchaMenu,
     altText: "Matcha Special - UYOJI WAVES Menu",
     category: 'Drinks',
     details: [
       {
-        categoryTitle: 'UVOJI WAVES',
+        categoryTitle: 'UYOJI WAVES',
         items: [
-          { name: "MATCHA LATTE", price: "$X.XX" },
-          { name: "MANGO MATCHA LATTE", price: "$X.XX" },
-          { name: "STRAWBERRY MATCHA LATTE", price: "$X.XX" },
-          { name: "EARTH MATCHA", price: "$X.XX" },
-          { name: "BROWN SUGAR MATCHA LATTE", price: "$X.XX" },
+          { name: "MATCHA LATTE", price: "$7.25"},
+          { name: "MANGO MATCHA LATTE", price: "$7.25"},
+          { name: "STRAWBERRY MATCHA LATTE", price: "$7.25"},
+          { name: "EARTH MATCHA", price: "$7.25"},
+          { name: "BROWN SUGAR MATCHA LATTE", price: "$7.25"},
         ]
       }
     ]
-  }, */
+  },
 {
     imageSrc: milkTeaMenu,
     altText: "Milk Tea Menu",

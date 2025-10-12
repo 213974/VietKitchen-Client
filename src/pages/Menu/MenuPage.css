@@ -72,7 +72,8 @@
 
 /* --- Original Styles --- */
 .menu-page-container {
-  max-width: 1200px;
+  /* --- FIX: Increased max-width to better accommodate 4 columns --- */
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -159,3 +160,5 @@
 }
 @media (min-width: 600px) { .menu-posters-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 900px) { .menu-posters-grid { grid-template-columns: repeat(3, 1fr); } }
+/* --- FIX: New breakpoint for 4 columns on wider screens --- */
+@media (min-width: 1280px) { .menu-posters-grid { grid-template-columns: repeat(4, 1fr); } }

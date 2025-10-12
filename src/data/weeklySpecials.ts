@@ -15,7 +15,7 @@ export const weeklySpecialsData: WeeklySpecial[] = [
   {
     day: 'Monday',
     specials: [
-      { price: '$11.85', name: 'Pho (Beef or Chicken)' },
+      { price: '$11.85', name: 'Pho' },
       { price: 'BOGO', name: 'Crispy Dumplings' },
       { price: 'BOGO', name: 'Steamed Shumai' },
       { price: 'BOGO', name: 'Shrimp Hacao' },
@@ -24,22 +24,22 @@ export const weeklySpecialsData: WeeklySpecial[] = [
   {
     day: 'Tuesday',
     specials: [
-      { price: 'BOGO', name: 'Banh Mi (Chicken, Beef, Pork)' },
+      { price: 'BOGO', name: 'Banh Mi' },
       { price: 'BOGO', name: 'Steamed Buns' },
     ],
   },
   {
     day: 'Wednesday',
     specials: [
-      { price: '$11.85', name: 'Pho (Beef or Chicken)' },
+      { price: '$11.85', name: 'Pho' },
       { price: 'BOGO', name: 'Chicken Wonton' },
     ],
   },
   {
     day: 'Thursday',
     specials: [
-      { price: '$15', name: 'Steamed Salmon (Steamed Vegetables/Steamed Rice/Fries)' },
-      { price: '$13', name: 'Pad Thai / Garlic Noodles (Chicken, Beef, Pork)' },
+      { price: '$15', name: 'Steamed Salmon' },
+      { price: '$13', name: 'Pad Thai / Garlic Noodles' },
     ],
   },
   {
@@ -52,14 +52,14 @@ export const weeklySpecialsData: WeeklySpecial[] = [
   {
     day: 'Saturday',
     specials: [
-      { price: '$10', name: 'Rice Bowl (Chicken, Beef, or Pork)' },
+      { price: '$10', name: 'Rice Bowl' },
       { price: '$5', name: 'Smoothies, Milk Tea, Fruit Tea & Lemonade' },
     ],
   },
   {
     day: 'Sunday',
     specials: [
-      { price: '$12', name: 'Vermicelli Noodle Bowl (Chicken, Beef, or Pork)' },
+      { price: '$12', name: 'Vermicelli Noodle Bowl' },
       { price: '$6', name: 'Matcha Drinks' },
     ],
   },

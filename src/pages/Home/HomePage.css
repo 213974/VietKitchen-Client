@@ -126,4 +126,20 @@
   .home-section-wrapper {
     background-attachment: scroll;
   }
+  
+  /* --- FIX: Adjust hero layout for mobile devices --- */
+  .hero-section {
+    padding-top: 6rem; /* Ensure content is clear of the navbar */
+    padding-bottom: 4rem;
+  }
+  
+  .hero-details-group,
+  .restaurant-details {
+    transform: translateY(0); /* Reset problematic vertical transforms */
+  }
+
+  .restaurant-details {
+    flex-wrap: wrap; /* Allow details to wrap on small screens */
+    margin-bottom: 1rem;
+  }
 }

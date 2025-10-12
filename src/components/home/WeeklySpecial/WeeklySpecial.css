@@ -1,7 +1,6 @@
-/* --- Glow Animation Keyframes --- */
+/* --- Glow Animation Keyframes (Unchanged) --- */
 @keyframes pulseGlow {
   0% {
-    /* Use the theme's accent color (with transparency) for the glow */
     box-shadow: 0 0 15px 0px rgba(var(--accent-primary-rgb), 0.2);
   }
   50% {
@@ -12,98 +11,139 @@
   }
 }
 
+/* --- Main Container (Adjusted for new layout) --- */
 .weekly-special-container {
   margin-top: 2.5rem;
   padding: 1.5rem 2rem;
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  max-width: 600px;
+  max-width: 550px;
   width: 100%;
   animation: pulseGlow 4s infinite ease-in-out;
-
-  /* --- ADJUST THIS VALUE to move the entire container left or right --- */
-  /* Positive values move it right, negative values move it left. */
-  transform: translateX(15px);
+  display: flex;
+  flex-direction: column;
+  /* NEW: Set max height and allow scrolling */
+  max-height: 450px;
 }
 
 .special-title {
   font-family: var(--font-family-sans);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #ffffff;
   text-align: center;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 1rem 0;
   letter-spacing: 1px;
+  flex-shrink: 0; /* Prevent title from shrinking */
 }
 
-.special-day-title {
-  text-align: center;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #e0e0e0;
-  margin: 0 0 1.5rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 1rem;
-}
-
-.todays-special-list {
+/* --- NEW: Scrollable List Container --- */
+.all-specials-list {
+  overflow-y: auto;
+  padding-right: 1rem; /* Space for scrollbar */
+  margin-right: -1rem; /* Hide the default scrollbar visually */
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.special-item {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+/* --- NEW: Custom Scrollbar Styling --- */
+.all-specials-list::-webkit-scrollbar {
+  width: 8px;
+}
+.all-specials-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.all-specials-list::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
-.item-price {
-  font-size: 1.5rem;
+/* --- NEW: Individual Day Card Styling --- */
+.special-day-card {
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.special-day-card.is-today {
+  background-color: rgba(var(--accent-primary-rgb), 0.15);
+  border-color: rgba(var(--accent-primary-rgb), 0.5);
+}
+
+.day-name {
+  font-family: var(--font-family-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.day-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.day-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.day-item-price {
+  font-size: 1rem;
   font-weight: 700;
   color: #f97316;
   flex-shrink: 0;
-  width: 80px;
+  width: 70px;
   text-align: right;
 }
 
-.item-name {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #f0f0f0;
+.day-item-name {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #e0e0e0;
 }
 
 .bogo-note {
   text-align: center;
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #ccc;
-  margin: 1.5rem 0 0 0;
+  margin: 1rem 0 0 0;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.no-special-message {
-  text-align: center;
-  font-size: 1.1rem;
+  flex-shrink: 0; /* Prevent note from shrinking */
 }
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 600px) {
+  .weekly-special-container {
+    padding: 1rem 1.5rem;
+    max-height: 400px;
+  }
   .special-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
-  .special-day-title {
-    font-size: 1rem;
+  .day-name {
+    font-size: 1.1rem;
   }
-  .item-price {
-    font-size: 1.2rem;
+  .day-item-price {
+    font-size: 0.9rem;
     width: 60px;
   }
-  .item-name {
-    font-size: 1rem;
+  .day-item-name {
+    font-size: 0.9rem;
   }
 }

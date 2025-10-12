@@ -3,11 +3,9 @@ import { weeklySpecialsData, type WeeklySpecial } from '../../../data/weeklySpec
 import './WeeklySpecial.css';
 
 const WeeklySpecialDisplay = () => {
-  const today = new Date();
-  /* const currentMonth = today.toLocaleString('en-US', { month: 'long' }).toUpperCase(); */
-  const currentDayName = today.toLocaleString('en-US', { weekday: 'long' }) as WeeklySpecial['day'];
-  const todaysSpecial = weeklySpecialsData.find(special => special.day === currentDayName);
-  const hasBogo = todaysSpecial?.specials.some(item => item.price.toUpperCase() === 'BOGO');
+  // Get the current day's name to apply a highlight style.
+  const currentDayName = new Date().toLocaleString('en-US', { weekday: 'long' }) as WeeklySpecial['day'];
+  const hasAnyBogo = weeklySpecialsData.some(day => day.specials.some(item => item.price.toUpperCase() === 'BOGO'));
 
   return (
     <motion.div 
@@ -16,25 +14,29 @@ const WeeklySpecialDisplay = () => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, delay: 1 }}
     >
-      <h2 className="special-title">WEEKLY SPECIAL</h2>
+      <h2 className="special-title">WEEKLY SPECIALS</h2>
       
-      {todaysSpecial ? (
-        <>
-          <h3 className="special-day-title">{currentDayName}</h3>
-          <div className="todays-special-list">
-            {todaysSpecial.specials.map((item, index) => (
-              <div className="special-item" key={index}>
-                <span className="item-price">{item.price}</span>
-                <span className="item-name">{item.name}</span>
-              </div>
-            ))}
+      <div className="all-specials-list">
+        {weeklySpecialsData.map((daySpecial) => (
+          <div 
+            key={daySpecial.day} 
+            className={`special-day-card ${daySpecial.day === currentDayName ? 'is-today' : ''}`}
+          >
+            <h3 className="day-name">{daySpecial.day}</h3>
+            <div className="day-items-list">
+              {daySpecial.specials.map((item, index) => (
+                <div className="day-item" key={index}>
+                  <span className="day-item-price">{item.price}</span>
+                  <span className="day-item-name">{item.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          {hasBogo && (
-            <p className="bogo-note">*BOGO = Buy One Get One Free</p>
-          )}
-        </>
-      ) : (
-        <p className="no-special-message">Check back soon for today's special!</p>
+        ))}
+      </div>
+
+      {hasAnyBogo && (
+        <p className="bogo-note">*BOGO = Buy One Get One Free</p>
       )}
     </motion.div>
   );
