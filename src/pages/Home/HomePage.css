@@ -87,6 +87,9 @@
   transform: translateY(25%);
 }
 .hero-button {
+  /* --- FIX: Treat the link as a block for proper styling --- */
+  display: inline-block;
+  text-decoration: none;
   background-color: var(--accent-primary);
   color: white;
   border: none;

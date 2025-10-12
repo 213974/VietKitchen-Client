@@ -63,9 +63,7 @@
 }
 
 /* ------------------- Call to Action ------------------- */
-.teaser-container .hero-button {
-  text-decoration: none;
-}
+/* --- REMOVED: Redundant rule now consolidated in HomePage.css --- */
 
 /* ------------------- Responsive Adjustments ------------------- */
 @media (max-width: 600px) {
