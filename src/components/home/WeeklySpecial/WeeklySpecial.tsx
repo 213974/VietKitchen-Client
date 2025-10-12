@@ -25,9 +25,15 @@ const WeeklySpecialDisplay = () => {
             <h3 className="day-name">{daySpecial.day}</h3>
             <div className="day-items-list">
               {daySpecial.specials.map((item, index) => (
+                // --- FIX: Restructured JSX for proper grouping and styling ---
                 <div className="day-item" key={index}>
-                  <span className="day-item-price">{item.price}</span>
-                  <span className="day-item-name">{item.name}</span>
+                  <div className="day-item-main">
+                    <span className="day-item-price">{item.price}</span>
+                    <span className="day-item-name">{item.name}</span>
+                  </div>
+                  {item.description && (
+                    <span className="day-item-description">{item.description}</span>
+                  )}
                 </div>
               ))}
             </div>
