@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 // ------------------- Component Imports -------------------
 import GalleryTeaser from '../../components/home/GalleryTeaser/GalleryTeaser';
 import OurStoryTeaser from '../../components/home/OurStoryTeaser/OurStoryTeaser';
-import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser';
+/* import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser'; */
 import MenuTeaser from '../../components/home/MenuTeaser/MenuTeaser';
 import WeeklySpecialDisplay from '../../components/home/WeeklySpecial/WeeklySpecial';
 import SEO from '../../components/common/SEO/SEO';
@@ -141,7 +141,7 @@ const HomePage = () => {
         <GalleryTeaser />
         {/* --- Re-added the ContactTeaser component --- */}
         <div className="home-section-wrapper contact-bg">
-          <ContactTeaser />
+          {/* <ContactTeaser /> */}
         </div>
       </main>
     </>
