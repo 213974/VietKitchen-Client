@@ -5,7 +5,7 @@
   100% { box-shadow: 0 0 15px 0px rgba(var(--accent-primary-rgb), 0.2); }
 }
 
-/* --- Main Container (Unchanged) --- */
+/* --- Main Container --- */
 .weekly-special-container {
   margin-top: 2.5rem;
   padding: 1.5rem 2rem;
@@ -14,12 +14,12 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  max-width: 550px;
+  max-width: 500px; /* MODIFIED: Decreased width */
   width: 100%;
   animation: pulseGlow 4s infinite ease-in-out;
   display: flex;
   flex-direction: column;
-  max-height: 450px;
+  max-height: 470px; /* MODIFIED: Increased height */
 }
 
 .special-title {
@@ -68,7 +68,7 @@
   padding-bottom: 0.5rem;
 }
 
-/* --- FIX: New, robust alignment rules --- */
+/* --- Item Styling (Unchanged) --- */
 .day-items-list {
   display: flex;
   flex-direction: column;
@@ -78,7 +78,7 @@
 .day-item {
   display: flex;
   flex-direction: column;
-  align-items: center; /* This centers both the main line and description */
+  align-items: center; 
 }
 
 .day-item-main {
@@ -103,27 +103,43 @@
   font-size: 0.85rem;
   font-weight: 400;
   color: #b0b0b0;
-  margin-top: -2px; /* Visual tweak to tighten spacing */
+  margin-top: -2px; 
 }
 
-/* --- BOGO Note (Unchanged) --- */
-.bogo-note {
+/* --- Footer Notes (Unchanged from previous task) --- */
+.special-footer-notes {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.bogo-note,
+.special-disclaimer {
   text-align: center;
   font-style: italic;
   font-size: 0.8rem;
   color: #ccc;
-  margin: 1rem 0 0 0;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  flex-shrink: 0;
+  margin: 0;
 }
 
-/* --- Responsive Adjustments (Unchanged) --- */
+/* --- Responsive Adjustments --- */
 @media (max-width: 600px) {
-  .weekly-special-container { padding: 1rem 1.5rem; max-height: 400px; }
-  .special-title { font-size: 1.3rem; }
-  .day-name { font-size: 1.1rem; }
-  .day-item-price { font-size: 0.9rem; }
-  .day-item-name { font-size: 0.9rem; }
-  .day-item-description { font-size: 0.8rem; }
+  /* MODIFIED: Increased mobile height */
+  .weekly-special-container { padding: 1rem 1.5rem; max-height: 420px; }
+  
+  /* MODIFIED: Reduced all mobile font sizes */
+  .special-title { font-size: 1.25rem; }
+  .day-name { font-size: 1.05rem; }
+  .day-item-price { font-size: 0.85rem; }
+  .day-item-name { font-size: 0.85rem; }
+  .day-item-description { font-size: 0.75rem; }
+  .bogo-note,
+  .special-disclaimer {
+    font-size: 0.75rem;
+  }
 }

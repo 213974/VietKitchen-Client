@@ -1,3 +1,4 @@
+// src/components/home/WeeklySpecial/WeeklySpecial.tsx
 import { motion } from 'framer-motion';
 import { weeklySpecialsData, type WeeklySpecial } from '../../../data/weeklySpecials';
 import './WeeklySpecial.css';
@@ -41,9 +42,14 @@ const WeeklySpecialDisplay = () => {
         ))}
       </div>
 
-      {hasAnyBogo && (
-        <p className="bogo-note">*BOGO = Buy One Get One Free</p>
-      )}
+      <div className="special-footer-notes">
+        {hasAnyBogo && (
+          <p className="bogo-note">*BOGO = Buy One Get One Free</p>
+        )}
+        <p className="special-disclaimer">
+          Weekly specials are valid for in-store or phone orders only.
+        </p>
+      </div>
     </motion.div>
   );
 };
