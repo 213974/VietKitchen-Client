@@ -1,3 +1,5 @@
+// src/pages/OurStory/OurStoryPage.tsx
+
 import { motion } from 'framer-motion';
 import './OurStoryPage.css';
 import StoryImage from '../../assets/gallery/store_front1.jpg';
@@ -5,14 +7,37 @@ import CafeShowcaseVideo from '../../assets/gallery/CafeShowcase.mp4';
 import SEO from '../../components/common/SEO/SEO';
 
 const OurStoryPage = () => {
+  // --- 1. Define the Video Schema ---
+  // This object explicitly describes your video for Google.
+  const videoSchema = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "A Glimpse of the Viet Kitchen & Tea House Experience",
+    "description": "Experience the warm and welcoming atmosphere of our restaurant, from our friendly staff to our delicious Vietnamese cuisine and bubble tea.",
+    // Use an absolute URL for the thumbnail. The main storefront image is a great choice.
+    "thumbnailUrl": `https://www.vietkitchenteahouse.com${StoryImage}`,
+    // Set this to the date you published the page or video.
+    "uploadDate": "2025-10-20T08:00:00+00:00",
+    // IMPORTANT: Update this to the video's actual duration (PT<minutes>M<seconds>S format).
+    "duration": "PT0M15S", // This means 0 minutes and 15 seconds.
+    // The direct, absolute URL to the video file itself.
+    "contentUrl": `https://www.vietkitchenteahouse.com${CafeShowcaseVideo}`,
+  };
+
   return (
     <>
-      <SEO 
+      {/* --- 2. Inject the Schema into the SEO Component --- */}
+      <SEO
         title="Our Story"
         description="Learn about the passion and tradition behind Viet Kitchen & Tea House. Discover our story, our philosophy, and the cultural inspiration for our authentic Vietnamese cuisine."
-      />
+      >
+        {/* This script tag makes the schema available to search engine crawlers */}
+        <script type="application/ld+json">{JSON.stringify(videoSchema)}</script>
+      </SEO>
       <div className="our-story-page">
         <div className="story-video-container">
+          {/* --- 3. Add a poster image to the video tag --- */}
+          {/* The poster provides a fallback image and helps with load performance. */}
           <video
             src={CafeShowcaseVideo}
             autoPlay
@@ -20,6 +45,7 @@ const OurStoryPage = () => {
             muted
             playsInline
             className="story-hero-video"
+            poster={StoryImage}
           />
           <div className="video-overlay-text">
             <h1>Our Story</h1>
@@ -27,7 +53,7 @@ const OurStoryPage = () => {
         </div>
 
         <main className="story-content-container">
-          <motion.div 
+          <motion.div
             className="story-section"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +66,7 @@ const OurStoryPage = () => {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="story-section"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -53,7 +79,7 @@ const OurStoryPage = () => {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="story-image-container"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -66,7 +92,7 @@ const OurStoryPage = () => {
             </div>
           </motion.div>
           
-          <motion.div 
+          <motion.div
             className="story-section"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
