@@ -94,7 +94,7 @@ const Navbar = ({ isHomePage, isBannerVisible }: NavbarProps) => {
 
   const dropdownItems = [
     { path: '/our-story', label: 'Our Story' },
-    /* { path: '/contact', label: 'Contact Us' } */
+    { path: '/contact', label: 'Contact Us' }
   ];
   
 
@@ -167,7 +167,7 @@ const Navbar = ({ isHomePage, isBannerVisible }: NavbarProps) => {
               <NavLink to="/" onClick={handleLinkClick}>Home</NavLink>
               <NavLink to="/menu" onClick={handleLinkClick}>Menu</NavLink>
               <NavLink to="/our-story" onClick={handleLinkClick}>Our Story</NavLink>
-              {/* <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink> */}
+              <NavLink to="/contact" onClick={handleLinkClick}>Contact</NavLink>
               <a href={orderPickupUrl} target="_blank" rel="noopener noreferrer" className="mobile-cta-link">
                 Order Pickup
               </a>

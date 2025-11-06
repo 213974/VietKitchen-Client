@@ -21,6 +21,12 @@ const NovemberSpecials = () => {
 
   return (
     <>
+      {/* --- Image Preloading Section --- */}
+      <div style={{ display: 'none' }}>
+        <img src={inStoreSpecial} alt="Preload in-store specials" />
+        <img src={deliverySpecial} alt="Preload delivery specials" />
+      </div>
+
       <div className="specials-container">
         <h3 className="specials-title">Weekly Specials</h3>
         <div className="specials-buttons-wrapper">

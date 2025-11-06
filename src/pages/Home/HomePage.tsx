@@ -83,7 +83,6 @@ const HomePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: isDesktop ? 0.75 : 0.2 }}
             >
-              {/* --- New group for details and paragraph --- */}
               <div className="hero-details-group">
                 <div className="restaurant-details">
                   <span>Asian Fusion</span>

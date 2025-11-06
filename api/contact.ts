@@ -21,8 +21,8 @@ export default async function handler(
 
   try {
     const { error } = await resend.emails.send({
-      from: 'Viet Kitchen Contact Form <onboarding@resend.dev>',
-      to: ['213974@protonmail.com'], 
+      from: 'Website Contact Form <noreply@vietkitchenteahouse.com>',
+      to: ['213974@protonmail.com'], // vietkitchenteahouse@gmail.com
       replyTo: email,
       subject: `Contact Form: ${subject || 'No Subject'}`,
       html: `
