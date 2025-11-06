@@ -4,10 +4,9 @@ import { motion } from 'framer-motion';
 // ------------------- Component Imports -------------------
 import GalleryTeaser from '../../components/home/GalleryTeaser/GalleryTeaser';
 import OurStoryTeaser from '../../components/home/OurStoryTeaser/OurStoryTeaser';
-// --- FIX: Uncommented ContactTeaser import ---
 import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser';
 import MenuTeaser from '../../components/home/MenuTeaser/MenuTeaser';
-import WeeklySpecialDisplay from '../../components/home/WeeklySpecial/WeeklySpecial';
+/* import WeeklySpecialDisplay from '../../components/home/WeeklySpecial/WeeklySpecial'; */
 import SEO from '../../components/common/SEO/SEO';
 
 // ------------------- Hook Imports -------------------
@@ -96,7 +95,7 @@ const HomePage = () => {
                 <p>Serving up delightful bubble tea, tantalizing Asian fusion fare, and scrumptious snacks in Sterling, VA.</p>
               </div>
 
-              <WeeklySpecialDisplay />
+              {/* <WeeklySpecialDisplay /> */}
             </motion.div>
           </header>
         </div>
