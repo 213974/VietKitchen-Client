@@ -9,7 +9,7 @@ import Footer from './components/layout/Footer/Footer';
 // --- Public Pages ---
 import HomePage from './pages/Home/HomePage';
 import MenuPage from './pages/Menu/MenuPage';
-import ContactPage from './pages//Contact/ContactPage';
+/* import ContactPage from './pages//Contact/ContactPage'; */
 import OurStoryPage from './pages/OurStory/OurStoryPage';
 import NotFoundPage from './pages/NotFound/NotFoundPage';
 // --- Admin Pages & Auth ---
@@ -151,7 +151,7 @@ function App() {
               <Route index element={<AnimatedPage><HomePage /></AnimatedPage>} />
               <Route path="menu" element={<AnimatedPage><MenuPage /></AnimatedPage>} />
               <Route path="our-story" element={<AnimatedPage><OurStoryPage /></AnimatedPage>} />
-              <Route path="contact" element={<AnimatedPage><ContactPage /></AnimatedPage>} />
+              {/* <Route path="contact" element={<AnimatedPage><ContactPage /></AnimatedPage>} /> */}
             </Route>
 
             <Route path="/admin-login" element={<AnimatedPage><AdminLoginPage /></AnimatedPage>} />
