@@ -116,7 +116,6 @@ function App() {
         <ScrollToTopButton />
 
         {/* --- Render Banner --- */}
-        {/* FIX: Use the 'promotionsLoading' state to prevent rendering before data is ready. */}
         {!promotionsLoading && activeBanner && (
           <NotificationBanner 
             banner={activeBanner} 

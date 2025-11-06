@@ -4,10 +4,9 @@ import { motion } from 'framer-motion';
 // ------------------- Component Imports -------------------
 import GalleryTeaser from '../../components/home/GalleryTeaser/GalleryTeaser';
 import OurStoryTeaser from '../../components/home/OurStoryTeaser/OurStoryTeaser';
-// --- FIX: Uncommented ContactTeaser import ---
 import ContactTeaser from '../../components/home/ContactTeaser/ContactTeaser';
 import MenuTeaser from '../../components/home/MenuTeaser/MenuTeaser';
-import WeeklySpecialDisplay from '../../components/home/WeeklySpecial/WeeklySpecial';
+import NovemberSpecials from '../../components/home/NovemberSpecials/NovemberSpecials';
 import SEO from '../../components/common/SEO/SEO';
 
 // ------------------- Hook Imports -------------------
@@ -96,7 +95,7 @@ const HomePage = () => {
                 <p>Serving up delightful bubble tea, tantalizing Asian fusion fare, and scrumptious snacks in Sterling, VA.</p>
               </div>
 
-              <WeeklySpecialDisplay />
+              <NovemberSpecials />
             </motion.div>
           </header>
         </div>
@@ -107,7 +106,6 @@ const HomePage = () => {
           <div className="side-promo-container">
             {!promotionsLoading && sidePromoLeft && (
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}>
-                {/* --- FIX: Title is now rendered OUTSIDE the card --- */}
                 <h4 className="side-promo-title">{sidePromoLeft.title}</h4>
                 <div className="side-promo-card">
                   <img src={sidePromoLeft.image_url!} alt={sidePromoLeft.title} />
@@ -125,7 +123,6 @@ const HomePage = () => {
           <div className="side-promo-container">
             {!promotionsLoading && sidePromoRight && (
               <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 }}>
-                 {/* --- FIX: Title is now rendered OUTSIDE the card --- */}
                 <h4 className="side-promo-title">{sidePromoRight.title}</h4>
                 <div className="side-promo-card">
                   <img src={sidePromoRight.image_url!} alt={sidePromoRight.title} />
@@ -140,9 +137,8 @@ const HomePage = () => {
           <OurStoryTeaser />
         </div>
         <GalleryTeaser />
-        {/* --- Re-added the ContactTeaser component --- */}
+        {/* --- ContactTeaser component --- */}
         <div className="home-section-wrapper contact-bg">
-          {/* --- FIX: Uncommented ContactTeaser component --- */}
           <ContactTeaser />
         </div>
       </main>
