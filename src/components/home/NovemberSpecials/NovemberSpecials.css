@@ -1,3 +1,10 @@
+/* Keyframes for the theme-specific glow animation */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 15px 0px rgba(var(--accent-primary-rgb), 0.2); }
+  50% { box-shadow: 0 0 30px 5px rgba(var(--accent-primary-rgb), 0.4); }
+  100% { box-shadow: 0 0 15px 0px rgba(var(--accent-primary-rgb), 0.2); }
+}
+
 .specials-container {
   margin-top: 2rem;
   padding: 1.5rem;
@@ -12,6 +19,7 @@
   gap: 1rem;
   width: 100%;
   max-width: 500px;
+  animation: pulseGlow 4s infinite ease-in-out;
 }
 
 .specials-title {
@@ -28,7 +36,7 @@
   display: flex;
   gap: 1rem;
   justify-content: center;
-  flex-wrap: wrap; /* Allows buttons to stack on smaller screens */
+  flex-wrap: wrap; /* This ensures buttons stack vertically on mobile */
 }
 
 .special-button {
@@ -49,12 +57,18 @@
   color: var(--text-primary);
 }
 
+/* Responsive styles for mobile and smaller devices */
 @media (max-width: 600px) {
   .specials-title {
     font-size: 1.25rem;
   }
+  .specials-buttons-wrapper {
+    flex-direction: column; /* Explicitly stack buttons for a cleaner mobile layout */
+    align-items: stretch; /* Make buttons take full width of the container */
+    width: 100%;
+  }
   .special-button {
     font-size: 0.9rem;
-    padding: 0.6rem 1.2rem;
+    padding: 0.8rem 1.2rem; /* Increased vertical padding for better touch targets */
   }
 }

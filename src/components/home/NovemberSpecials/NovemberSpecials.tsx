@@ -22,7 +22,7 @@ const NovemberSpecials = () => {
   return (
     <>
       <div className="specials-container">
-        <h3 className="specials-title">November Weekly Specials</h3>
+        <h3 className="specials-title">Weekly Specials</h3>
         <div className="specials-buttons-wrapper">
           <button
             className="special-button"
