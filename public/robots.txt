@@ -1,0 +1,9 @@
+# Allow all friendly crawlers to access the site
+User-agent: *
+Allow: /
+
+# Disallow crawling of the admin login page
+Disallow: /admin-login
+
+# Location of sitemap (update URL when live)
+Sitemap: https://www.vietkitchenteahouse.com/sitemap.xml
