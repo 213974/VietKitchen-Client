@@ -1,8 +1,0 @@
-// src/custom.d.ts
-
-declare module '*.css';
-
-declare module '*.mp4' {
-  const src: string;
-  export default src;
-}
