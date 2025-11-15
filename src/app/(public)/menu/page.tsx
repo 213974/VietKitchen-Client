@@ -1,0 +1,120 @@
+'use client';
+
+import { useState, useMemo, Fragment } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import SEO from '@/components/common/SEO/SEO';
+import MenuPosterCard from '@/pages/Menu/MenuPosterCard';
+import MenuDetailCard from '@/pages/Menu/MenuDetailCard';
+import { ReactComponent as ViewImageIcon } from '@/assets/icons/view-image.svg';
+import { ReactComponent as ViewListIcon } from '@/assets/icons/view-list.svg';
+import { menuData } from '@/data/menuData';
+import type { MenuPoster } from '@/data/menuData';
+
+// --- Styles ---
+import '@/pages/Menu/MenuPage.css';
+
+type MenuFilter = 'All' | 'Food' | 'Drinks' | 'Desserts';
+const filterCategories: MenuFilter[] = ['All', 'Food', 'Drinks', 'Desserts'];
+
+export default function MenuPage() {
+  const [activeFilter, setActiveFilter] = useState<MenuFilter>('All');
+  const [isDetailedView, setIsDetailedView] = useState(true);
+
+  const filteredMenu = useMemo(() => {
+    if (activeFilter === 'All') return menuData;
+    return menuData.filter(poster => poster.category === activeFilter);
+  }, [activeFilter]);
+
+  const groupedMenu = useMemo(() => {
+    return menuData.reduce((acc, poster) => {
+      const category = poster.category;
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(poster);
+      return acc;
+    }, {} as Record<string, MenuPoster[]>);
+  }, []);
+  
+  const onlineOrderUrl = 'https://online.skytab.com/38bdc873ed00c1a08c9bb35ce20ee7be';
+
+  return (
+    <>
+      <SEO
+        title="Menu"
+        description="Explore the delicious menu at Viet Kitchen & Tea House. From authentic entrees to refreshing bubble teas, find your next favorite dish."
+      />
+      <div className="menu-page-container">
+        <header className="menu-header">
+          <h1>Our Menu</h1>
+          <p>Authentic flavors crafted with the freshest ingredients.</p>
+        </header>
+
+        <div className="full-menu-notice">
+          <p>
+            Browse our curated selections below. For our complete menu and to place an order, please visit our online ordering portal.
+            <a href={onlineOrderUrl} target="_blank" rel="noopener noreferrer" className="notice-link-btn">
+              View Full Menu & Order
+            </a>
+          </p>
+        </div>
+
+        <div className="menu-controls-wrapper">
+          <div className="menu-filters">
+            {filterCategories.map(filter => (
+              <button
+                key={filter}
+                className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
+                onClick={() => setActiveFilter(filter)}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          <div className="view-toggle">
+            <button onClick={() => setIsDetailedView(false)} className={!isDetailedView ? 'active' : ''} aria-label="Image View">
+              <ViewImageIcon />
+            </button>
+            <button onClick={() => setIsDetailedView(true)} className={isDetailedView ? 'active' : ''} aria-label="List View">
+              <ViewListIcon />
+            </button>
+          </div>
+        </div>
+
+        {!isDetailedView && (
+          <div className="menu-click-hint">
+            <p>Click on a menu to see more details.</p>
+          </div>
+        )}
+
+        <motion.div className="menu-posters-grid">
+          <AnimatePresence mode="wait">
+            {activeFilter === 'All' ? (
+              Object.entries(groupedMenu).map(([category, posters]) => (
+                <Fragment key={category}>
+                  <h2 className="menu-category-header">{category}</h2>
+                  {posters.map((poster) =>
+                    isDetailedView ? (
+                      <MenuDetailCard key={poster.altText} altText={poster.altText} details={poster.details} />
+                    ) : (
+                      <MenuPosterCard key={poster.altText} {...poster} />
+                    )
+                  )}
+                </Fragment>
+              ))
+            ) : (
+              filteredMenu.map((poster) =>
+                isDetailedView ? (
+                  <MenuDetailCard key={poster.altText} altText={poster.altText} details={poster.details} />
+                ) : (
+                  <MenuPosterCard key={poster.altText} {...poster} />
+                )
+              )
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    </>
+  );
+};

@@ -15,7 +15,9 @@
     "framer-motion": "^12.23.24",
     "next": "16.0.3",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "react-helmet-async": "^2.0.5",
+    "resend": "^6.4.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
