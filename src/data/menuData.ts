@@ -6,7 +6,6 @@ import banhMiMenu from '../assets/menu/Banh_Mi_Menu.png';
 import coffeeMenu from '../assets/menu/Coffee_Menu.png';
 import dessertMenu from '../assets/menu/Dessert_Menu.png';
 import fruitTeaMenu from '../assets/menu/Fruit_Tea_Lemonade_Menu.png';
-// --- FIX: Uncomment the Matcha Menu import ---
 import matchaMenu from '../assets/menu/Matcha_Special_Menu.png';
 import milkTeaMenu from '../assets/menu/Milk_Tea_Menu.png';
 import phoMenu from '../assets/menu/Pho_Menu.png';
@@ -58,6 +57,7 @@ export const menuData: MenuPoster[] = [
           { name: "Pineapple & Pork Skewers", price: "$9 - 3pcs / $11 - 4pcs" },
           { name: "Crispy Shrimp & Chicken Wonton", price: "$8.75 - 3pcs / $11 - 4pcs" },
           { name: "Chicken Skewers", price: "$9 - 3pcs / $11 - 4pcs" },
+          { name: "Crispy Chicken Dumpling", price: "$5.00 - 2pcs / $5.50 - 3pcs" },
         ]
       }
     ]
